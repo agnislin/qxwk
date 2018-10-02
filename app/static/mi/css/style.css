@@ -1,0 +1,76 @@
+body{
+	margin:0;
+	padding:0;
+}
+a{
+	text-decoration:none;
+}
+.topbar{
+	margin:0;
+	padding:0;
+	background-color:#333;
+	height:40px;
+}
+.container{
+	line-height:40px;
+	margin:0 auto;
+	width:1226px;
+}
+.topbar-nav{
+	float:left;
+	height:40px;
+	font-size:0;
+}
+.topbar-info{
+	margin:0;
+	float:right;
+}
+
+.topbar-cart{
+	margin:0;
+	float:right;
+}
+.topbar a{
+	color:#b0b0b0;
+	font-size:12px;
+}
+.topbar a:hover{
+	color:#fff;
+}
+.topbar-nav span{
+	font-size:12px;
+	color:#424242;
+	font-family:sans-serif;
+	margin:0.5em;
+}
+.topbar-cart a{
+	display:block;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+	width:120px;
+	background-color:#424242;
+}
+.topbar-cart a:hover{
+	background-color:#fff;
+	color:#ff6700;
+}
+.topbar-cart span{
+	padding:-4;
+	font-size:12px;
+}
+.topbar-info a{
+	float:left;
+	padding:0 5px;
+	line-height:40px;
+	height:40px;
+}
+.topbar-info span{
+	float:left;
+	font-family:sans-serif;
+	font-size:12px;
+	color:#424242;
+	line-height:40px;
+	height:40px;
+}
+
