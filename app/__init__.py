@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from flask import Flask
 from app.server import fontserver
 from app.CMS import cms
@@ -7,7 +9,7 @@ app = Flask(__name__)
 app.debug = True
 
 app.register_blueprint(fontserver)
-app.register_blueprint(cms,url_prefix='/admin')
+app.register_blueprint(cms, url_prefix='/admin')
 
 # STATIC_URL_ROOT = '//127.0.0.1:5000/'
 #
