@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="52f7eac0-6503-435b-acf8-72e8fc481dc6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/qxwk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/qxwk.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/cms/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/cms/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/server/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/server/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-    </list>
+    <list default="true" id="52f7eac0-6503-435b-acf8-72e8fc481dc6" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +104,7 @@
     <session id="704966203">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -212,7 +206,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="405" />
     <option name="y" value="31" />
     <option name="width" value="1134" />
@@ -424,8 +418,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="405" y="31" width="1134" height="912" extended-state="1" />
-    <editor active="true" />
+    <frame x="405" y="31" width="1134" height="912" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2132216" />
       <window_info id="Structure" order="1" weight="0.25" />
