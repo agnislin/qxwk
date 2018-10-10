@@ -1,0 +1,33 @@
+{% extends 'server/pageframe.html' %}
+{% block title %}login pages{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='server/css/login.css') }}">
+{% endblock %}
+{% block content %}
+    <!-- 登录主体 -->
+    <div style="background-color: transparent;height: 100px;"></div>
+    <div class="register-body">
+    <div>
+        <form id="test_form" method='POST'>
+        <div class="form-inp-area">
+            <span id="wro-ac" class="form-tips"></span>
+            <input id="account" class="form-input" value="" type="text" placeholder="手机号或邮箱" >
+        </div>
+        <div class="form-inp-area">
+            <span id="wro-pw" class="form-tips"></span>
+            <input id="password" class="form-input" cusrule="pwd" value="" type="password" placeholder="你的密码">
+            <a target="_blank" href="" class="forget-password">忘记密码?</a>
+        </div>
+        <div>
+            <button id="js_submit" class="form-btn form-btn-blue width-150" type="button" onclick="check()">登录</button>
+            <a href="" class="form-btna" type="button">注册</a>
+        </div>
+        </form>
+    </div>
+        <div class="register-hidden-gruop" id="register_pc_direct_login" data-v-4b710c76="">
+        <a href="/login" >已有账号，直接登录&gt;</a>
+    </div>
+    </div>
+    <script src="{{ url_for('static', filename='server/js/login.js') }}"></script>
+{% endblock %}

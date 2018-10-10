@@ -1,0 +1,76 @@
+    <!-- 顶部导航 -->
+    {% extends 'server/pageframe.html' %}
+    {% block title %}register pages{% endblock %}
+    {% block head %}
+        {{ super() }}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='server/css/register.css') }}">
+    {% endblock %}
+    {% block content %}
+    <!-- 注册主体 -->
+    <div style="background-color: transparent;height: 100px;"></div>
+    <div class="register-body">
+    <!-- 表单头 -->
+    <ul id="tabs">
+            <li class=" active" data-target="md_2018040401_ll_tab1">手机注册</li>
+            <li data-target="md_2018040401_ll_tab2">邮箱注册</li>
+    </ul>
+    <!-- 表单体 -->
+    <!-- 手机 -->
+    <div id="ph-form" class="">
+        <form>
+        <div class="form-inp-area">
+            <input class="form-input" value="" type="text" placeholder="手机号">
+            <span class="form-tips"></span>
+        </div>
+        <div class="form-inp-area">
+            <input class="form-input" cusrule="pwd" value="" type="password" placeholder="密码   包含数字、字母、下划线的6-18位">
+            <span class="form-tips"></span>
+        </div>
+        <div class="form-inp-area">
+            <input class="form-input" cusrule="equalTo" equalto="js_pwd_phone" value="" type="password" placeholder="确认密码">
+            <span id='wropw2' class="form-tips"></span>
+        </div>
+        <div class="dyna form-inp-area">
+            <input class="form-input" cusrule="required" value="" type="text" placeholder="短信验证码">
+            <button id="js_DynamicCodePhone" class="form-btn form-btn-blue pull-right" type="button">获取验证码</button>
+            <span  class="special2 form-tips"></span>
+        </div>
+        <div>
+            <button id="js_submit_reg_phone" class="form-btn form-btn-blue width-340" type="button" onclick="regcheck('phone', phinput, phwrotipli)">注册</button>
+        </div>
+        </form>
+    </div>
+    <!-- 邮箱 -->
+    <div id="em-form" class="non-active">
+        <form>
+        <div class="form-inp-area">
+            <input class="form-input" value="" type="text" placeholder="邮箱">
+            <span class="form-tips"></span>
+        </div>
+        <div class="form-inp-area">
+            <input class="form-input" cusrule="pwd" value="" type="password" placeholder="密码   包含数字、字母、下划线的6-18位">
+            <span class="form-tips"></span>
+        </div>
+        <div class="form-inp-area">
+            <input class="form-input" cusrule="equalTo" equalto="js_pwd_phone" value="" type="password" placeholder="确认密码">
+            <span  class="form-tips"></span>
+        </div>
+        <div class="dyna form-inp-area">
+            <input class="form-input" cusrule="required" value="" type="text" placeholder="验证码">
+            <button id="js_DynamicCodemail" class="form-btn form-btn-blue pull-right" type="button">获取验证码</button>
+            <span  class="special2 form-tips"></span>
+        </div>
+        <div>
+            <button id="js_submit_reg_mail" class="form-btn form-btn-blue width-340" type="button" onclick="regcheck('email', eminput, emwrotipli)">注册</button>
+        </div>
+        </form>
+    </div>
+    <!-- 表单尾 -->
+    <div class="register-hidden-gruop" id="register_pc_direct_login" data-v-4b710c76="">
+        <a href="/login" data-v-4b710c76="">已有账号，直接登录&gt;</a>
+    </div>
+    </div>
+    <script src="{{ url_for('static', filename='server/js/register.js') }}"></script>
+</body>
+</html>
+{% endblock %}

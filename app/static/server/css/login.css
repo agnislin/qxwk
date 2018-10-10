@@ -1,0 +1,171 @@
+a, abbr, acronym, address, applet, body, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+/* 顶部导航 */
+.site-header {
+    min-width: 1000px;
+    box-shadow: darkgray 0px 4px 20px 0px ;
+    height: 60px;
+    background-color: #FFF;
+    /* border: 1px solid black; */  
+}
+.container-left {
+    margin-left: 150px;
+    float: left;
+    /* border: 1px solid black; */
+}
+.container-right {
+    float: right;
+    /* border: 1px solid black; */
+    position: relative;
+    right: 150px;
+    top: 0px;
+}
+.search-form {
+    float: left;
+
+    margin: 16.5px 10px;
+    padding:0px 10px;
+
+}
+.search {
+    width: 150px;
+    height: 25px;
+    border-radius: 3px;
+    border: 1px solid #ccc; 
+}
+.search-btn {
+    display: none;
+}
+.a {
+    color: #000;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    text-decoration: none;
+    top: 50%;
+    line-height: 60px;
+    display: block;
+    float: left;
+    padding: 0px 15px;
+}
+.head {
+    font-family: "Microsoft YaHei";
+    font-size: 24px;
+    color: green;
+}
+
+.a:hover{
+    color: green;
+}
+
+.yonghu {
+    text-decoration: underline;
+}
+
+
+
+/* 底边 */
+.foot {
+    line-height: 100px;
+    height: 100px;
+    background-color: #E5E5E5;
+    margin-top:20px;
+
+}
+/* 顶部导航end */
+
+/* 注册 */
+.register-body {
+    width: 400px;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+/* 表单头 */
+.form-head {
+    height: 60px;
+}
+
+
+/* 表单体 */
+.form-input {
+    display: inline-block;
+    width: 320px;
+    height: 38px;
+    margin: 10px 31px;
+    padding:0px 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc; 
+}
+
+/* button */
+.form-btn {
+    height: 36px;
+    padding: 0px 20px;
+    margin: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.form-btna {
+    display: inline-block;
+    height: 30px;
+    padding: 5px 60px 0px 60px;
+    margin: 10px;
+    border-radius: 3px;
+    color: rgb(160, 157, 157);
+    background-color: white;
+    border:1px solid rgb(190, 187, 187);
+    font: 400 13px Arial;
+    line-height: 30px;
+}
+.form-btna:hover {
+    background-color: rgb(224, 222, 222);
+}
+.form-btn-blue {
+    color: #fff;
+    background-color: cornflowerblue;
+    border:1px  cornflowerblue;
+}
+
+.width-150 {
+    width: 150px;
+    margin: 10px 31px;
+}
+.form-btn:hover {
+    background-color: rgb(51, 116, 238);
+}
+/* button */
+
+.form-tips {
+    margin: 0px 31px;
+    font-size: small;
+    color: red;
+}
+.register-hidden-gruop {
+    font-size: smaller;
+    width: 369px;
+    text-align: right;
+}
+
+a {
+    text-decoration: none;
+    color: #00a1d6;
+    font-family: PingFangSC-Medium;
+}
+.forget-password {
+    font-size: smaller;
+    width: 369px;
+    text-align: right;
+    margin-left: 300px;
+}
+
+.active {
+    display: block;
+}
+
+

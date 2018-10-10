@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='server/favicon.ico') }}" type="image/x-icon">
+    {% block head %}
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+<!--     <link rel="stylesheet" type="text/css" media="screen" href="css/pageframe.css" /> -->
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="site-header">
+        <div class="container-left">
+            <a class="a head" href="{{ url_for('server.index') }}">Qxwk</a>
+            <a class="a" href="">免费课程</a>
+            <a class="a" href="">付费课程</a>
+        </div>
+        <div class="container-right">
+            <form  class="search-form" action="">
+            <input class="search" type="text" name="search" id="" placeholder="   搜索课程">
+            <button class="search-btn" type="submit"></button>
+            </form>
+            <a class="a" href="">小仓库</a>
+            {% if username %}
+            <!-- 如果已登录 -->
+            <a class="a yonghu" href="">{{ username }}</a> -->
+            <a class="a" href="">退出</a>
+            <!-- /如果已登录 -->
+            {% else %}
+            <a class="a" href="{{ url_for('server.register') }}" >注册</a>
+            <a class="a" href="{{ url_for('server.login') }}">登录</a>
+            {% endif %}
+        </div>
+    </div>
+    <!-- /顶部导航 -->
+    <!-- 内容 -->
+    <div>{% block content %}{% endblock %}</div>
+    <!-- /内容 -->
+    <!-- 底边 -->
+
+    <!-- /底边 -->
+</body>
+</html>
