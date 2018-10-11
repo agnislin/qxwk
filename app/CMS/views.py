@@ -19,3 +19,5 @@ def show_username(username):
     course = request.args.get('courseId')
     if not (user and course):
         return user + course
+
+

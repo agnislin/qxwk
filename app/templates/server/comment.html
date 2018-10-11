@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {margin: 0; padding: 0;}
+
+        #v-right{
+            background-color: #f1f1f1;
+            position: absolute;
+            height: 100%;
+            width: 600px;
+            right: 0;
+            box-shadow: -5px 0px 11px 0px #ce4b4b;
+        }
+        #vr-base{
+            background-color: #baf;
+            height: 80px;
+        }
+
+        #vr-nav{
+            background-color: pink;
+            padding-left: 20px;
+            padding-right: 20px;
+            height: 65px;
+        }
+        #vr-nav ol{
+            -webkit-border-top-left-radius: 4px;
+            -moz-border-topleft-radius: 4px;
+            border-top-left-radius: 4px;
+            -webkit-border-top-right-radius: 4px;
+            -moz-border-topright-radius: 4px;
+            border-top-right-radius: 4px;
+            list-style: none;
+            list-style-image: none;
+            margin: 0 10px;
+            padding: 15px 0 15px 0;
+        }
+        #vr-nav li{
+            float: left;
+            list-style: none;
+            margin-right: 6px;
+            outline: none!important;
+        }
+
+        #vr-nav a{
+            border-radius: 3px;
+            color: #555;
+            display: block;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            line-height: 100%;
+        }
+
+        #vr-content{
+            background-color: #afa;
+            height: calc(100% - 80px - 65px - 140px - 25px);
+            padding-top: 25px;
+            overflow-y: auto;
+        }
+        #vr-foot{
+            background-color: #7ff;
+            height: 140px;
+        }
+        .first-wrapper{
+
+        }
+        .forum-list{
+            list-style: none;
+            padding: 0px 40px;
+            background-color: #afa;
+        }
+        .forum-list li{
+            position: relative;
+            margin: 0 -10px 5px;
+            border: 1px solid #b2b2b2;
+            border-radius: 13px;
+        }
+
+        .forumi{
+            background-color: #fff;
+            height: 100px;
+        }
+        .vrf-wrapper{
+            width: 100%;
+        }
+
+        #hide{
+            position: absolute;
+            right: 560px;
+            top: 45%;
+            z-index: 1;
+        }
+    </style>
+
+
+</head>
+<body style="height: 100%;">
+    <div id="hide"><span style="border-left: 20px solid pink; border-right: 20px solid transparent; border-top: 20px solid transparent; border-bottom: 20px solid transparent; display: block;  width: 0;">
+
+    </span></div>
+
+    <div style="position: absolute;left: 0; right: 500px; height: 100%; background-color: #333;">
+        <h1 style="font-size: 180px; color: #fff; text-align: center;">视频区</h1>
+    </div>
+
+
+    <div id="v-right">
+        <div id="vr-base">
+            <h1 style="text-align: center; font-size: 40px;">course info</h1>
+        </div>
+        <div id="vr-nav">
+            <ol id="comm_list">
+                <li>
+                    <a href="#">讨论</a></li>
+                <li>
+                    <a href="#">笔记</a></li>
+                <li>
+                    <a href="#">目录</a></li>
+                <li style="position: absolute; right:50px;">
+                    <a href="#">目录</a></li>
+            </ol>
+        </div>
+        <div id="vr-content">
+            <div class="first-wrapper">
+                <ol class="forum-list">
+
+                </ol>
+            </div>
+        </div>
+        <div id="vr-foot">
+            <form id="forum-form" action="/forum", method="post">
+                <div class="vrf-wrapper" style="border:1px;">
+                    <textarea id="text" name="content" style="font-size: 20px; width: 94%; height: 90px; margin: 10px auto; left: 0; right: 0; position: absolute;"></textarea>
+                    <button id="send-forum" style="position: absolute; bottom: 0; right: 0px; left: 0; width: 100%; border: none; height: 30px;">发送</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script id="comment" type="text/x-handlebars-template">
+    <li>
+        <div class="forumi">
+            <h1 style="text-align: center;">
+                {% raw -%}
+                    {{contents}}
+                {%- endraw %}
+            </h1>
+        </div>
+    </li>
+</script>
+<script type="text/javascript">
+    // 设置拉取的位置，第一次为1
+    let counter = 1;
+    // 每次拉取的讨论条数
+    const quantity = 8;
+
+
+
+    document.querySelector('#send-forum').disabled = true;
+
+    document.querySelector('#text').onkeyup = () => {
+        if (document.querySelector('#text').value.length > 0){
+            document.querySelector('#send-forum').disabled = false;
+        }else{
+            document.querySelector('#send-forum').disabled = true;
+        }
+    };
+    document.querySelector('#forum-form').onsubmit = () =>{
+        const request = new XMLHttpRequest();
+        request.open("POST", "/forum");
+
+        request.onload = () => {
+            const data = JSON.parse(request.responseText);
+            data.forEach(add_comment);
+            document.querySelector('#text').value = ""
+            document.querySelector('#send-forum').disabled = true;
+        };
+
+        const data = new FormData();
+        data.append('content', document.querySelector("#text").value)
+        request.send(data);
+
+        return false;
+    };
+    function add_comment(contents){
+        const comm = comm_template({'contents': contents});
+        document.querySelector('.forum-list').innerHTML = comm + document.querySelector('.forum-list').innerHTML;
+    }
+
+
+    document.getElementById('vr-content').onscroll = () => {
+        if (document.querySelector("#vr-content").offsetHeight + document.querySelector("#vr-content").scrollTop >= document.querySelector("#vr-content").scrollHeight){
+            load();
+        };
+    }
+    // 当 DOM 加载完成后，进行第一次拉取
+    document.addEventListener('DOMContentLoaded', load);
+    function load(){
+        // 设置拉取记录所在区间
+        const start = counter;
+        const end = start + quantity - 1;
+        counter = end + 1;
+
+        // 获取记录
+        const request = new XMLHttpRequest();
+        request.open("POST", "/nextComments");
+
+        request.onload = () => {
+            const data = JSON.parse(request.responseText);
+            data.forEach(history_comment);
+        };
+        // 将拉取记录的起始和结束位置 作为请求的参数发送给服务器
+        const data = new FormData();
+        data.append('start', start);
+        data.append('end', end);
+
+        // 发送请求
+        request.send(data);
+    };
+
+
+
+
+
+    // 通过Handlebars模板添加讨论记录到DOM
+    const comm_template = Handlebars.compile(document.querySelector('#comment').innerHTML);
+    function history_comment(contents){
+        // 创建新的讨论
+        const comm = comm_template({'contents': contents});
+        document.querySelector('.forum-list').innerHTML += comm;
+    };
+</script>
+
+<script type="text/javascript">
+
+</script>
+
+
+</html>
