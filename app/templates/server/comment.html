@@ -5,15 +5,29 @@
     <title>Title</title>
     <style type="text/css">
         * {margin: 0; padding: 0;}
-
+        #v-box{
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            transition: width 1s;
+        }
+        .v-box-anim{
+            width: 550px !important;
+            transition: width 1s;
+        }
+        .v-left-anim{
+            width: calc(100% - 550px) !important;
+            transition: width 1s;
+        }
         #v-right{
-            background-color: #f1f1f1;
+            background-color: #333;
             position: absolute;
             height: 100%;
-            width: 600px;
-            right: 0;
-            box-shadow: -5px 0px 11px 0px #ce4b4b;
+            width: 550px;
         }
+
         #vr-base{
             background-color: #baf;
             height: 80px;
@@ -56,11 +70,9 @@
             line-height: 100%;
         }
 
-        #vr-content{
-            background-color: #afa;
-            height: calc(100% - 80px - 65px - 140px - 25px);
-            padding-top: 25px;
-            overflow-y: auto;
+        #forum-box, #note-box, #catalog{
+            height: 100%;
+            width: 100%;
         }
         #vr-foot{
             background-color: #7ff;
@@ -80,67 +92,148 @@
             border: 1px solid #b2b2b2;
             border-radius: 13px;
         }
-
         .forumi{
             background-color: #fff;
             height: 100px;
         }
         .vrf-wrapper{
+            background-color: #7ff;
+            height: 140px;
+            position: absolute;
+            bottom: 0;
             width: 100%;
         }
 
-        #hide{
+        #show{
             position: absolute;
-            right: 560px;
+            right: 0;
             top: 45%;
             z-index: 1;
+            display: block;
+        }
+        #hide{
+            position: absolute;
+            left: 0;
+            top: 45%;
+            z-index: 1;
+        }
+        #hide span, #show span{
+            cursor: pointer;
+            background-color: #8af;
+            display: block;
+            width: 25px;
+            height: 65px;
+            line-height: 65px;
+            color: white;
+            text-align: center;
+            border-bottom-right-radius: 20px;
+            border-top-right-radius: 20px;
+            font-size: 22px;
+            transition: font-size, width .4s;
+        }
+        #show span{
+            border-bottom-left-radius: 20px;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+        }
+        #hide span:hover, #show span:hover{
+            width: 40px;
+            font-size: 22px;
+            transition: font-size, width .2s;
+        }
+        #vr-nav-mask {
+
+        }
+
+        #v-left{
+            position: absolute;
+            left: 0;
+            right:0;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            transition: width 1s;
+        }
+
+        #comm-list a:hover{
+            background-color: #fff;
+        }
+        #vr-content{
+            height: calc(100% - 80px - 65px - 140px - 25px);
+            padding-top: 25px;
+            overflow-y: auto;
+            position: absolute;
+            width: 100%;
         }
     </style>
 
 
 </head>
-<body style="height: 100%;">
-    <div id="hide"><span style="border-left: 20px solid pink; border-right: 20px solid transparent; border-top: 20px solid transparent; border-bottom: 20px solid transparent; display: block;  width: 0;">
+<body style="height: 100%; background: #999; overflow: hidden;">
 
-    </span></div>
 
-    <div style="position: absolute;left: 0; right: 500px; height: 100%; background-color: #333;">
+    <div id="v-left" style="">
         <h1 style="font-size: 180px; color: #fff; text-align: center;">视频区</h1>
     </div>
 
+    <div id="show">
+        <span style="">&lt;</span>
+    </div>
 
+    <div id="vr-mask"></div>
+
+
+
+
+<div id="v-box">
     <div id="v-right">
+        <div id="hide">
+            <span style="">&gt;</span>
+        </div>
         <div id="vr-base">
             <h1 style="text-align: center; font-size: 40px;">course info</h1>
         </div>
+
+        <div id="vr-nav-mask"></div>
         <div id="vr-nav">
-            <ol id="comm_list">
+            <ol id="comm-list">
                 <li>
-                    <a href="#">讨论</a></li>
+                    <a id="forum-box">讨论</a></li>
                 <li>
-                    <a href="#">笔记</a></li>
+                    <a id="note-box">笔记</a></li>
                 <li>
-                    <a href="#">目录</a></li>
+                    <a href="#">收藏</a></li>
+
                 <li style="position: absolute; right:50px;">
-                    <a href="#">目录</a></li>
+                    <a id="id-3">目录</a></li>
             </ol>
         </div>
-        <div id="vr-content">
-            <div class="first-wrapper">
-                <ol class="forum-list">
+        <div id="forum-box" style="display: none;">
+            <div id="vr-content">
+                <div class="first-wrapper">
+                    <ol class="forum-list">
 
-                </ol>
+                    </ol>
+                </div>
+            </div>
+            <div id="vr-foot">
+                <form id="forum-form" action="/forum", method="post">
+                    <div class="vrf-wrapper" style="border:1px;">
+                        <textarea id="text" name="content" style="font-size: 20px; width: 94%; height: 90px; margin: 10px auto; left: 0; right: 0; position: absolute;"></textarea>
+                        <button id="send-forum" style="position: absolute; bottom: 0; right: 0px; left: 0; width: 100%; border: none; height: 30px;">发送</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div id="vr-foot">
-            <form id="forum-form" action="/forum", method="post">
-                <div class="vrf-wrapper" style="border:1px;">
-                    <textarea id="text" name="content" style="font-size: 20px; width: 94%; height: 90px; margin: 10px auto; left: 0; right: 0; position: absolute;"></textarea>
-                    <button id="send-forum" style="position: absolute; bottom: 0; right: 0px; left: 0; width: 100%; border: none; height: 30px;">发送</button>
-                </div>
-            </form>
+
+        <div id="note-box" style="height: 100%;">
+            <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #69c;">
+            </div>
         </div>
+
     </div>
+</div>
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
@@ -162,9 +255,8 @@
     const quantity = 8;
 
 
-
+    // 评论发送
     document.querySelector('#send-forum').disabled = true;
-
     document.querySelector('#text').onkeyup = () => {
         if (document.querySelector('#text').value.length > 0){
             document.querySelector('#send-forum').disabled = false;
@@ -194,7 +286,7 @@
         document.querySelector('.forum-list').innerHTML = comm + document.querySelector('.forum-list').innerHTML;
     }
 
-
+    // 评论列表滚动事件
     document.getElementById('vr-content').onscroll = () => {
         if (document.querySelector("#vr-content").offsetHeight + document.querySelector("#vr-content").scrollTop >= document.querySelector("#vr-content").scrollHeight){
             load();
@@ -225,10 +317,6 @@
         request.send(data);
     };
 
-
-
-
-
     // 通过Handlebars模板添加讨论记录到DOM
     const comm_template = Handlebars.compile(document.querySelector('#comment').innerHTML);
     function history_comment(contents){
@@ -236,6 +324,37 @@
         const comm = comm_template({'contents': contents});
         document.querySelector('.forum-list').innerHTML += comm;
     };
+
+
+
+    // 隐藏右侧面板
+    document.querySelector('#hide').onclick = () =>{
+        document.querySelector('#v-left').className = "";
+        document.querySelector('#v-box').className = "";
+        document.querySelector('#show').style.display = "block";
+        document.querySelector('#hide').style.display = "none";
+    };
+    document.querySelector('#show').onclick = () =>{
+        document.querySelector('#v-left').className = "v-left-anim";
+        document.querySelector('#v-box').className = "v-box-anim";
+        document.querySelector('#hide').style.display = "block";
+        document.querySelector('#show').style.display = "none";
+    };
+
+
+    // 导航航切换
+    document.querySelectotAll('#id-*') = (x) => {
+        x.forEach(
+            xa => {
+                panle = this.value;
+                document.querySelector(panle).display = "none";
+                xa.onclick = ()=>{
+                    document.querySelector(panle).display = "block";
+                };
+            };
+        );
+    };
+
 </script>
 
 <script type="text/javascript">
