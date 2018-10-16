@@ -1,0 +1,165 @@
+
+* {margin: 0; padding: 0;}
+#v-box{
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    transition: width 1s;
+}
+.v-box-anim{
+    width: 550px !important;
+    transition: width 1s;
+}
+.v-left-anim{
+    width: calc(100% - 550px) !important;
+    transition: width 1s;
+}
+#v-right{
+    background-color: #333;
+    position: absolute;
+    height: 100%;
+    width: 550px;
+}
+
+#vr-base{
+    background-color: #baf;
+    height: 80px;
+}
+
+#vr-nav{
+    background-color: pink;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 65px;
+}
+#vr-nav ol{
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-topleft-radius: 4px;
+    border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-topright-radius: 4px;
+    border-top-right-radius: 4px;
+    list-style: none;
+    list-style-image: none;
+    margin: 0 10px;
+    padding: 15px 0 15px 0;
+}
+#vr-nav li{
+    float: left;
+    list-style: none;
+    margin-right: 6px;
+    outline: none!important;
+}
+
+#vr-nav a{
+    border-radius: 3px;
+    color: #555;
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 100%;
+}
+
+#forum-box, #note-box, #catalog{
+    height: 100%;
+    width: 100%;
+}
+#vr-foot{
+    background-color: #7ff;
+    height: 140px;
+}
+.first-wrapper{
+
+}
+.forum-list{
+    list-style: none;
+    padding: 0px 40px;
+    background-color: #afa;
+}
+.forum-list li{
+    position: relative;
+    margin: 0 -10px 5px;
+    border: 1px solid #b2b2b2;
+    border-radius: 13px;
+}
+.forumi{
+    background-color: #fff;
+    height: 100px;
+}
+.vrf-wrapper{
+    background-color: #7ff;
+    height: 140px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#show{
+    position: absolute;
+    right: 0;
+    top: 45%;
+    z-index: 1;
+    display: block;
+}
+#hide{
+    position: absolute;
+    left: 0;
+    top: 45%;
+    z-index: 1;
+}
+#hide span, #show span{
+    cursor: pointer;
+    background-color: #8af;
+    display: block;
+    width: 25px;
+    height: 65px;
+    line-height: 65px;
+    color: white;
+    text-align: center;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    font-size: 22px;
+    transition: font-size, width .4s;
+}
+#show span{
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+#hide span:hover, #show span:hover{
+    width: 40px;
+    font-size: 22px;
+    transition: font-size, width .2s;
+}
+#vr-nav-mask {
+
+}
+
+#v-left{
+    position: absolute;
+    left: 0;
+    right:0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    transition: width 1s;
+}
+#comm-list a{
+    cursor: pointer;
+}
+#comm-list a:hover{
+    background-color: #fff;
+}
+#vr-content{
+    height: calc(100% - 80px - 65px - 140px - 25px);
+    padding-top: 25px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+}

@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 from flask import Flask, jsonify, render_template, request
 from . import fontserver
 import time
-
 @fontserver.route('/')
 def comm():
     return render_template('server/comment.html')
