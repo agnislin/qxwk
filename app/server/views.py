@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 from flask import Flask, jsonify, render_template, request
 from . import fontserver
 import time
+import models
+
+
 @fontserver.route('/')
 def comm():
     return render_template('server/comment.html')
@@ -23,6 +26,7 @@ def nextComments():
     # Artificially delay speed of response.
     time.sleep(1)
 
+    print( models.find(5) )
     # Return list of posts.
     return jsonify(data)
 
