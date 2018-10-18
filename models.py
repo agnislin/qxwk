@@ -1,42 +1,98 @@
-# from sshtunnel import SSHTunnelForwarder
-# from sqlalchemy import Column, String, Integer,  DateTime, create_engine
-# from sqlalchemy.orm import sessionmaker
-# from sqlalchemy.ext.declarative import declarative_base
-#
-#
-# mysql_host = "localhost"
-# mysql_port = "3306"
-# mysql_user = "root"
-# mysql_password = ""
-# mysql_db = "qxwk"
-# ssh_host = "39.108.141.220"
-# ssh_port = "22"
-# ssh_user = "root"
-# ssh_password = "Micouser2018"
-#
-# Base = declarative_base()
-#
-# class Account(Base):
-#     __tablename__ = 'Account'
-#     id = Column(Integer, primary_key=True)
-#     email = Column(String(60), nullable=False)
-#     phone = Column(String(16))
-#     nickname = Column(String(100))
-#     password = Column(String(20), nullable=False)
-#     time = Column(DateTime)
-#
-#
-# with SSHTunnelForwarder((ssh_host, ssh_port), ssh_username=ssh_user, ssh_password=ssh_password, remote_bind_address=(mysql_host, mysql_port)) as server:
-#     assert isinstance(server.start, object)
-#     server.start()  # start ssh sever
-#     local_port = str(server.local_bind_port)
-#     engine = create_engine('mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8'.format(mysql_user,
-#                                                                                 mysql_password,
-#                                                                                 '127.0.0.1',
-#                                                                                 local_port,
-#                                                                                 mysql_db),
-#                            pool_recycle=1)
-#
-#     Session = sessionmaker(bind=engine)
-#     session = Session()
-#     printsession.query(Account).filter(Account.id== 1).all()
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
+from entry import *
+
+
+# 此函数于控制SQLAlchemy与一个Flask应用程序的集成
+def set_app(application):
+    # 初始化应用程序以供此数据库设置使用。切勿在未以该方式初始化的应用程序的上下文中使用数据库，否则发生连接将泄漏
+    db.init_app(application)
+
+
+# 插入一条数据
+def save(obj):
+    try:
+        db.session.add(obj)
+        db.session.commit()
+        return True
+    except:
+        db.session.rollback()
+        return False
+
+
+# 插入多条数据
+def save_all(list_obj):
+    l = []
+    for i in list_obj:
+        try:
+            db.session.add(i)
+            db.session.commit()
+        except:
+            db.session.rollback()
+            l.append(i)
+    return l
+
+
+# 删除一条数据
+def remove(class_type, obj):
+    try:
+        res = db.find_one(class_type, obj)
+        db.session.delete(res)
+        db.session.commit()
+        return True
+    except:
+        db.session.rollback()
+
+
+# 删除满足条件的多条全部数据
+def remove_all(class_type, list_obj):
+    for i in list_obj:
+        try:
+            res = db.find_one(class_type, i)
+            db.session.delete(res)
+            db.session.commit()
+            return True
+        except:
+            db.session.rollback()
+
+
+# 查询一条条件为字符串 如"name='guokaiqiang',age=25"
+def find_one(class_type, conditionn):
+    return db.session.query(exec("Account, Video"))
+
+
+def get(self, class_type, value):
+    pass
+
+
+# x为要查询的条数  n为字段名加.desc()字符串的  如 "User.desc()"
+def find(class_type, condition, x=-1, n=-1):
+    # .filter(text(tiaojian)).all()
+    res = db.session.query(eval(class_type))
+    res = res.filter(text(condition))
+    if x == -1:
+        if n == -1:
+            return res
+        else:
+
+            return res.order_by(eval(n))
+    else:
+        if n == -1:
+            return res.limit(x).all()
+        else:
+
+            return res.order_by(eval(n)).limit(x).all()
+
+
+def update(class_type, obj):
+        pass
+
+
+def contain( class_type, condition):
+    pass
+
+
+def sort(find, list_column, desc=True):
+    pass
