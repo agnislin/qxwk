@@ -6,8 +6,9 @@ db = SQLAlchemy()
 
 # 用户选课关系帮助程序表
 course_sel = db.Table("course_sel",
-                      db.Column("account_id", db.Integer, db.ForeignKey("Account.id")),
-                      db.Column("course_id", db.Integer, db.ForeignKey("Course.id")),
+                      db.metadata,
+                      db.Column("account_id", db.Integer, db.ForeignKey("Account.id"), nullable=False),
+                      db.Column("course_id", db.Integer, db.ForeignKey("Course.id"), nullable=False),
                       db.Column('data', db.DateTime, nullable=False))
 
 
@@ -84,7 +85,7 @@ class HomeVideo(db.Model):
 class Comment(db.Model):
     __tablename__ = 'Comment'
     id = db.Column(db.Integer, primary_key=True)
-    account_id = db.Column(db.Integer, db.ForeignKey('Account.id'))  # 用户ID
+    account_id = db.Column(db.Integer, db.ForeignKey('Account.id'))
     video_id = db.Column(db.Integer)  # 视频ID  db.ForeignKey('Video.id')
     comment = db.Column(db.String(1000))  # 评论内容
     time = db.Column(db.DateTime, default=datetime.now)  # 评论时间

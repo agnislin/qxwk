@@ -11,7 +11,7 @@ app = Flask(__name__)
 # app = Flask("main")
 
 app.debug = True
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:123456@127.0.0.1:3306/qxwk"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:@127.0.0.1:3306/qxwk"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.register_blueprint(fontserver)
 app.register_blueprint(cms, url_prefix='/admin')

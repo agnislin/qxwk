@@ -18,6 +18,7 @@ def save(obj):
         db.session.commit()
         return True
     except:
+        print("save error")
         db.session.rollback()
         return False
 
@@ -68,29 +69,39 @@ def get(self, class_type, value):
 
 
 # x为要查询的条数  n为字段名加.desc()字符串的  如 "User.desc()"
-def find(class_type, condition, x=-1, n=-1):
-    # .filter(text(tiaojian)).all()
-    res = db.session.query(eval(class_type))
-    res = res.filter(text(condition))
+def find(entry, condition=None, x=-1, n=-1):
+    if type(entry) in [list, tuple, set]:
+        print("多表 [", ",".join([t.__name__ for t in entry]), "]")
+        res = db.session.query(*entry)
+    else:
+        print("单表")
+        res = db.session.query(entry)
+
+    if condition is None:
+        return res
+        print("无条件查找")
+    else:
+        print("有条件查找")
+        print(condition)
+        res = res.filter(condition)
+
     if x == -1:
         if n == -1:
             return res
         else:
-
             return res.order_by(eval(n))
     else:
         if n == -1:
             return res.limit(x).all()
         else:
-
             return res.order_by(eval(n)).limit(x).all()
 
 
-def update(class_type, obj):
-        pass
+def update(table,entry, obj):
 
 
-def contain( class_type, condition):
+
+def contain( entry, condition):
     pass
 
 
