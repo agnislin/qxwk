@@ -4,16 +4,18 @@ from flask import Flask, jsonify, render_template, request
 from . import fontserver
 import time
 import models
+import entry as e
 
 
 @fontserver.route('/')
 def comm():
+    acc = e.Account(email="1174793398@qq.com", password="1233456", nickname="agnis", phone="10838161238")
+    models.save(acc)
     return render_template('server/comment.html')
 
 
 @fontserver.route("/nextComments", methods=["POST"])
-def nextComments():
-
+def next_comments():
     # Get start and end point for posts to generate.
     start = int(request.form.get("start") or 0)
     end = int(request.form.get("end") or (start + 9))
@@ -26,7 +28,6 @@ def nextComments():
     # Artificially delay speed of response.
     time.sleep(1)
 
-    print( models.find(5) )
     # Return list of posts.
     return jsonify(data)
 
