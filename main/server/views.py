@@ -7,7 +7,7 @@ import models
 import entry as e
 
 
-@fontserver.route('/')
+@fontserver.route('/comment')
 def comm():
     # models.db.create_all()
     acc = e.Account(email="1174793398@qq.com", password="1233456", nickname="agnis", phone="10838161238")

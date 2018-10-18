@@ -13,6 +13,7 @@ def index():
     models.db.create_all()
     return render_template('server/index.html', username=None)
 
+
 @fontserver.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -65,6 +66,7 @@ def vertify(peramen):
             return "success!"
         else:
             return '邮件过期'
+
 
 @fontserver.route('/get')
 def get():
