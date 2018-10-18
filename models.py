@@ -76,13 +76,11 @@ def find(class_type, condition, x=-1, n=-1):
         if n == -1:
             return res
         else:
-
             return res.order_by(eval(n))
     else:
         if n == -1:
             return res.limit(x).all()
         else:
-
             return res.order_by(eval(n)).limit(x).all()
 
 
