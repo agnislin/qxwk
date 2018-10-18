@@ -2,9 +2,11 @@
 from __future__ import unicode_literals
 from flask import Flask, jsonify, render_template, request
 from . import fontserver
-import time
 import models
 import entry as e
+import main.tools.tools as tl
+
+
 
 
 @fontserver.route('/comment')
@@ -33,11 +35,17 @@ def next_comments():
     # Return list of posts.
     return jsonify(data)
 
-
+    account_id = db.Column(db.Integer, db.ForeignKey('Account.id'))  # 用户ID
+    video_id = db.Column(db.Integer)  # 视频ID  db.ForeignKey('Video.id')
+    comment = db.Column(db.String(1000))  # 评论内容
+    time = db.Column(db.DateTime, default=datetime.now)  # 评论时间
 @fontserver.route("/forum", methods=["POST"])
 def forum():
-    content = request.form.get("content")
-    data2 = []
-    data2.append(content)
+    forum_info = dict()
+    forum_info["comment"] = request.form.get("comment")
+    forum_info["account_id"] = request.form.get("accountId")
+
+    forum_info["time"] = time
+    forum_info.append({})
     time.sleep(1)
-    return jsonify(data2)
+    return jsonify(forum_info)
