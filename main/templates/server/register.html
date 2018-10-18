@@ -1,0 +1,68 @@
+    <!-- 顶部导航 -->
+    {% extends 'server/pageframe.html' %}
+    {% block title %}register pages{% endblock %}
+    {% block head %}
+        {{ super() }}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/register.css') }}">
+    {% endblock %}
+    {% block content %}
+    <!-- 注册主体 -->
+    <div style="background-color: transparent;height: 100px;"></div>
+    <div class="register-body">
+    <!-- 表单头 -->
+    <ul id="tabs">
+            <li class="active">手机注册</li>
+            <li>邮箱注册</li>
+    </ul>
+
+    <!-- 表单体 -->
+    <!-- 手机 -->
+    <div id="ph-form" class="">
+        <form id='ph'>
+        <div class="form-inp-area">
+            <input name="phone" class="form-input" type="text" placeholder="手机号">
+        </div>
+        <div class="form-inp-area">
+            <input name="password" class="form-input" type="password" placeholder="密码   包含数字、字母、下划线的6-18位">
+        </div>
+        <div class="form-inp-area">
+            <input name="pwd2" class="form-input" type="password" placeholder="确认密码">
+        </div>
+        <div class="dyna form-inp-area">
+            <input name="dynamincode" class="form-input" type="text" placeholder="短信验证码">
+            <button id="js_DynamicCodePhone" class="form-btn form-btn-blue pull-right" type="button">获取验证码</button>
+        </div>
+        <div>
+            <span id="wrophtip"></span>
+            <button id="js_submit_reg_phone" class="form-btn form-btn-blue width-340" type="button">注册</button>
+        </div>
+        </form>
+    </div>
+    <!-- 邮箱 -->
+    <div id="em-form" class="non-active">
+        <form id='em'>
+        <div class="form-inp-area">
+            <input name="mail" class="form-input" type="text" placeholder="邮箱">
+        </div>
+        <div class="form-inp-area">
+            <input name="password" class="form-input" type="password" placeholder="密码   包含数字、字母、下划线的6-18位">
+        </div>
+        <div class="form-inp-area">
+            <input name="pwd2" class="form-input" type="password" placeholder="确认密码">
+        </div>
+        <div>
+            <span id="wroemtip"></span>
+            <button id="js_submit_reg_mail" class="form-btn form-btn-blue width-340" type="button">注册</button>
+        </div>
+        </form>
+    </div>
+    <!-- 表单尾 -->
+    <div class="register-hidden-gruop" id="register_pc_direct_login">
+        <a href="/login" >已有账号，直接登录&gt;</a>
+    </div>
+    </div>
+    <div style="height:calc(100vh - 290px)"></div>
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
+</body>
+</html>
+{% endblock %}
