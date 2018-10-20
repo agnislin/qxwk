@@ -6,7 +6,7 @@ from app.CMS import cms
 from flask import url_for
 
 app = Flask(__name__)
-app.debug = True
+app.debug = False
 
 app.register_blueprint(fontserver)
 app.register_blueprint(cms, url_prefix='/admin')
