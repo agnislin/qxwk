@@ -16,16 +16,17 @@ import main.tools.tools as tl
 # date = db.Column(db.Integer)  # 课程周期
 # cover = db.Column(db.String(100))  # 封面
 
-@fontserver.route('/comment')
+@fontserver.route('/')
 def comm():
-<<<<<<< HEAD
-=======
     # models.db.create_all()
-    # acc = e.Account(email="2274793398@qq.com", password="2223456", nickname="linnis", phone="22838161238")
-    # course = e.Course(lecturer="li lin", course="java web", introduction="web develop", cost=1000, type=123123)
-    # acc.courses = [course]
-    # models.save(acc)
->>>>>>> comment
+    # a=e.AdminInfo(
+    #         name='root',
+    #         password='000000',
+    #         picture='jpg/admin.jpg',
+    #         whether=True
+    #     )
+    # models.save(a)
+
     return render_template('server/comment.html')
 
 
@@ -43,18 +44,18 @@ def next_comments():
     #     comment = db.Column(db.String(1000))  # 评论内容
     #     time = db.Column(db.DateTime, default=datetime.now)  # 评论时间
 
-    comment = e.Comment(account_id=1, video_id=1, comment="hello")
-    models.save(comment)
-    # Get start and end point for posts to generate.
-    #temp
-    # acc = models.db.session.query(e.Account).first()
-    # comm = e.Comment(account_id=123, video_id=2, comment="hello  sqlalchemy")
-    # models.save(comm)
-    # print(models.db.session.query(e.Comment).first().account_id)
+    # comment = e.Comment(account_id=1, video_id=1, comment="hello")
+    # models.save(comment)
+    # # Get start and end point for posts to generate.
+    # #temp
+    # # acc = models.db.session.query(e.Account).first()
+    # # comm = e.Comment(account_id=123, video_id=2, comment="hello  sqlalchemy")
+    # # models.save(comm)
+    # # print(models.db.session.query(e.Comment).first().account_id)
 
-    print(models.find([e.Account, e.Comment], None).first()[0].nickname)
+    # print(models.find([e.Account, e.Comment], None).first()[0].nickname)
 
-    print(models.find([e.Account, e.Comment], e.Account.id == e.Comment.account_id)[1][1].comment)
+    # print(models.find([e.Account, e.Comment], e.Account.id == e.Comment.account_id)[1][1].comment)
 
 
 
