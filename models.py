@@ -4,11 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from entry import *
 
-
 # 此函数于控制SQLAlchemy与一个Flask应用程序的集成
 def set_app(application):
-    # 初始化应用程序以供此数据库设置使用。切勿在未以该方式初始化的应用程序的上下文中使用数据库，否则发生连接将泄漏
-    db.init_app(application)
+        # 初始化应用程序以供此数据库设置使用。切勿在未以该方式初始化的应用程序的上下文中使用数据库，否则发生连接将泄漏
+        db.init_app(application)
 
 
 # 插入一条数据
@@ -98,10 +97,10 @@ def find(entry, condition=None, x=-1, n=-1):
 
 
 def update(table,entry, obj):
+    pass
 
 
-
-def contain( entry, condition):
+def contain(entry, condition):
     pass
 
 

@@ -35,12 +35,9 @@ def next_comments():
     # models.save(comm)
     # print(models.db.session.query(e.Comment).first().account_id)
 
-    print(models.find([e.Account, e.Comment], None).first()[0].nickname)
-
-    print(models.find([e.Account, e.Comment], e.Account.id == e.Comment.account_id)[1][1].comment)
-
-
-
+    print(models.find(e.Account, None).first().nickname)
+    #
+    # print(models.find([e.Account, e.Comment], e.Account.id == e.Comment.account_id)[1][1].comment)
 
     start = int(request.form.get("start") or 0)
     end = int(request.form.get("end") or (start + 9))
