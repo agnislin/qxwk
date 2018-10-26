@@ -68,30 +68,51 @@ def get(self, class_type, value):
 
 
 # x为要查询的条数  n为字段名加.desc()字符串的  如 "User.desc()"
-def find(class_type, condition, x=-1, n=-1):
-    # .filter(text(tiaojian)).all()
-    res = db.session.query(eval(class_type))
-    res = res.filter(text(condition))
-    if x == -1:
-        if n == -1:
-            return res
-        else:
-
-            return res.order_by(eval(n))
-    else:
-        if n == -1:
-            return res.limit(x).all()
-        else:
-
-            return res.order_by(eval(n)).limit(x).all()
+def find(entry, condition=None, x=-1, n=-1):
+    if type(entry) in [list, tuple, set]:  
+      print("多表 [", ",".join([t.__name__ for t in entry]), "]")  
+      res = db.session.query(*entry)  
+    else:  
+      print("单表")  
+      res = db.session.query(entry)  
 
 
-def update(class_type, obj):
-        pass
+    if condition is None:  
+      return res  
+      print("无条件查找")  
+    else:  
+      print("有条件查找")  
+      print(condition)  
+      res = res.filter(condition)  
+
+
+    if x == -1:  
+      if n == -1:  
+          return res  
+      else:  
+          return res.order_by(eval(n))  
+    else:  
+      if n == -1:  
+          return res.limit(x).all()  
+      else:  
+          return res.order_by(eval(n)).limit(x).all()  
+
+
+# def change(alternative,field,entry, condition=None):
+# '''alternative需要更改成什么(字符串),entry要先查找的记录, condition条件,field.要更改的字段'''
+
+#     res = find(entry,condition)
+#     res.field = alternative
 
 
 def contain( class_type, condition):
-    pass
+    '''判断'''
+    try:
+        a = find(entry,condition)
+        if a:
+            return True
+    except:
+        return False
 
 
 def sort(find, list_column, desc=True):
