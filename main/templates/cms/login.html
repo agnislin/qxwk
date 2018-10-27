@@ -27,18 +27,18 @@
     </div>
     <div class="login-box-body">
         <p class="login-box-msg"></p>
-        <form action="/admin/login" method="post" id="form-data">
+        <form action="/admin/" method="post" id="form-data">
             <div class="form-group has-feedback">
-                
+
                 <input name="user" type="text" class="form-control" placeholder="请输入账号！">
-               
+
                 <div id='account' class="col-md-12" >
-                    
+
                     <font style="color:red"></font>
                 </div>
             </div>
             <div class="form-group has-feedback">
-     
+
                 <input name="pwd" type="password" class="form-control" placeholder="请输入密码！">
                 <span id='pass' class="glyphicon glyphicon-lock form-control-feedback"></span>
                 <div class="col-md-12" id="input_pwd"></div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-xs-4">
                     <button id="btn-sub" type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
-                    
+
                 </div>
             </div>
         </form>
@@ -58,25 +58,7 @@
 <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
 <script src="{{url_for('static',filename='js/icheck.min.js')}}"></script>
 
-<script>
-    
-document.querySelector('#form-data').onsubmit = () =>{
-    const request = new XMLHttpRequest();
-    request.open("POST", "/admin/login");
 
-    request.onload = () => {
-        const data = JSON.parse(request.responseText);
-        document.querySelector('#account').innerHTML=data[0].error;    
-    };
-
-    const data = new FormData();
-    data.append('user', document.querySelector("#user").value)
-    data.append('pwd', document.querySelector("#pwd").value)
-    request.send(data);
-
-    return false;
-};
-</script>
 
 </body>
 </html>

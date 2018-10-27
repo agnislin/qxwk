@@ -17,33 +17,41 @@ from functools import wraps
 #     return decorated_function
 
 
-@cms.route('/')
+@cms.route('/', methods = ['GET','POST'])
 def index():
-    return render_template('cms/login.html')
-
-
-@cms.route('/login',methods = ['GET','POST'])
-def login():
     # form = LoginForm()
     if request.method == 'GET':
-        return render_template('cms/login.html',)
+        return render_template('cms/login.html')
     elif request.method == 'POST':
+        print("index post")
         user = request.form.get('user')
         pwd = request.form.get('pwd')
 
-        # admin = e.AdminInfo(name = "laonanshen",password = "123456")
-        # RES = models.find(e.AdminInfo,e.AdminInfo.name == user)
+        admin = e.AdminInfo(name = "laonanshen",password = "123456")
+        RES = models.find(e.AdminInfo,e.AdminInfo.name == user)
         # print(RES[0].name)
-        RES=admin_info = models.find(e.AdminInfo,e.AdminInfo.name==user)
+        # return jsonify({"data": 123})o = models.find(e.AdminInfo,e.AdminInfo.name==user)
 
         print(user,pwd)
         if user == 'laonanshen' and pwd == '123456':
-            return render_template('cms/index.html',user = RES[0])
+            return  render_template('cms/index.html',user = RES[0])
         else:
             data =[]
             data.append({"error":"用户名或密码有误"})
-            print(jsonify(data))
+            print(jsonify(data))# return jsonify({"data": 123})
             return jsonify(data)
+
+
+
+#登录
+# @cms.route('/login',methods = ['GET','POST'])
+# def login():
+#
+# return render_template('cms/login.html')
+
+
+# return jsonify({"data": 123})
+
 
 
 @cms.route('/user')
@@ -67,30 +75,69 @@ def reurl():
         return render_template("cms/%s.html" % path)
 
 
+#
+# @cms.route('/delete', methods=['POST'])
+# def cou_delete():
+#     if request.method == 'POST':
+#         print(request.form['cou_id'])
+#         return 'dd'
 
+
+#课程列表
 @cms.route('/course_list',methods=['GET','POST'])
 def course():
     rel = models.find(e.Course)
-
     return render_template("cms/course_list.html",rel=rel)
 
+
+
+
+
+#添加课程
 @cms.route('/course_add',methods=['POST'])
 def course_add():
-    print("course form")
-    print(request.form)
-    # introduction = request.form['introduction']
-    # type = request.form['type']
-    # price = request.form['price']
-    # lecturer = request.form['lecturer']
-    # time = request.form['time']
-    # cover = request.form['cover']
-    # course = e.Course(course=name,introduction=introduction,type=type,cost=price,
-    # lecturer=lecturer,date=time,cover=cober)
-    # print(name)
-    # models.save(course)
-    return jsonify({"data": 123})
+    try:
+        print(request.form)
+        name = request.form['name']
+        introduction = request.form['introduction']
+        type = request.form['type']
+        price = request.form['price']
+        lecturer = request.form['lecturer']
+        time = request.form['time']
+        # cover = request.form['cover']
+    except:
+        return 'ererer'
+    else:
+        course = e.Course(course=name,introduction=introduction,type=type,cost=price,
+        lecturer=lecturer,date=time)
 
 
+    res = models.save(course)
+    if res == True:
+        return "添加课程成功！"
+    elif res == False:
+        return "添加课程失败！"
+
+    # return jsonify({"data": 123})
+
+
+#删除课程
+@cms.route('/course_add',methods=['GET','POST'])
+def course_del():
+    course_id = request.form['id']
+    res = models.remove(e.Course,e.Course(id=course_id))
+    if res == True:
+        return "删除课程成功！"
+    elif res == False:
+        return "删除课程失败！"
+#
+# @cms.route('/delete/<cou_id>')
+# def delete(cou_id):
+#     res = models.remove(e.Course,e.Course(id=cou_id))
+#     if res == True:
+#         return render_template('cms/course_list.html')
+#     elif res == False:
+#         return "删除课程失败！"
 
 
 # @cms.route('/comment',methods=['GET','POST'])
@@ -105,6 +152,8 @@ def course_add():
 # def log():
 #     return render_template('log.html')
 
+
+#会员（用户）列表
 @cms.route('/user_list',methods=["GET"])
 def show_userlist():
     userl = models.find(e.UserInfo)
@@ -112,8 +161,28 @@ def show_userlist():
 
 
 
-
+#评论列表
 @cms.route('/comment_list',methods=["GET"])
 def show_commentlist():
     comml = models.find(e.Comment)
     return render_template('cms/comment_list.html',comml = comml)
+
+
+
+
+#管理员列表
+@cms.route('/admin_list',methods=["GET"])
+def show_adminlist():
+    admin = models.find(e. AdminInfo)
+    return render_template('cms/admin_list.html',admin = admin)
+
+#添加管理员
+@cms.route('/admin_add',methods=['POST'])
+def admin_add():
+    name = request.form['name']
+    passward = request.form['password']
+    date = request.form['date']
+    picture = request/form['picture']
+    admin = e.AdminInfo(name = name,password = password,date = date,picture = picture)
+    models.save(admin)
+    return "添加课程成功！"

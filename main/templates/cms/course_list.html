@@ -28,7 +28,7 @@
                             <table class="table table-hover">
                                 <tbody>
                                 <tr>
-                                    
+
                                     <th>编号</th>
                                     <th>课程讲师</th>
                                     <th>课程名称</th>
@@ -39,11 +39,11 @@
                                     <th>封面</th>
                                     <th></th>
                                     <th>操作</th>
-                                    
+
                                 </tr>
                                 {% for cou in rel %}
                                 <tr>
-                                
+
                                     <td>{{cou.id}}</td>
                                     <td>{{cou.lecturer}}</td>
                                     <td>{{cou.course}}</td>
@@ -51,7 +51,7 @@
                                     <td>{{cou.cost}}</td>
                                     <td>
                                         {% if cou.type == 1 %}
-                                            {{"运营"}} 
+                                            {{"运营"}}
                                         {% elif cou.type == 2 %}
                                             {{"销售"}}
                                         {% elif cou.type == ３ %}
@@ -63,11 +63,11 @@
                                     <td>2017-01-01</td>
 
                                     <td>
-                                        <a class="editCou">编辑</a>
+                                        <button class="editCou" data-ceid="{{cou.id}}">编辑</button>
                                         &nbsp;
-                                        <a class="removeCou">删除</a>
+                                        <button class="removeCou" data-cdid="{{cou.id}}">删除</button>
                                     </td>
-                                    
+
                                 </tr>
                                 {%endfor %}
                                 </tbody>

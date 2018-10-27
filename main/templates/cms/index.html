@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/ionicons.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/AdminLTE.min.css')}}">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/_all-skins.min.css')}}"
-
+    <link rel="stylesheet" href="{{url_for('static',filename='css/_all-skins.min.css')}}">
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -221,7 +220,7 @@
                             </a>
                         </li>
                         <li>
-                            <a onclick="reurl('admin_list')">
+                            <a onclick="admin_list('admin_list')">
                                 <i class="fa fa-circle-o"></i> 管理员列表
                             </a>
                         </li>
@@ -241,48 +240,6 @@
     </footer>
     <div class="control-sidebar-bg"></div>
 </div>
-<script src="{{url_for('static',filename='js/jQuery-2.2.0.min.js')}}"></script>
-<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
-<script src="{{url_for('static',filename='js/jquery.slimscroll.min.js')}}"></script>
-<script src="{{url_for('static',filename='js/fastclick.js')}}"></script>
-<script src="{{url_for('static',filename='js/app.min.js')}}"></script>
-<script src="{{url_for('static',filename='js/demo.js')}}"></script>
-<script src="{{url_for('static',filename='js/holder.min.js')}}"></script>
-<script src="{{url_for('static',filename='js/course_add.js')}}"></script>
-<script src="{{url_for('static',filename='js/bootstrap-datepicker.js')}}"></script>
-<script src="{{url_for('static',filename='js/bootstrap-datepicker.zh-CN.js')}}" charset="UTF-8"></script>
-<script src="{{url_for('static',filename='js/echarts.min.js')}}"></script>
-<script>
-    var myChart = echarts.init(document.getElementById('meminfo'));
-    option = {
-		backgroundColor: "white",
-		tooltip: {
-			formatter: "{a} <br/>{b} : {c}%"
-		},
-		toolbox: {
-			feature: {
-				restore: {},
-				saveAsImage: {}
-			}
-		},
-		series: [{
-			name: '内存使用率',
-			type: 'gauge',
-			detail: {
-				formatter: '{value}%'
-			},
-			data: [{
-				value: 50,
-				name: '内存使用率'
-			}]
-		}]
-	};
-    setInterval(function () {
-        option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-        myChart.setOption(option, true);
-    },2000);
-
-</script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
@@ -298,99 +255,19 @@
     </li>
 </script>
 
-<script type="text/javascript">
 
+<script src="{{url_for('static',filename='js/course_opeator.js')}}"></script>
+<script src="{{url_for('static',filename='js/jQuery-2.2.0.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/jquery.slimscroll.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/fastclick.js')}}"></script>
+<script src="{{url_for('static',filename='js/app.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/demo.js')}}"></script>
+<!-- <script src="{{url_for('static',filename='js/holder.min.js')}}"></script> -->
+<script src="{{url_for('static',filename='js/bootstrap-datepicker.js')}}"></script>
+<script src="{{url_for('static',filename='js/bootstrap-datepicker.zh-CN.js')}}" charset="UTF-8"></script>
+<script src="{{url_for('static',filename='js/echarts.min.js')}}"></script>
 
-    function changeHtml(htm){
-        document.querySelector('.content-wrapper').innerHTML = htm;
-    };
-
-
-    function reurl(url){
-        const request = new XMLHttpRequest()
-        request.open("POST", "/admin/reurl")
-
-        request.onload = () => {
-            const data = request.responseText;
-            console.log(data);
-            changeHtml(data);
-        };
-
-        const data = new FormData();
-        data.append('page', url);
-
-        request.send(data);
-        return false;
-
-    };
-
-    function courselist(contents){
-        const comm = comm_template({'contents': contents});
-        document.querySelector('.forum-list').innerHTML = comm + document.querySelector('.forum-list').innerHTML;
-    }
-
-
-    function course_list(url){
-        const request = new XMLHttpRequest()
-        request.open("GET", "/admin/course_list")
-
-        request.onload = () => {
-            const data = request.responseText;
-            console.log(data);
-            changeHtml(data);
-        };
-
-        const data = new FormData();
-        data.append('page', url);
-
-        request.send(data);
-        return false;
-
-    };
-
-
-
-
-
-
-
-    function user_list(url){
-        const request = new XMLHttpRequest()
-        request.open("GET", "/admin/user_list")
-
-        request.onload = () => {
-            const data = request.responseText;
-            console.log(data);
-            changeHtml(data);
-        };
-
-        const data = new FormData();
-        data.append('page', url);
-
-        request.send(data);
-        return false;
-
-    };
-
-
-    function comment_list(url){
-        const request = new XMLHttpRequest()
-        request.open("GET", "/admin/comment_list")
-
-        request.onload = () => {
-            const data = request.responseText;
-            console.log(data);
-            changeHtml(data);
-        };
-
-        const data = new FormData();
-        data.append('page', url);
-
-        request.send(data);
-        return false;
-
-    };
-
-</script>
+<script src="{{url_for('static',filename='js/cmsbase.js')}}"></script>
 </body>
 </html>
