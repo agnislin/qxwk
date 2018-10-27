@@ -30,12 +30,12 @@ def login():
     elif request.method == 'POST':
         user = request.form.get('user')
         pwd = request.form.get('pwd')
-        
+
         # admin = e.AdminInfo(name = "laonanshen",password = "123456")
         # RES = models.find(e.AdminInfo,e.AdminInfo.name == user)
         # print(RES[0].name)
         RES=admin_info = models.find(e.AdminInfo,e.AdminInfo.name==user)
-        
+
         print(user,pwd)
         if user == 'laonanshen' and pwd == '123456':
             return render_template('cms/index.html',user = RES[0])
@@ -69,12 +69,26 @@ def reurl():
 
 
 @cms.route('/course_list',methods=['GET','POST'])
-def course():     
+def course():
     rel = models.find(e.Course)
-    
+
     return render_template("cms/course_list.html",rel=rel)
 
-    
+@cms.route('/course_add',methods=['POST'])
+def course_add():
+    print("course form")
+    print(request.form)
+    # introduction = request.form['introduction']
+    # type = request.form['type']
+    # price = request.form['price']
+    # lecturer = request.form['lecturer']
+    # time = request.form['time']
+    # cover = request.form['cover']
+    # course = e.Course(course=name,introduction=introduction,type=type,cost=price,
+    # lecturer=lecturer,date=time,cover=cober)
+    # print(name)
+    # models.save(course)
+    return jsonify({"data": 123})
 
 
 

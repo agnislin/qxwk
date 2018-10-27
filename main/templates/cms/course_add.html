@@ -1,4 +1,6 @@
 <!--内容-->
+
+<script src="{{url_for('static',filename='js/course_add.js')}}"></script>
         <section class="content-header">
             <h1>千禧微课管理系统</h1>
             <ol class="breadcrumb">
@@ -13,7 +15,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">添加课程</h3>
                         </div>
-                        <form role="form">
+                        <form action="/admin/course_add" method="POST" id="add_course_form">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="input_title">课程名称</label>
@@ -28,7 +30,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="input_info">课程介绍</label>
-                                    <textarea class="form-control" rows="10" id="input_info"></textarea>
+                                    <textarea class="form-control"  rows="10" id="input_info"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="input_logo">封面</label>
@@ -37,38 +39,38 @@
                                          alt="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="input_star">价格</label>
-                                    <select class="form-control" id="input_star">
+                                    <label for="input_price">价格</label>
+                                    <select class="form-control" id="input_price">
                                         <option></option>
                                         <option value="1">５８０</option>
                                         <option value="2">７５０</option>
                                         <option value="3">３２０</option>
-                                        
+
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="input_tag_id">课程分类</label>
-                                    <select class="form-control" id="input_tag_id">
+                                    <label for="input_type">课程分类</label>
+                                    <select class="form-control" id="input_type">
                                         <option></option>
                                         <option value="1">运营</option>
                                         <option value="2">营销</option>
                                         <option value="3">１４天改变计划</option>
-                                        
+
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="input_tag_id">课程讲师</label>
-                                    <select class="form-control" id="input_tag_id">
+                                    <label for="input_lecture">课程讲师</label>
+                                    <select class="form-control" id="input_lecture">
                                         <option></option>
                                         <option value="1">顾薇</option>
                                         <option value="2">曹虎</option>
                                         <option value="3">李叫兽</option>
-                                        
+
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="input_area">课程周期</label>
-                                    <input type="text" class="form-control" id="input_area" placeholder="请输入课程周期！">
+                                    <label for="input_date">课程周期</label>
+                                    <input type="text" class="form-control" id="input_date" placeholder="请输入课程周期！">
                                 </div>
                                 <!-- <div class="form-group">
                                     <label for="input_length">片长</label>

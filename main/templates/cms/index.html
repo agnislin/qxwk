@@ -101,7 +101,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-file-video-o" aria-hidden="true"></i>
@@ -121,7 +121,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-users" aria-hidden="true"></i>
@@ -207,7 +207,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -248,6 +248,7 @@
 <script src="{{url_for('static',filename='js/app.min.js')}}"></script>
 <script src="{{url_for('static',filename='js/demo.js')}}"></script>
 <script src="{{url_for('static',filename='js/holder.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/course_add.js')}}"></script>
 <script src="{{url_for('static',filename='js/bootstrap-datepicker.js')}}"></script>
 <script src="{{url_for('static',filename='js/bootstrap-datepicker.zh-CN.js')}}" charset="UTF-8"></script>
 <script src="{{url_for('static',filename='js/echarts.min.js')}}"></script>
@@ -299,7 +300,7 @@
 
 <script type="text/javascript">
 
-    
+
     function changeHtml(htm){
         document.querySelector('.content-wrapper').innerHTML = htm;
     };
@@ -320,7 +321,7 @@
 
         request.send(data);
         return false;
-    
+
     };
 
     function courselist(contents){
@@ -344,7 +345,7 @@
 
         request.send(data);
         return false;
-    
+
     };
 
 
@@ -368,8 +369,8 @@
 
         request.send(data);
         return false;
-    
-    }; 
+
+    };
 
 
     function comment_list(url){
@@ -387,8 +388,8 @@
 
         request.send(data);
         return false;
-    
-    };   
+
+    };
 
 </script>
 </body>
