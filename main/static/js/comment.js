@@ -59,8 +59,8 @@ function load(){
     request.open("POST", "/nextComments");
 
     request.onload = () => {
-        const data = JSON.parse(request.responseText);
-        data.forEach(history_comment);
+        const data = request.responseText;
+        history_comment(data);
     };
     // 将拉取记录的起始和结束位置 作为请求的参数发送给服务器
     const data = new FormData();
@@ -72,11 +72,11 @@ function load(){
 };
 
 // 通过Handlebars模板添加讨论记录到DOM
-const comm_template = Handlebars.compile(document.querySelector('#comment').innerHTML);
+// const comm_template = Handlebars.compile(document.querySelector('#comment').innerHTML);
 function history_comment(contents){
     // 创建新的讨论
-    const comm = comm_template({'contents': contents});
-    document.querySelector('.forum-list').innerHTML += comm;
+    // const comm = comm_template({'contents': contents});
+    document.querySelector('.forum-list').innerHTML += contents;
 };
 
 

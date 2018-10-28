@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../static/css/comment.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comment.css')}}">
 
 
 </head>
-<body style="height: 100%; background: #999; overflow: hidden;">
+<body style="height: 100%; overflow: hidden;">
 
 
     <div id="v-left" style="">
@@ -29,7 +29,12 @@
             <span style="">&gt;</span>
         </div>
         <div id="vr-base">
-            <h1 style="text-align: center; font-size: 40px;">course info</h1>
+            <div style="width: 60%; float: left; height: 100%;">
+              <h3 style="text-align: center; height: 40px; line-height: 40px;">{{course.course}}</h3>
+              <h3 style="text-align: center; height: 40px; line-height: 40px;">{{course.lecturer}}</h3>
+            </div>
+
+            <img style="height: 100%; max-width: 40%; float: right;" src="{{course.cover}}"></img>
         </div>
 
         <div id="vr-nav-mask"></div>
@@ -79,18 +84,19 @@
 </div>
 </body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script id="comment" type="text/x-handlebars-template">
     <li>
         <div class="forumi">
-            <h1 style="text-align: center;">
-                {% raw -%}
+            <!-- <h1 style="text-align: center;">
                     {{contents}}
-                {%- endraw %}
-            </h1>
-        </div>
-    </li>
-</script>
+            </h1> -->
+                <!-- {% raw -%} -->
+          <!--
+        {%- endraw %} -->
+        <!-- </div> -->
+    <!-- </li> -->
+<!-- </script> -->
 
 
 <script type="text/javascript" src="../../static/js/comment.js"></script>
