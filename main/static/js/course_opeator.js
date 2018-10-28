@@ -33,6 +33,9 @@ function submit_course(){
 };
 
 function load_ced(){
+  function hide(cid) {
+          document.getElementById(cid).style.display = 'none';
+      }
 
   document.querySelectorAll('.editCou').forEach(
     button =>{
@@ -46,7 +49,17 @@ function load_ced(){
     button =>{
       button.onclick = () =>{
         const cid = button.dataset.cdid;
+        const request = new XMLHttpRequest();
+        request.open("POST", "/admin/course_del");
+        const data = new FormData();
+        data.append("cid", cid);
+        request.send(data);
 
+        request.onload = () => {
+            const data = request.responseText
+            if(data=='done'){hide(cid);
+            }else{}
+        }
 
       }
     }

@@ -122,22 +122,23 @@ def course_add():
 
 
 #删除课程
-@cms.route('/course_add',methods=['GET','POST'])
+@cms.route('/course_del',methods=['POST'])
 def course_del():
-    course_id = request.form['id']
-    res = models.remove(e.Course,e.Course(id=course_id))
-    if res == True:
-        return "删除课程成功！"
-    elif res == False:
-        return "删除课程失败！"
-#
-# @cms.route('/delete/<cou_id>')
-# def delete(cou_id):
-#     res = models.remove(e.Course,e.Course(id=cou_id))
-#     if res == True:
-#         return render_template('cms/course_list.html')
-#     elif res == False:
-#         return "删除课程失败！"
+    course_id = request.form['cid']
+    # res = models.remove(e.Course,e.Course(id=course_id))
+    course = models.Course.query.filter(models.Course.id == course_id).first()
+    models.db.session.delete(course)
+    try:
+        res = models.db.session.commit()
+        print(res)
+    except Exception as e:
+        print(e)
+    if res == None:
+        return "done"
+    else:
+        return "fail"
+
+
 
 
 # @cms.route('/comment',methods=['GET','POST'])
