@@ -19,7 +19,7 @@ def save(obj):
     )
     '''
     try:
-        db.session.add(obj)
+        db.session.add(obj)first
         db.session.commit()
         return True
     except Exception as a:

@@ -59,6 +59,7 @@
             console.log(data);
 
             changeHtml(data);
+            load_remu();//加载页面
         };
 
         const data = new FormData();
@@ -73,10 +74,11 @@
         const request = new XMLHttpRequest()
         request.open("GET", "/admin/comment_list")
 
-        request.onload = () => {course_add
+        request.onload = () => {
             const data = request.responseText;
             console.log(data);
             changeHtml(data);
+            
         };
 
         const data = new FormData();
