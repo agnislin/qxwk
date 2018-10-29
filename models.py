@@ -19,7 +19,7 @@ def save(obj):
     )
     '''
     try:
-        db.session.add(obj)first
+        db.session.add(obj)
         db.session.commit()
         return True
     except Exception as a:
@@ -93,7 +93,7 @@ def find(entry, condition=None, x=-1, n=-1):
         if condition is None:
             if x == -1:
                 if n == -1:
-                    return res.first()
+                    return res.all()
                 else:
                     return res.order_by(eval(n))
             else:
@@ -106,7 +106,7 @@ def find(entry, condition=None, x=-1, n=-1):
 
             if x == -1:
                 if n == -1:
-                    return res.first()
+                    return res.all()
                 else:
                     return res.order_by(eval(n))
             else:

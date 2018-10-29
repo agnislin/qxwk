@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from . import mailvertify as m
-from flask import render_template, request,  redirect, url_for
+from flask import render_template, request, session, redirect, url_for
 from . import fontserver
 import models
 from entry import Account

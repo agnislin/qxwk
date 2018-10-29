@@ -17,7 +17,7 @@ from .auth import log_req
 # date = db.Column(db.Integer)  # 课程周期
 # cover = db.Column(db.String(100))  # 封面
 
-@fontserver.route('/')
+@fontserver.route('/comment')
 def comm():
     cour = models.find(e.Course)[0]
 
