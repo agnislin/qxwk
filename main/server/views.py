@@ -17,7 +17,7 @@ from .auth import log_req
 # date = db.Column(db.Integer)  # 课程周期
 # cover = db.Column(db.String(100))  # 封面
 
-@fontserver.route('/comment')
+@fontserver.route('/')
 def comm():
     cour = models.find(e.Course)[0]
 
@@ -26,12 +26,6 @@ def comm():
 
 @fontserver.route("/nextComments", methods=["POST"])
 def next_comments():
-    # Get start and end point for posts to generate.
-    #temp
-    # acc = models.db.session.query(e.Account).first()
-    # comm = e.Comment(account_id=123, video_id=2, comment="hello  sqlalchemy")
-    # models.save(comm)
-    # print(models.db.session.query(e.Comment).first().account_id)
 
     # print(models.find(e.Account, None).first().nickname)
     # #
