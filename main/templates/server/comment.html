@@ -1,99 +1,114 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../static/css/comment.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comment.css')}}">
 
 
 </head>
-<body style="height: 100%; background: #999; overflow: hidden;">
+<body style="height: 100%; overflow: hidden;"> -->
+{% extends 'server/pageframe.html' %}
+{% block title %}login pages{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comment.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+{% block content %}
+
+<div style="top: 60px; width: 100%;height: calc(100% - 60px);position: absolute;">
 
 
-    <div id="v-left" style="">
-        <h1 style="font-size: 180px; color: #fff; text-align: center;">视频区</h1>
-    </div>
+  <div id="v-left" style="">
+      <h1 style="font-size: 180px; color: #fff; text-align: center;">视频区</h1>
+  </div>
 
-    <div id="show">
-        <span style="">&lt;</span>
-    </div>
+  <div id="show">
+      <span style="">&lt;</span>
+  </div>
 
-    <div id="vr-mask"></div>
-
-
+  <div id="vr-mask"></div>
 
 
-<div id="v-box">
-    <div id="v-right">
-        <div id="hide">
-            <span style="">&gt;</span>
-        </div>
-        <div id="vr-base">
-            <h1 style="text-align: center; font-size: 40px;">course info</h1>
-        </div>
 
-        <div id="vr-nav-mask"></div>
-        <div id="vr-nav">
-            <ol id="comm-list">
-                <li>
-                    <a id="forum-a">讨论</a></li>
-                <li>
-                    <a id="note-a">笔记</a></li>
-                <li>
-                    <a id="coll-a">收藏</a></li>
 
-                <li style="position: absolute; right:50px;">
-                    <a id="">目录</a></li>
-            </ol>
-        </div>
-        <div id="forum-box" style="display: none;">
-            <div id="vr-content">
-                <div class="first-wrapper">
-                    <ol class="forum-list">
+  <div id="v-box">
+      <div id="v-right">
+          <div id="hide">
+              <span style="">&gt;</span>
+          </div>
+          <div id="vr-base">
+              <div style="width: 60%; float: left; height: 100%;">
+                <h3 style="text-align: center; height: 40px; line-height: 40px;">{{course.course}}</h3>
+                <h3 style="text-align: center; height: 40px; line-height: 40px;">{{course.lecturer}}</h3>
+              </div>
 
-                    </ol>
-                </div>
-            </div>
-            <div id="vr-foot">
-                <form id="forum-form" action="/forum", method="post">
-                    <div class="vrf-wrapper" style="border:1px;">
-                        <textarea id="text" name="content" style="font-size: 20px; width: 94%; height: 90px; margin: 10px auto; left: 0; right: 0; position: absolute;"></textarea>
-                        <button id="send-forum" style="position: absolute; bottom: 0; right: 0px; left: 0; width: 100%; border: none; height: 30px;">发送</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+              <img style="height: 100%; max-width: 40%; float: right;" src="{{course.cover}}"></img>
+          </div>
 
-        <div id="note-box" style="height: 100%;">
-            <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #69c;">
-                <h1>笔记</h1>
-            </div>
-        </div>
+          <div id="vr-nav-mask"></div>
+          <div id="vr-nav">
+              <ol id="comm-list">
+                  <li>
+                      <a id="forum-a">讨论</a></li>
+                  <li>
+                      <a id="note-a">笔记</a></li>
+                  <li>
+                      <a id="coll-a">收藏</a></li>
 
-        <div id="coll-box" style="height: 100%;">
-            <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #f9c;">
-                <h1>收藏</h1>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
+                  <li style="position: absolute; right:50px;">
+                      <a id="">目录</a></li>
+              </ol>
+          </div>
+          <div id="forum-box" style="display: none;">
+              <div id="vr-content">
+                  <div class="first-wrapper">
+                      <ol class="forum-list">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-<script id="comment" type="text/x-handlebars-template">
-    <li>
-        <div class="forumi">
-            <h1 style="text-align: center;">
-                {% raw -%}
-                    {{contents}}
-                {%- endraw %}
-            </h1>
-        </div>
-    </li>
-</script>
+                      </ol>
+                  </div>
+              </div>
+              <div id="vr-foot">
+                  <form id="forum-form" action="/forum", method="post">
+                      <div class="vrf-wrapper" style="border:1px;">
+                          <textarea id="text" name="content" style="font-size: 20px; width: 94%; height: 90px; margin: 10px auto; left: 0; right: 0; position: absolute;"></textarea>
+                          <button id="send-forum" style="position: absolute; bottom: 0; right: 0px; left: 0; width: 100%; border: none; height: 30px;">发送</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+
+          <div id="note-box" style="height: 100%;">
+              <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #69c;">
+                  <h1>笔记</h1>
+              </div>
+          </div>
+
+          <div id="coll-box" style="height: 100%;">
+              <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #f9c;">
+                  <h1>收藏</h1>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  </div>
 
 
 <script type="text/javascript" src="../../static/js/comment.js"></script>
+{% endblock %}
 
-
-</html>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script id="comment" type="text/x-handlebars-template">
+    <li>
+        <div class="forumi">
+            <!-- <h1 style="text-align: center;">
+                    {{contents}}
+            </h1> -->
+                <!-- {% raw -%} -->
+          <!--
+        {%- endraw %} -->
+        <!-- </div> -->
+    <!-- </li> -->
+<!-- </script> -->

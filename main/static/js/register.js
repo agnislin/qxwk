@@ -28,8 +28,8 @@ function create() {
 }
 var xmlhttp = create();
 
-var phinput = document.getElementById("ph-form").getElementsByTagName('input');
-var eminput = document.getElementById("em-form").getElementsByTagName('input');
+var phinput = document.getElementById("ph").getElementsByTagName('input');
+var eminput = document.getElementById("em").getElementsByTagName('input');
 
 document.getElementById("js_DynamicCodePhone").onclick = checkphn;
 function checkphn() {
@@ -38,7 +38,7 @@ function checkphn() {
     wrotip.innerHTML = '';
     var accreg = /^[0-9]{11}/;
     if (js_account_phone.length == 11 && accreg.test(js_account_phone)) {
-        requ_dyc('ph');
+        requ_dyc();
     } else {
         wrotip.innerHTML = '手机号码格式错误'
         wrotip.className = 'wrophtip';
@@ -47,10 +47,13 @@ function checkphn() {
 
 
 document.getElementById('js_submit_reg_phone').onclick = function () {
+    var phinput = document.getElementById("ph").getElementsByTagName('input');
+    var js_account_phone = phinput[0].value;
+    var wrotip = document.getElementById('wrophtip');
     wrotip.innerHTML = '';
     wrotip.className = '';
     var accreg = /^[0-9]{11}/;
-    if (phinput[0].length == 11 && accreg.test(phinput[0])){
+    if (js_account_phone.length == 11 && accreg.test(js_account_phone)){
         if(phinput[1].value.length>5) {
             if (phinput[1].value==phinput[2].value){
                 if (phinput[3].value.length==6){
@@ -82,11 +85,15 @@ function requ_dyc() {
     var wrotip = document.getElementById('wrophtip');
     wrotip.innerHTML = '';
     xmlhttp.open('POST', 'register', true);
-    var formElement = document.getElementById("ph")
-    xmlhttp.send(new FormData(formElement));
+    var phonenum = document.getElementById("ph")[0].value
+    var formdata = new FormData()
+    formdata.append('getdyc', phonenum)
+    xmlhttp.send(formdata);
     xmlhttp.onload = function () {
+        wrotip.className = 'wrophtip';
             // 如需获得来自服务器的响应，直接使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。
-            wrotip.innerHTML = xmlhttp.responseText
+        wrotip.innerHTML = xmlhttp.responseText
+        xmlhttp.abort();
     }
 }
 
@@ -96,9 +103,13 @@ function regph() {
     xmlhttp.open('POST', 'register', true);
     xmlhttp.send(new FormData(formElement));
     xmlhttp.onload = function () {
-        wrotip.innerHTML = xmlhttp.responseText;
-        wrotip.className = '';
-        wrotip.className = 'wrophtip';
+        var result = xmlhttp.responseText
+        
+        if (result == 'redirect') { window.location.href = "http://127.0.0.1:5000/"; }
+        else { wrotip.className = 'wrophtip';
+         wrotip.innerHTML = xmlhttp.responseText; };
+
+        xmlhttp.abort();
     }
 }
 
@@ -108,8 +119,12 @@ function regem() {
     xmlhttp.open('POST', 'register', true);
     xmlhttp.send(new FormData(formElement));
     xmlhttp.onload = function () {
-        wrotip.innerHTML = xmlhttp.responseText;
-        wrotip.className = '';
-        wrotip.className = 'wrophtip';
+        var result = xmlhttp.responseText
+        
+        if (result == 'redirect') { window.location.href = "http://127.0.0.1:5000/"; }
+        else { wrotip.className = 'wrophtip';
+        wrotip.innerHTML = xmlhttp.responseText; };
+
+        xmlhttp.abort();
     }
 }

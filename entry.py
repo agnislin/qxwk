@@ -140,7 +140,7 @@ class Note(db.Model):
     video_id = db.Column(db.Integer, nullable=False)  # 视频ID
     content = db.Column(db.String(3000))  # 内容
     date = db.Column(db.DateTime, default=datetime.now)  # 时间
-    praise = db.Column(db.Integer, defalut=0)  # 赞
+    praise = db.Column(db.Integer, default=0)  # 赞
 
 
 # 管理员信息
@@ -151,7 +151,7 @@ class AdminInfo(db.Model):
     password = db.Column(db.String(40), nullable=False)  # 密码
     date = db.Column(db.DateTime, default=datetime.now)  # 时间
     profile = db.Column(db.String(100))  # 头像地址
-    super_power = db.Column(db.Boolean, defalut=False)
+    super_power = db.Column(db.Boolean, default=False)
 
 
 # 操作记录

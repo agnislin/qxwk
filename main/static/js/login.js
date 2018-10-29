@@ -26,11 +26,17 @@ if (window.XMLHttpRequest){
 
 xmlhttp.open('POST','login',true);
 function ajax_post() {
+    xmlhttp.open('POST', 'login', true);
     var formElement = document.getElementById('logform')
     xmlhttp.send(new FormData(formElement))
 }
 xmlhttp.onload = function(){
-    wrotip.className = '';
-    wrotip.innerHTML = xmlhttp.responseText;
-    wrotip.className = 'wrophtip';
+
+    var result = xmlhttp.responseText
+
+    if (result == 'redirect') { window.location.href = "http://127.0.0.1:1180/";}
+    else { wrotip.className = 'wrophtip';
+    wrotip.innerHTML = xmlhttp.responseText;};
+
+    xmlhttp.abort();
 }

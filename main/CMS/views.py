@@ -29,12 +29,13 @@ def index():
 
         admin = e.AdminInfo(name = "laonanshen",password = "123456")
         RES = models.find(e.AdminInfo,e.AdminInfo.name == user)
+        print(RES)
         # print(RES[0].name)
         # return jsonify({"data": 123})o = models.find(e.AdminInfo,e.AdminInfo.name==user)
 
         print(user,pwd)
         if user == 'laonanshen' and pwd == '123456':
-            return  render_template('cms/index.html',user = RES[0])
+            return  render_template('cms/index.html',user = RES)
         else:
             data =[]
             data.append({"error":"用户名或密码有误"})
