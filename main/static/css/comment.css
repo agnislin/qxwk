@@ -17,7 +17,6 @@
     transition: width 1s;
 }
 #v-right{
-    background-color: #333;
     position: absolute;
     height: 100%;
     width: 550px;
@@ -70,7 +69,6 @@
     width: 100%;
 }
 #vr-foot{
-    background-color: #7ff;
     height: 140px;
 }
 .first-wrapper{
@@ -79,17 +77,16 @@
 .forum-list{
     list-style: none;
     padding: 0px 40px;
-    background-color: #afa;
 }
 .forum-list li{
     position: relative;
     margin: 0 -10px 5px;
-    border: 1px solid #b2b2b2;
     border-radius: 13px;
 }
 .forumi{
     background-color: #fff;
-    height: 100px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 .vrf-wrapper{
     background-color: #7ff;
@@ -160,6 +157,16 @@
     height: calc(100% - 80px - 65px - 140px - 25px);
     padding-top: 25px;
     overflow-y: auto;
+    background: #777;
     position: absolute;
     width: 100%;
+}
+
+ .img{
+    vertical-align: middle;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    width: 32px;
+    height: 32px;
+    margin: 3px 15px;
 }

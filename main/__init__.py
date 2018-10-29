@@ -65,3 +65,12 @@ with SSHTunnelForwarder(
 
     # 将flask_sqlalchemy.SQLAlchemy附加到Flask
     models.set_app(app)
+<<<<<<< HEAD
+=======
+
+# session
+# SECRET_KEY = "EjpNVSNQTyGi1VvWECj9TvC/+kq3oujee2kTfQUs8yCM6xX9Yjq52v54g+HVoknA"
+# SESSION_TYPE = "redis"  # 指定 session 保存到 redis 中
+# SESSION_USE_SIGNER = True  # 让 cookie 中的 session_id 被加密签名处理
+# PERMANENT_SESSION_LIFETIME = 60 * 60 * 24 * 7  # session 的有效期，单位是秒
+>>>>>>> comment

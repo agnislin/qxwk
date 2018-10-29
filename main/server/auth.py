@@ -21,7 +21,7 @@ def log_req():
         return Account.query.filter(Account.id == uid).first()
 
 
-@fontserver.route('/')
+@fontserver.route('/account')
 def index():
     acc = log_req()
     if acc:
@@ -36,6 +36,7 @@ def index():
 #             return render_template('server/index.html', username=acc.nickname if acc.nickname else (acc.email if acc.email else acc.phone))
 #     else:
 #         return render_template('server/index.html')
+
 
 @fontserver.route('/login', methods=['GET', 'POST'])
 def login():
@@ -73,7 +74,7 @@ def logout():
 register_book = {}
 
 
-@fontserver.route('/register', methods=['GET','POST'])
+@fontserver.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
         return render_template('server/register.html')
@@ -134,8 +135,15 @@ def register():
                     return '邮件发送失败！请检查邮箱是否正确'
 
 
+<<<<<<< HEAD
 #/vertify/1653075632@qq.com+asdf12
 # register_book['1653075632@qq.com'] = {'password': '123456', 'randomcode': 'asdf12'}
+=======
+
+@fontserver.route('/get')
+def get():
+    print(register_book)
+>>>>>>> comment
 
 @fontserver.route('/vertify/<peramen>', methods= ['get'])
 def vertify(peramen):
