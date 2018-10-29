@@ -7,7 +7,7 @@ import models
 from entry import Account
 from entry import db
 import random
-from dysms_python import demo_sms_send
+# from dysms_python import demo_sms_send
 #dysms_python放到C:\Users\Administrator\AppData\Local\Programs\Python\Python36\Lib\site-packages
 import json
 
@@ -148,4 +148,3 @@ def vertify(peramen):
         return '验证成功，<a href = "http://127.0.0.1:5000/login">点击登录</a>'
     else:
         return '邮件已失效！'
-

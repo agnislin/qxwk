@@ -25,5 +25,3 @@ models.set_app(app)
 # SESSION_TYPE = "redis"  # 指定 session 保存到 redis 中
 # SESSION_USE_SIGNER = True  # 让 cookie 中的 session_id 被加密签名处理
 # PERMANENT_SESSION_LIFETIME = 60 * 60 * 24 * 7  # session 的有效期，单位是秒
-
-
