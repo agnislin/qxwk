@@ -30,7 +30,7 @@ document.querySelector('#forum-form').onsubmit = () =>{
     };
 
     const data = new FormData();
-    data.append('content', document.querySelector("#text").value)
+
     request.send(data);
 
     return false;

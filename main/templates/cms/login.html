@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>千禧微课管理系统</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+     <link rel="shortcut icon" href="{{url_for('static',filename='png/logo.png')}}">
+   <!--  <link rel="stylesheet" href="../static/admin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/fonts/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../static/admin/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../static/admin/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/admin/plugins/datepicker/datepicker3.css"> -->
+        <link rel="shortcut icon" href="{{url_for('static',filename='png/logo.png')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/_all-skins.min.css')}}"
+
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href=""><b>微课管理系统</b></a>
+    </div>
+    <div class="login-box-body">
+        <p class="login-box-msg"></p>
+        <form action="/admin/" method="post" id="form-data">
+            <div class="form-group has-feedback">
+
+                <input name="user" type="text" class="form-control" placeholder="请输入账号！">
+
+                <div id='account' class="col-md-12" >
+
+                    <font style="color:red"></font>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+
+                <input name="pwd" type="password" class="form-control" placeholder="请输入密码！">
+                <span id='pass' class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <div class="col-md-12" id="input_pwd"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                </div>
+                <div class="col-xs-4">
+                    <button id="btn-sub" type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{{url_for('static',filename='js/jQuery-2.2.0.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/icheck.min.js')}}"></script>
+
+
+
+</body>
+</html>

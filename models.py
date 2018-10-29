@@ -123,8 +123,7 @@ def change(alternative,field,entry, condition=None):
     res = find(entry,condition)
     res.field = alternative
 
-def contain( entry, condition=None):
-
+def contain( class_type, condition):
     '''判断'''
     try:
         a = find(entry,condition)
@@ -132,6 +131,7 @@ def contain( entry, condition=None):
             return True
     except:
         return False
+
 
 # def find(entry, condition=None, order_col=None, limit=-1):
 #     if type(entry) in [list, tuple, set]:
