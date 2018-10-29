@@ -33,10 +33,10 @@ function ajax_post() {
 xmlhttp.onload = function(){
 
     var result = xmlhttp.responseText
-    
-    if (result == 'redirect') { window.location.href = "http://127.0.0.1:5000/";}
+
+    if (result == 'redirect') { window.location.href = "http://127.0.0.1:1180/";}
     else { wrotip.className = 'wrophtip';
     wrotip.innerHTML = xmlhttp.responseText;};
-    
+
     xmlhttp.abort();
 }
