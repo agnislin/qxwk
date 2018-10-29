@@ -1,8 +1,14 @@
 from __future__ import unicode_literals
 from flask import Flask
+<<<<<<< HEAD
 from main.server import fontserver
 from sshtunnel import SSHTunnelForwarder
 from main.CMS import cms
+=======
+from .server import fontserver
+from sshtunnel import SSHTunnelForwarder
+from .CMS import cms
+>>>>>>> origin/models
 import models
 
 # 接收应用程序包名, 使用__name__而不是'__main__', 因为它的值是区分作为应用程序启动还是作为模块导入的
@@ -33,4 +39,8 @@ with SSHTunnelForwarder(
     local_port = str(server.local_bind_port)
 
     # 将flask_sqlalchemy.SQLAlchemy附加到Flask
+<<<<<<< HEAD
     models.set_app(app)
+=======
+    models.set_app(app)
+>>>>>>> origin/models

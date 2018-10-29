@@ -8,10 +8,10 @@ import models
 import entry as e
 
 
-@fontserver.route('/')
+@fontserver.route('/account')
 def index():
-    models.db.create_all()
     return render_template('server/index.html', username=None)
+
 
 @fontserver.route('/login', methods=['GET', 'POST'])
 def login():
@@ -28,7 +28,7 @@ def login():
 register_book = {}
 
 
-@fontserver.route('/register', methods=['GET','POST'])
+@fontserver.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
         return render_template('server/register.html')
@@ -65,6 +65,7 @@ def vertify(peramen):
             return "success!"
         else:
             return '邮件过期'
+
 
 @fontserver.route('/get')
 def get():
