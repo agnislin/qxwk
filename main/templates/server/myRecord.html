@@ -1,0 +1,67 @@
+{% extends 'server/pageframe.html' %}
+{% block title %}login pages{% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/center.css') }}">
+{% endblock %}
+{% block content %}
+<body>
+    <div class="g-doc f-cb m-center">
+        <div class="MyOpenNav_navBody" >
+            <dl class="mine" >
+                {% if user %}
+                <dd><img src='{{ user.img }}' alt="" srcset="" class="avator"></dd> <dt>
+                    <h4>{{ user.name }}</h4>
+                    {% else %}
+                <dd><img src="static/image/123.jpg" alt="" srcset="" class="avator"></dd> <dt>
+                    <h4>Leviathan1914</h4>
+                    {% endif %}
+                    <p class="type" >
+                    </p>
+                </dt>
+                <!---->
+            </dl>
+            <ul class="u-sd f-cb f-tal f-fs1" >
+                <li class="pay " ><a href="{{ url_for('server.myOrder')}}">已购课程</a></li>
+                <li class="course" ><a href="{{ url_for('server.myCourse')}}">我的收藏</a></li>
+                <li class="plr crt-s" ><a href="{{ url_for('server.myRecord') }}" >播放记录</a></li>
+                <!-- <li class="note " ><a href="/center/myNotes.htm" >我的笔记</a></li> -->
+            </ul>
+        </div>
+        <div class="g-mn-b">
+            <div class="mnc m-storeCenter">
+                <ul class="m-tab-s f-cb">
+                    <li><b class="crt-st">播放记录</b></li>
+                </ul>
+                <div class="m-centercnt f-db m-b-20">
+                    {% if not record %}
+                    <div class="nowrap">
+                        <div class="nostorerecord">还没有播放记录</div>
+                    </div>
+                    {% else %}
+                    <div class="wrap">
+                        {% for x in record%}
+                        <a href="{{ record[0] }}">
+                            <div class='video'>
+                                <img src="132.jpg" alt="">
+                                <div class="video-info">
+                                    <h3 class="title"></h3>
+                                    <p class="play-count">{{record[2]}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="Modal_modal">
+                    <div class="Modal_body">
+                        <div class="CourseWelfare_body">
+                            <!---->
+                            <!---->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

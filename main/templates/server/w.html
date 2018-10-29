@@ -1,13 +1,6 @@
-{% extends 'server/pageframe.html' %}
-{% block title %}login pages{% endblock %}
-{% block head %}
-    {{ super() }}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
-{% endblock %}
-{% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/w.css') }}">
+<link rel="stylesheet" href="css/w.css">
 
-<div class="g-container open-pay" style="display: block;height: calc(100vh - 220px);">
+<div class="g-container open-pay" style="display: block;">
     <div class=" f-f0 f-cb u-mtitle">
         <div class="f-fr u-index-more">
         </div>
@@ -105,7 +98,6 @@
                 <div class="home-pay-price"> ￥79.00 <del class="home-pay-price-ori"> 原价 ￥99.00 </del> </div>
             </a></div>
         <div id="j-openPayList2" class="home-pay-list"></div>
-
+       
     </div>
 </div>
-{% endblock %}

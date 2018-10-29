@@ -1,0 +1,270 @@
+html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu {
+    margin: 0;
+    padding: 0;
+}
+
+a, abbr, acronym, address, applet, body, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+.site-header {
+    min-width: 1000px;
+    box-shadow: darkgray 0px 4px 20px 0px ;
+    height: 60px;
+    background-color: #FFF;
+    /* border: 1px solid black; */  
+}
+.container-left {
+    margin-left: 200px;
+    float: left;
+    /* border: 1px solid black; */
+}
+.container-right {
+    float: right;
+    /* border: 1px solid black; */
+    position: relative;
+    right: 200px;
+    top: 0px;
+}
+.search-form {
+    float: left;
+
+    margin: 16.5px 10px;
+    padding:0px 10px;
+
+}
+.search {
+    width: 150px;
+    height: 25px;
+    border-radius: 3px;
+    border: 1px solid #ccc; 
+    padding-left: 10px;
+}
+.search-btn {
+    display: none;
+}
+.a {
+    color: #000;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    text-decoration: none;
+    top: 50%;
+    line-height: 60px;
+    display: block;
+    float: left;
+    padding: 0px 15px;
+}
+.head {
+    font-family: "Microsoft YaHei";
+    font-size: 24px;
+    color: green;
+}
+
+.a:hover{
+    color: green;
+}
+
+.yonghu {
+    text-decoration: underline;
+}
+
+/* 顶部导航^ */
+
+
+body {
+    /* margin-bottom: 156px; */
+    padding-bottom: 0.1px;
+    font-family: 'Microsoft YaHei UI', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f8f8f8;
+    min-width: 1180px;
+}
+body, textarea, input, button, select, keygen, legend {
+    font: 12px/1.14 "Arial","Hiragino Sans GB", \5b8b\4f53, "Georgia", "serif";
+    color: #333;
+    outline: 0;
+}
+
+.m-center {
+    margin: 15px auto 0px;
+    min-height: 810px;
+    width: 960px;
+}
+
+.MyOpenNav_navBody {
+    position: relative;
+    float: left;
+    margin-right: -210px;
+    width: 190px;
+    background: #fff;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.mine {
+    text-align: center;
+    height: 153px;
+}
+.mine {
+    text-align: center;
+    height: 153px;
+}
+.mine dd {
+    padding: 20px 55px 10px;
+}
+.mine .avator {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+dd>img {
+    cursor: pointer;
+}
+img {
+    display: inline-block;
+}
+
+img {
+    vertical-align: top;
+}
+html, body, fieldset, img, iframe, abbr {
+    border: 0;
+}
+.m-center .m-tab-s {
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px solid #29754d;
+}
+.m-tab-s {
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px solid #29754d;
+}
+
+.clear, .f-cb {
+    zoom: 1;
+}
+.m-tab-s li b.crt-st {
+    background: #29754d;
+}
+.m-center .m-tab-s li b {
+    display: block;
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #29754d;
+    cursor: pointer;
+    padding-left: 20px;
+}
+.m-center .m-tab-s {
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px solid #29754d;
+}
+.m-tab-s {
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px solid #29754d;
+}
+.clear, .f-cb {
+    zoom: 1;
+}
+.m-center .g-mn-b .mnc {
+    margin-left: 210px;
+}
+.m-storeCenter .nowrap {
+    background-color: #fff;
+    padding: 90px;
+    -webkit-box-shadow: 0px 1px 2px #eaeaea;
+    box-shadow: 0px 1px 2px #eaeaea;
+    border: 1px solid #eaeaea;
+    border-top: none;
+}
+.m-storeCenter .nostorerecord {
+    background:  no-repeat 235px -323px;
+    padding-top: 90px;
+    color: #999;
+    font-size: 14px;
+    margin: 0 auto;
+    width: 568px;
+    text-align: center;
+    font-family: 'Microsoft YAHEI';
+}
+li {
+    list-style: none;
+}
+
+.MyOpenNav_navBody .u-sd li.crt-s a {
+    line-height: 42px;
+    font-weight: bold;
+    background-color: #29754d;
+}
+.MyOpenNav_navBody .u-sd li.pay a {
+    background-position: 17px;
+}
+.MyOpenNav_navBody .u-sd li a {
+    color: #333;
+    padding-left: 40px;
+    width: 150px;
+    height: 42px;
+    display: block;
+    line-height: 42px;
+    font-size: 14px;
+    background:  no-repeat 9999px 9999px;
+}
+
+a {
+    color: #333;
+}
+del, ins, u, s, a, a:hover {
+    text-decoration: none;
+}
+a, button {
+    cursor: pointer;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.wrap {
+    padding-top: 20px;
+    border-top: none;
+}
+
+.video{
+    height: 80px;
+    width:750px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.video>img {
+    height: 80px;
+    width: 140px;
+}
+
+.video-info {
+    margin-left: 150px;
+    height: 80px;
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+.title {
+    width: 600px;
+    height: 20px;
+}
+
+li:hover {
+    color:#29754d;
+    background-color: #C1C1C1;
+}
+
+.wrap:hover {
+    background-color: #C1C1C1;
+}

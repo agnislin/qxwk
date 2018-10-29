@@ -13,6 +13,7 @@ app = Flask(__name__)
 app.debug = True
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:123456@127.0.0.1:3306/qxwk"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config['SECRET_KEY'] = b'\x1cf\x9a\xd5\xcd\xfc\x85\xf9F\4\x9b\xb9\xea\xfex?\xd3N\xbf\xf9MVV\x13'
 app.register_blueprint(fontserver)
 app.register_blueprint(cms, url_prefix='/admin')
 

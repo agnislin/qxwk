@@ -14,10 +14,11 @@
 </head>
 
 <body>
+    
     <!-- 顶部导航 -->
     <div class="site-header">
         <div class="container-left">
-            <a class="a head" href="{{ url_for('server.index') }}">Qxwk</a>
+            <a class="a head" href="{{ url_for('server.index') }}">千禧微课</a>
             <a class="a" href="">免费课程</a>
             <a class="a" href="">付费课程</a>
         </div>
@@ -26,11 +27,10 @@
                 <input class="search" type="text" name="search" id="" placeholder="搜索课程">
                 <button class="search-btn" type="submit"></button>
             </form>
-            <a class="a yonghu" href="">小仓库</a>
             {% if username %}
             <!-- 如果已登录 -->
-            <a class="a yonghu" href="">{{ username }}个人中心</a> 
-            <a class="a yonghu" href="">退出</a>
+            <a class="a yonghu" href="{{ url_for('server.myOrder') }}">个人中心</a> 
+            <a class="a yonghu" href="{{ url_for('server.logout') }}">退出</a>
             <!-- /如果已登录 -->
             {% else %}
             <a class="a" href="{{ url_for('server.register') }}">注册</a>
@@ -43,30 +43,5 @@
     <div>{% block content %}{% endblock %}</div>
     <!-- /内容 -->
     <!-- 底边 -->
-    <style>
-    .footer {
-    padding: 0.1px;
-    width:100%;
-    height:130px;
-    background:#333;
-    margin:0;
-}
-.text-foot{
-    color:rgba(102,102,102,0.5);
-    font-size:14px;
-    height:30px;
-    text-align:center;	
-}
-    </style>
-    <div class='footer'>
-        <br>
-        <p class='text-foot'>Copyright 2018-地球毁灭 AID1807狂暴小队</p>
-        <p class='text-foot'>联系方式:来达内找我们</p>
-        <p class='text-foot'>京ICP证XXX号 | 京公网安备XXX
-            广播电视节目制作经营许可证（京）字第XXX号
-    </div>
-    <!-- /底边 -->
-    <!-- /底边 -->
 </body>
-
 </html>
