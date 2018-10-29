@@ -3,7 +3,7 @@
 #v-box{
     position: fixed;
     right: 0;
-    top: 0;
+    top: 60px;
     bottom: 0;
     width: 0;
     transition: width 1s;
@@ -18,7 +18,7 @@
 }
 #v-right{
     position: absolute;
-    height: 100%;
+    height: calc(100% - 60px);
     width: 550px;
 }
 
@@ -154,7 +154,7 @@
     background-color: #fff;
 }
 #vr-content{
-    height: calc(100% - 80px - 65px - 140px - 25px);
+    height: calc(100% - 80px - 65px - 140px - 25px - 60px);
     padding-top: 25px;
     overflow-y: auto;
     background: #777;

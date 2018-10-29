@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from . import mailvertify as m
-from flask import render_template, request, session, redirect, url_for
+from flask import render_template, request,  redirect, url_for
 from . import fontserver
 import models
 from entry import Account
@@ -12,6 +12,7 @@ import random
 import json
 
 def log_req():
+    from flask import session
     '''用户没有登录返回False，已登录返回Account对象'''
     try:
         uid = session['UID']
@@ -21,7 +22,7 @@ def log_req():
         return Account.query.filter(Account.id == uid).first()
 
 
-@fontserver.route('/account')
+@fontserver.route('/')
 def index():
     acc = log_req()
     if acc:
@@ -135,15 +136,10 @@ def register():
                     return '邮件发送失败！请检查邮箱是否正确'
 
 
-<<<<<<< HEAD
-#/vertify/1653075632@qq.com+asdf12
-# register_book['1653075632@qq.com'] = {'password': '123456', 'randomcode': 'asdf12'}
-=======
 
 @fontserver.route('/get')
 def get():
     print(register_book)
->>>>>>> comment
 
 @fontserver.route('/vertify/<peramen>', methods= ['get'])
 def vertify(peramen):

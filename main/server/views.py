@@ -5,6 +5,7 @@ from . import fontserver
 import models
 import entry as e
 import main.tools.tools as tl
+from .auth import log_req
 
 # __tablename__ = 'Course'
 # id = db.Column(db.Integer, primary_key=True)
@@ -19,7 +20,8 @@ import main.tools.tools as tl
 @fontserver.route('/comment')
 def comm():
     cour = models.find(e.Course)[0]
-    return render_template('server/comment.html', course = cour)
+
+    return render_template('server/comment.html', course = cour, username=log_req())
 
 
 @fontserver.route("/nextComments", methods=["POST"])
