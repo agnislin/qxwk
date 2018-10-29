@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from flask import Flask, jsonify, render_template, request
 from . import fontserver
 import main.server.forum.comment
+import models
+from entry import *
 # __tablename__ = 'Course'
 # id = db.Column(db.Integer, primary_key=True)
 # lecturer = db.Column(db.String(20))  # 讲师
@@ -63,3 +65,24 @@ def forum():
     forum_info["time"] = tl.get_time()
     forum_info.append({})
     return jsonify(forum_info)
+
+@fontserver.route('/KCJieShao')
+def KCJieShao():
+    data = models.find(Course,Course.id == 1)[0]
+    print(data)
+
+
+
+    return render_template('server/KCJieShao.html', course=data) 
+
+
+
+
+@fontserver.route("/KCJieShao/<menu>")
+def menu_views(menu):
+    if menu =='ML':
+        print(menu)
+    
+    return "dsfdfs"
+
+

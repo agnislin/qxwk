@@ -1,0 +1,235 @@
+a, abbr, acronym, address, applet, body, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+
+}
+body {
+    background-color: #F4F4F4;
+}
+/* 顶部导航 */
+.site-header {
+    min-width: 1000px;
+    box-shadow: darkgray 0px 4px 20px 0px ;
+    height: 60px;
+    background-color: #FFF;
+    /* border: 1px solid black; */  
+}
+.container-left {
+    margin-left: 150px;
+    float: left;
+    /* border: 1px solid black; */
+}
+.container-right {
+    float: right;
+    /* border: 1px solid black; */
+    position: relative;
+    right: 150px;
+    top: 0px;
+}
+form {
+    float: left;
+
+    margin: 16.5px 10px;
+    padding:0px 10px;
+
+}
+.search {
+    width: 150px;
+    height: 25px;
+    border-radius: 3px;
+    border: 1px solid #ccc; 
+    padding-left: 10px;
+
+}
+.search-btn {
+    display: none;
+}
+.a {
+    color: #000;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    text-decoration: none;
+    top: 50%;
+    line-height: 60px;
+    display: block;
+    float: left;
+    padding: 0px 15px;
+}
+.head {
+    font-family: "Microsoft YaHei";
+    font-size: 24px;
+    color: green;
+}
+
+.a:hover{
+    color: green;
+}
+
+.yonghu {
+    text-decoration: underline;
+}
+
+
+
+/* 底边 */
+.foot {
+    line-height: 100px;
+    height: 100px;
+    background-color: #E5E5E5;
+    margin-top:20px;
+
+}
+
+/*课程路径*/
+.kclj{
+    
+    height: 40px;
+    background:#EEEEEE; 
+    padding: 20px 0 0 0;
+}
+
+.kcljfd{
+    float:left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.kcljfd1{
+    min-width: 1205px;
+    width: 1205px;
+    margin: 0 auto;
+    text-align: left;
+
+}
+.navcrumb-item{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    
+
+}
+
+.kclj1{
+    height: 20px;
+    
+}
+.navcrumb-item a{
+    color: #666666;
+    text-decoration:none;
+
+}
+
+
+
+
+
+
+
+
+
+/*课程全部内容*/
+/*先设置全部内容的大框架*/
+
+.kcqbnr{
+    width:1205px;
+    height:4328px;
+    background: green;
+    margin: 0 auto;
+}
+
+/*设置第一大块，包括图片和课程活动介绍这两个小块*/
+.kc-tp-hd{
+    width:1205px;
+    height: 290px;
+    
+}
+.kc-tp img{
+    margin: 20px 20px;
+    float: left;
+    width:auto%;
+    height:100%;
+
+}
+.kc-hd{
+    width: 695px;
+    height: 290px;
+    
+    float: left;
+}
+.mf{
+    margin: 10px 0px;
+}
+.bt a{
+    text-decoration:none;
+    color: #6695CF;
+}
+.bt h2{
+    position:relative;
+    top:12px;
+}
+
+.vip{
+    width:265;
+    height:24;
+}
+
+.vip span input{
+    background-color: #FF632A;
+    border-radius: 15px;
+    padding: 5px 6px ;
+    color: #FFFFFF;
+}
+
+.ljcj{
+    width: 659px;
+    height: 45px;
+    position: relative;
+    left:0;
+    bottom:-48px;
+}
+.ljcj span{
+    float: left;
+    width: 160px;
+    height: 45px;
+    background-color: #FF8000;
+    text-align: center;
+    font-size: 20px;
+
+}
+.ljcj a {
+    
+    width: 88px;
+    height: auto;
+    top: 10px;
+    position: relative;
+    text-decoration: none;
+
+}
+
+
+/*课程介绍-目录-笔记-讨论区   块*/
+.kc-mjbt{
+    width: 1205px;
+    height: 37px;
+}
+.kc-wxlb{
+    width:1205px;
+    height: 37px;
+}
+
+.kc-mjbt ul li span{
+    float: left;
+    margin: 30px;
+    width: 50px;
+    height: 10px;
+}
+
+
+     
+
+
+
+
+
