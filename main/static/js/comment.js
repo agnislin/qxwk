@@ -1,8 +1,3 @@
-
-
-
-
-
 // 设置拉取的位置，第一次为1
 let counter = 1;
 // 每次拉取的讨论条数
@@ -23,22 +18,23 @@ document.querySelector('#forum-form').onsubmit = () =>{
     request.open("POST", "/forum");
 
     request.onload = () => {
-        const data = JSON.parse(request.responseText);
-        data.forEach(add_comment);
-        document.querySelector('#text').value = ""
-        document.querySelector('#send-forum').disabled = true;
+        const data = request.responseText;
+        history_comment(data);
     };
-
     const data = new FormData();
-
+    vid = document.querySelector("#vr-base").dataset.vid
+    comment = document.querySelector("#text").value
+    data.append("content", comment)
+    data.append("video_id", vid)
     request.send(data);
-
+    document.querySelector("#text").value = "";
+    document.querySelector('#send-forum').disabled = true;
     return false;
 };
-function add_comment(contents){
-    const comm = comm_template({'contents': contents});
-    document.querySelector('.forum-list').innerHTML = comm + document.querySelector('.forum-list').innerHTML;
-}
+// function add_comment(contents){
+//     const comm = comm_template({'contents': contents});
+//     document.querySelector('.forum-list').innerHTML = comm + document.querySelector('.forum-list').innerHTML;
+// }
 
 // 评论列表滚动事件
 document.getElementById('vr-content').onscroll = () => {

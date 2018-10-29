@@ -10,9 +10,6 @@ import random
 import json
 
 
-def session_value(key):
-    return session.get(key, False)
-
 
 @fontserver.route('/')
 def index():

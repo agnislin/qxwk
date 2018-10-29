@@ -3,6 +3,7 @@ from flask import session
 import models
 from entry import *
 
+accounts = dict()
 
 def session_value(key, default=None):
     return session.get(key, default)
@@ -12,8 +13,7 @@ def is_login():
 
 def get_account():
     print("get account id = ", get_account_id())
-    account = models.db.session.query(Account).filter(Account.id == get_account_id())
-    return account.first()
+    return accounts.get(get_account_id(), models.find(Account, Account.id==get_account_id())[0])
 
 def get_account_id():
     return session_value("account_id", -1)
@@ -26,6 +26,10 @@ def paw_sha1(password):
     return password
 
 def find(username):
-    account = models.db.session.query(Account).filter(models.db.or_(Account.phone == username, Account.email == username))
-    # account = models.find_one(Account, models.db.or_(Account.phone == username or Account.email == username))
-    return account[0]
+    account = models.db.session.query(Account).filter(models.db.or_(Account.phone == username, Account.email == username))[0]
+    accounts[account.id] = account
+    print(account)
+    return account
+
+def get_user_info():
+    return models.find(UserInfo, UserInfo.account_id == get_account_id())[0]
