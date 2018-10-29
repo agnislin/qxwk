@@ -1,3 +1,4 @@
+//提交添加课程的信息
 function submit_course(){
   console.log("add course");
   const request = new XMLHttpRequest();
@@ -32,11 +33,12 @@ function submit_course(){
   return false;
 };
 
-function load_ced(){
-  function hide(cid) {
-          document.getElementById(cid).style.display = 'none';
-      }
 
+
+
+//编辑和删除课程
+function load_ced(){
+  
   document.querySelectorAll('.editCou').forEach(
     button =>{
       button.onclick = () =>{
@@ -57,7 +59,7 @@ function load_ced(){
 
         request.onload = () => {
             const data = request.responseText
-            if(data=='done'){hide(cid);
+            if(data=='done'){ document.getElementById(cid).style.display = 'none';
             }else{}
         }
 

@@ -162,11 +162,47 @@ def show_userlist():
 
 
 
+#删除会员（用户）
+@cms.route('/user_del',methods=['POST'])
+def user_del():
+    user_id = request.form['uid']
+    user = models.UserInfo.query.filter(models.UserInfo.id == user_id).first()
+    models.db.session.delete(user)
+    try:
+        res = models.db.session.commit()
+       
+    except Exception as e:
+        print(e)
+    if res == None:
+        return "done"
+    else:
+        return "fail"
+
+
+
+
 #评论列表
 @cms.route('/comment_list',methods=["GET"])
 def show_commentlist():
     comml = models.find(e.Comment)
     return render_template('cms/comment_list.html',comml = comml)
+
+
+
+#删除评论
+@cms.route('/comment_del',methods = ["POST"])
+def comment_del():
+    comment_id = request.form['cmid']
+    comment = models.Comment.query.filter(models.Comment.id == comment_id).first()
+    models.db.session.delete(comment)
+    try:
+        res = models.db.session.commit()
+    except Exception as e:
+        print(e)
+    if res == None:
+        return "done"
+    else:
+        return "fail"
 
 
 
