@@ -18,7 +18,7 @@ import main.tools.tools as tl
 
 @fontserver.route('/')
 def comm():
-    # models.db.create_all()
+    models.db.create_all()
     # a=e.AdminInfo(
     #         name='root',
     #         password='000000',

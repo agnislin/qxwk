@@ -13,11 +13,9 @@ def set_app(application):
 
 # 插入一条数据
 def save(obj):
-    ''' 插入一条数据obj 为表类调用的返回结果
-    如
-    obj= Account(
-        id = 1
-    )
+    '''
+        import e
+        e.Account(id=)
     '''
     try:
         db.session.add(obj)
