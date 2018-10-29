@@ -106,7 +106,7 @@ def find(entry, condition=None, x=-1, n=-1):
 
             if x == -1:
                 if n == -1:
-                    return res.frist()
+                    return res.first()
                 else:
                     return res.order_by(eval(n))
             else:
@@ -114,7 +114,8 @@ def find(entry, condition=None, x=-1, n=-1):
                     return res.limit(x).all()
                 else:
                     return res.order_by(eval(n)).limit(x).all()
-    except:
+    except Exception as es:
+        print("="*93,es)
         return False
 
 def change(alternative,field,entry, condition=None):
