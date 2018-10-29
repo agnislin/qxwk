@@ -68,53 +68,47 @@ def remove_all(class_type, list_obj):
             db.session.rollback()
 
 
-# # 查询一条条件为字符串 如"name='guokaiqiang',age=25"
-# def find_one(class_type, conditionn):
-#     return db.session.query(exec("Account, Video"))
-#
-#
+# 查询一条条件为字符串 如"name='guokaiqiang',age=25"
+def find_one(entry, condition=None):
+    return find(entry)[0]
+
+
 # def get(self, class_type, value):
 #     pass
 
 
 # x为要查询的条数  n为字段名加.desc()字符串的  如 "User.desc()"
-def find(entry, condition=None, x=-1, n=-1):
+def find(entry, condition=None, limit=-1, order_col=None):
     '''x为要查询的条数  n为字段名加.desc()字符串的  如 "User.desc()"'''
     try:
         if type(entry) in [list, tuple, set]:
-            # print("多表 [", ",".join([t.__name__ for t in entry]), "]")
             res = db.session.query(*entry)
+            print("多表 [", ",".join([t.__name__ for t in entry]), "]")
         else:
-            # print("单表")
             res = db.session.query(entry)
+            print("单表")
 
         if condition is None:
-            if x == -1:
-                if n == -1:
-                    return res.all()
-                else:
-                    return res.order_by(eval(n))
-            else:
-                if n == -1:
-                    return res.limit(x).all()
-                else:
-                    return res.order_by(eval(n)).limit(x).all()
+            print("无条件查找", condition)
         else:
+            print("有条件查找 [", condition, "]")
             res = res.filter(condition)
 
-            if x == -1:
-                if n == -1:
-                    return res.all()
-                else:
-                    return res.order_by(eval(n))
+
+        if limit == -1:
+            if order_col is None:
+                return res.all()
             else:
-                if n == -1:
-                    return res.limit(x).all()
-                else:
-                    return res.order_by(eval(n)).limit(x).all()
+                return res.order_by(eval(order_col)).all()
+        else:
+            if order_col is None:
+                return res.limit(limit).all()
+            else:
+                return res.order_by(eval(order_col)).limit(limit).all()
     except Exception as es:
-        print("="*93,es)
-        return False
+        print("="*80,es)
+        return None
+
 
 def change(alternative,field,entry, condition=None):
     '''alternative需要更改成什么(字符串),entry要先查找的记录, condition条件,field.要更改的字段'''

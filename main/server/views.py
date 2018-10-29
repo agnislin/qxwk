@@ -2,11 +2,7 @@
 from __future__ import unicode_literals
 from flask import Flask, jsonify, render_template, request
 from . import fontserver
-import models
-import entry as e
-import main.tools.tools as tl
-from .auth import log_req
-
+import main.server.forum.comment
 # __tablename__ = 'Course'
 # id = db.Column(db.Integer, primary_key=True)
 # lecturer = db.Column(db.String(20))  # 讲师

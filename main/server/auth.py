@@ -3,32 +3,24 @@ from __future__ import unicode_literals
 from . import mailvertify as m
 from flask import render_template, request, session, redirect, url_for
 from . import fontserver
-import models
+from main.server.user_center.account import *
 from entry import Account
 from entry import db
 import random
-# from dysms_python import demo_sms_send
-#dysms_python放到C:\Users\Administrator\AppData\Local\Programs\Python\Python36\Lib\site-packages
 import json
 
-def log_req():
-    from flask import session
-    '''用户没有登录返回False，已登录返回Account对象'''
-    try:
-        uid = session['UID']
-    except:
-        return False
-    else:
-        return Account.query.filter(Account.id == uid).first()
+
+def session_value(key):
+    return session.get(key, False)
 
 
 @fontserver.route('/')
 def index():
-    acc = log_req()
-    if acc:
+    if is_login():
         return render_template('server/index.html', username=True)
     else:
         return render_template('server/index.html')
+
 # @fontserver.route('/')
 # def index():
 #     if session.get('UID'):
@@ -44,28 +36,24 @@ def login():
     if request.method == 'GET':
         return render_template('server/login.html')
     elif request.method == 'POST':
-        account = request.form.get('account')
+        username = request.form.get('account')
         password = request.form.get('password')
-        if account.isdigit():
-            phone = Account.query.filter(Account.phone == account).first()
-            if phone:
-                if phone.password == password:
-                    session['UID'] = phone.id
-                    return 'redirect'
-                else:
-                    return '密码错误！'
+        account = find(username)
+        # print(account)
+        # print(account.password)
+
+        if account:
+            if account.password == paw_sha1(password):
+                session['account_id'] = account.id
+                return 'redirect'
             else:
-                return '该账号尚未注册！'
+                return '密码错误!'
         else:
-            mail = Account.query.filter(Account.email == account).first()
-            if mail:
-                if mail.password == password:
-                    session['UID'] = mail.id
-                    return 'redirect'
-                else:
-                    return '密码错误!'
-            else:
-                return '该账号尚未注册！'
+            return '该账号尚未注册！'
+
+
+
+
 
 @fontserver.route('/logout')
 def logout():
@@ -86,8 +74,7 @@ def register():
             phnum1 = Account.query.filter(Account.phone == phnum).first()
             if phnum1:
                 return "该账号已经存在！直接登录吧！"
-            s = ''.join( random.sample(['1', '2', '3', '4', '5',
-                           '6', '7', '8', '9', '0'], 6))
+            s = ''.join( random.sample("0123456789", 6))
             __business_id = demo_sms_send.uuid.uuid1()
             params = "{\"code\":%s}"%s
             result = demo_sms_send.send_sms(__business_id, int(phnum),
