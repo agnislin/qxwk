@@ -79,7 +79,7 @@ def find_one(entry, condition=None):
 
 
 def find(entry, condition=None, limit=-1, order_col=None):
->>>>>>> develop
+
     '''x为要查询的条数  n为字段名加.desc()字符串的  如 "User.desc()"'''
     try:
         if type(entry) in [list, tuple, set]:
@@ -114,7 +114,7 @@ def find(entry, condition=None, limit=-1, order_col=None):
 def change(alternative,field,entry, condition=None):
     pass
 
-def contain( class_type, condition):
+def contain( class_type, condition=None):
     '''判断'''
     try:
         a = find(entry,condition)
@@ -122,7 +122,7 @@ def contain( class_type, condition):
             return True
     except:
         return False
-        
+
 
 # def find(entry, condition=None, order_col=None, limit=-1):
 #     if type(entry) in [list, tuple, set]:

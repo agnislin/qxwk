@@ -31,8 +31,8 @@ class Course(db.Model):
     teacher = db.Column(db.String(20))  # 讲师
     name = db.Column(db.String(64))  # 课程名称
     description = db.Column(db.String(2048))  # 课程介绍
-    price = db.Column(db.Float, nullable=False, default=0.0)  # 课程售价
-    sale = db.Column(db.Float)  # 课程售价
+    price = db.Column(db.Float, nullable=False, default=0.0)  # 课程原来售价
+    sale = db.Column(db.Float)  # 课程打折后售价
     type = db.Column(db.Integer)  # 课程分类
     end_time = db.Column(db.Integer, default=-1)  # 课程周期
     cover = db.Column(db.String(100))  # 封面

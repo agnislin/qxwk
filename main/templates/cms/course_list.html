@@ -45,23 +45,27 @@
                                 <tr id="{{cou.id}}">
 
                                     <td>{{cou.id}}</td>
-                                    <td>{{cou.lecturer}}</td>
-                                    <td>{{cou.course}}</td>
-                                    <td>{{cou.introduction}}</td>
-                                    <td>{{cou.cost}}</td>
+                                    <td>{{cou.teacher}}</td>
+                                    <td>{{cou.name}}</td>
+                                    <td>{{cou.description}}</td>
+                                    <td>{{cou.sale}}</td>
                                     <td>
-                                        {% if cou.type == 1 %}
-                                            {{"运营"}}
+                                        {% if cou.type == 0 %}
+                                            {{"其他"}}
+                                        {% elif cou.type == 1 %}
+                                            {{"office办公"}}
                                         {% elif cou.type == 2 %}
-                                            {{"销售"}}
+                                            {{"编程语言"}}
                                         {% elif cou.type == ３ %}
-                                             {{"规划"}}
-                                    {%endif%}
-                                    </td>
-                                    <td>{{cou.date}}</td>
-                                    <td><{{cou.cover}}/td>
-                                    <td>2017-01-01</td>
+                                            {{"网络营销"}}
+                                        {% elif cou.type == ４ %}
+                                            {{运营}}
 
+                                {%endif%}
+                                    </td>
+                                    <td>{{cou.end_time}}</td>
+                                    <td><{{cou.cover}}/td>
+                                    
                                     <td>
                                         <button class="editCou" data-ceid="{{cou.id}}">编辑</button>
                                         &nbsp;

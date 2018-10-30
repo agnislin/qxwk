@@ -17,41 +17,62 @@ from functools import wraps
 #     return decorated_function
 
 
-@cms.route('/', methods = ['GET','POST'])
+# @cms.route('/', methods = ['GET','POST'])
+# def index():
+#     # form = LoginForm()
+#     if request.method == 'GET':
+#         return render_template('cms/login.html')
+#     elif request.method == 'POST':
+#         print("index post")
+#         user = request.form.get('user')
+#         pwd = request.form.get('pwd')
+
+#         admin = e.AdminInfo(name = "laonanshen",password = "123456")
+#         RES = models.find(e.AdminInfo,e.AdminInfo.name == user)
+#         print(RES)
+#         # print(RES[0].name)
+#         # return jsonify({"data": 123})o = models.find(e.AdminInfo,e.AdminInfo.name==user)
+
+#         print(user,pwd)
+#         if user == 'laonanshen' and pwd == '123456':
+#             return  render_template('cms/index.html',user = RES)
+#         else:
+#             # data =[]
+#             # data.append({"error":"用户名或密码有误"})
+#             # print(jsonify(data))# return jsonify({"data": 123})
+
+#             return render_template('cms/login.html')
+
+@cms.route('/')
 def index():
-    # form = LoginForm()
-    if request.method == 'GET':
-        return render_template('cms/login.html')
-    elif request.method == 'POST':
-        print("index post")
-        user = request.form.get('user')
-        pwd = request.form.get('pwd')
-
-        admin = e.AdminInfo(name = "laonanshen",password = "123456")
-        RES = models.find(e.AdminInfo,e.AdminInfo.name == user)
-        print(RES)
-        # print(RES[0].name)
-        # return jsonify({"data": 123})o = models.find(e.AdminInfo,e.AdminInfo.name==user)
-
-        print(user,pwd)
-        if user == 'laonanshen' and pwd == '123456':
-            return  render_template('cms/index.html',user = RES)
-        else:
-            data =[]
-            data.append({"error":"用户名或密码有误"})
-            print(jsonify(data))# return jsonify({"data": 123})
-            return jsonify(data)
-
-
+    name=session.get('aid', False)
+    if name:
+        return render_template('cms/index.html', user=name)
+    else:
+        return redirect(url_for('cms.login'))
 
 #登录
-# @cms.route('/login',methods = ['GET','POST'])
-# def login():
-#
-# return render_template('cms/login.html')
+@cms.route('/login',methods = ['GET','POST'])
+def login():
+    if request.method == "GET":
+        return render_template('cms/login.html')
+    else:   
+        name = request.form.get('user')
+        password = request.form.get('pwd')
+        admin = e.AdminInfo(name = name,password = password)
+        print(admin)
+        res = models.contain(admin)
+        print(res)
+        if res:
+            session['aid'] = name
+            return redirect(url_for('cms.index'))
+        else:
+            return render_template('cms/login.html',error="用户名或密码有误！")
 
-
-# return jsonify({"data": 123})
+@cms.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('cms.index'))
 
 
 
@@ -98,28 +119,28 @@ def course():
 @cms.route('/course_add',methods=['POST'])
 def course_add():
     try:
-        print(request.form)
+        # id = request.form['id']
+        teacher = request.form['teacher']
         name = request.form['name']
-        introduction = request.form['introduction']
-        type = request.form['type']
-        price = request.form['price']
-        lecturer = request.form['lecturer']
-        time = request.form['time']
+        description = request.form['description']
+        sale = request.form['sale']
+        type = request.form['type']       
+        end_time = request.form['end_time']
         # cover = request.form['cover']
     except:
         return 'ererer'
     else:
-        course = e.Course(course=name,introduction=introduction,type=type,cost=price,
-        lecturer=lecturer,date=time)
+        course = e.Course(teacher = teacher,name =name,description = description,
+            sale = sale,type = type,end_time = end_time)
 
 
-    res = models.save(course)
-    if res == True:
-        return "添加课程成功！"
-    elif res == False:
-        return "添加课程失败！"
+        res = models.save(course)
+        if res == True:
+            return "添加课程成功！"
+        elif res == False:
+            return "添加课程失败！"
 
-    # return jsonify({"data": 123})
+        # return jsonify({"data": 123})
 
 
 #删除课程
@@ -140,19 +161,6 @@ def course_del():
         return "fail"
 
 
-
-
-# @cms.route('/comment',methods=['GET','POST'])
-# def comment(comment_id):
-#     if request.method == 'GET':
-#         return render_template('/course_list')
-#     elif request.method == 'POST':
-#         pass
-
-
-# @cms.log('/log',method=['GET','POST'])
-# def log():
-#     return render_template('log.html')
 
 
 #会员（用户）列表
@@ -180,8 +188,6 @@ def user_del():
         return "fail"
 
 
-
-
 #评论列表
 @cms.route('/comment_list',methods=["GET"])
 def show_commentlist():
@@ -205,22 +211,47 @@ def comment_del():
     else:
         return "fail"
 
+#会员登录日志列表
+@cms.route('/userloginlog_list',methods = ["GET"])
+def show_userloginloglist():
+    userlogl = models.find(e.Learning_log)
+    print(userlogl)
+    return render_template('cms/userloginlog_list.html',userlogl = userlogl)
 
+
+#操作日志
+@cms.route('/oplog_list',methods = ['GET'])
+def show_oploglist():
+    oplogl = models.find(e.OperationLog)
+    print(oplogl)
+    return render_template('cms/oplog_list.html',oplogl = oplogl)
 
 
 #管理员列表
 @cms.route('/admin_list',methods=["GET"])
 def show_adminlist():
-    admin = models.find(e. AdminInfo)
-    return render_template('cms/admin_list.html',admin = admin)
+    adminl = models.find(e.AdminInfo)    
+    return render_template('cms/admin_list.html',adminl = adminl)
+
 
 #添加管理员
 @cms.route('/admin_add',methods=['POST'])
 def admin_add():
-    name = request.form['name']
-    passward = request.form['password']
-    date = request.form['date']
-    picture = request/form['picture']
-    admin = e.AdminInfo(name = name,password = password,date = date,picture = picture)
-    models.save(admin)
-    return "添加课程成功！"
+    try:
+        name = request.form['name']
+        password = request.form['password']
+        super_power = request.form['super_power']
+        print(super_power)                
+    except:
+        return 'error'
+    else:
+        admin = e.AdminInfo(name = name,password = password,super_power = int(super_power)
+            )
+        res = models.save(admin)
+        print(res)
+        if res == True:
+            return "添加管理员成功！"
+        elif res == False:
+            return "添加管理员失败！"
+
+
