@@ -30,9 +30,18 @@
                                 <tr>
                                     <th>编号</th>
                                     <th>会员</th>
+                                    <th>所学课程</th>
                                     <th>登录时间</th>
-                                    <th>登录IP</th>
                                 </tr>
+                                {%for userlog in userlogl%}
+                                <tr>
+                                    <td>{{userlog.id}}</td>
+                                    <td>{{userlog.account_id}}</td>
+                                    <td>{{userlog.video_id}}</td>
+                                    <td>{{userlog.date}}</td>
+                                </tr>
+                                {% endfor %}
+                                
                                 <tr>
                                     <td>1</td>
                                     <td>张小明</td>

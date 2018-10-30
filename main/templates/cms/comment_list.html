@@ -25,13 +25,14 @@
                             </div>
                         </div>
                         
-                        <div class="box-body box-comments">
-                            {% for comm in comml %}
-                            <div class="box-comment">
-                                <img class="img-circle img-sm"
-                                     src="../static/admin/dist/img/user3-128x128.jpg" alt="User Image">
+                        <div class="box-body box-comments"> 
+                            {% for comm in comml %}   
+                            <div class="box-comment" id="{{comm.id}}">
+                                <!-- <img class="img-circle img-sm"
+                                     src="../static/admin/dist/img/user3-128x128.jpg" alt="头像"> -->
+                                <br>
                                 <div class="comment-text">
-                                    <span class="用户">
+                                    <span class="用户">用户
                                         {% if comm.account_id == 1 %}
                                             {{"laonanshen"}}
                                         {% elif comm.account_id == 2%}
@@ -44,15 +45,21 @@
                                         <span class="text-muted pull-right">
                                             <i class="fa fa-calendar" aria-hidden="true"></i>
                                             &nbsp;
-                                            {{comm.time}}
+                                            {{comm.date}}
+                                            <br>
+                                            <button class="removeComment" data-cmdid="{{comm.id}}">删除</button>
                                         </span>
                                     </span>
                                     
-                                    {{comm.comment}}
-                                    <br><button class="removeComment" data-codid="{{comment.id}}">删除</button>
+                                    
+                                    <br>
+                                    评论－{{comm.comment}}
+                                    
                                 </div>
+
                             </div>
                             {% endfor %}
+                            
                             <!-- <div class="box-comment">
                                 <img class="img-circle img-sm"
                                      src="../static/admin/dist/img/user5-128x128.jpg" alt="User Image">

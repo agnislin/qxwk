@@ -20,6 +20,7 @@ def save(obj):
         db.session.add(obj)
         db.session.commit()
         return True
+
     except Exception as a:
         print(a)
         db.session.rollback()
@@ -77,8 +78,8 @@ def find_one(entry, condition=None):
 #     pass
 
 
-# x为要查询的条数  n为字段名加.desc()字符串的  如 "User.desc()"
 def find(entry, condition=None, limit=-1, order_col=None):
+
     '''x为要查询的条数  n为字段名加.desc()字符串的  如 "User.desc()"'''
     try:
         if type(entry) in [list, tuple, set]:
@@ -111,12 +112,9 @@ def find(entry, condition=None, limit=-1, order_col=None):
 
 
 def change(alternative,field,entry, condition=None):
-    '''alternative需要更改成什么(字符串),entry要先查找的记录, condition条件,field.要更改的字段'''
+    pass
 
-    res = find(entry,condition)
-    res.field = alternative
-
-def contain( class_type, condition):
+def contain( class_type, condition=None):
     '''判断'''
     try:
         a = find(entry,condition)

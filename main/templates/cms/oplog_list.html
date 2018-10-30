@@ -30,17 +30,27 @@
                                 <tr>
                                     <th>编号</th>
                                     <th>管理员</th>
+                                    <th>操作课程</th>
+                                    <th>操作内容</th>
                                     <th>操作时间</th>
-                                    <th>操作原因</th>
-                                    <th>操作IP</th>
                                 </tr>
-                                <tr>
+
+                                <!-- <tr>
                                     <td>1</td>
                                     <td>admin</td>
                                     <td>2017-06-01</td>
                                     <td>添加一个标签：科幻</td>
                                     <td>192.168.4.1</td>
+                                </tr> -->
+                                {% for oplog in oplogl%}
+                                <tr>
+                                    <td>{{oplog.id}}</td>
+                                    <td>{{oplog.admin_info}}</td>
+                                    <td>{{oplog.course}}</td>
+                                    <td>{{oplog.content}}</td>
+                                    <td>{{oplog.date}}</td>
                                 </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>

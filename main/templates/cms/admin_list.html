@@ -35,7 +35,21 @@
                                 <th>管理员角色</th>
                                 <th>添加时间</th>
                             </tr>
+                            {%for admin in adminl%}
                             <tr>
+                                <td>{{admin.id}}</td>
+                                <td>{{admin.name}}</td>
+                                <td>
+                                    {% if admin.super_power == 1 %}
+                                        {{"超级管理员"}}
+                                    {% elif admin.super_power == 0 %}
+                                        {{"普通管理员"}}
+                                    {% endif %}
+                                </td>
+                                <td>系统管理员</td>
+                                <td>{{admin.date}}</td>
+                            {% endfor %}
+                            <!-- <tr>
                                 <td>1</td>
                                 <td>jinlong</td>
                                 <td>普通管理员</td>
@@ -46,8 +60,8 @@
                                 <td>2</td>
                                 <td>jianbo</td>
                                 <td>超级管理员</td>
-                                <td>系统管理员</td>
-                                <td>2017-06-01</td>
+                                <td>系统管理员</td> -->
+                               <!--  <td>2017-06-01</td> -->
                             </tr>
                             </tbody>
                         </table>
