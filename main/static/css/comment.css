@@ -170,3 +170,43 @@
     height: 32px;
     margin: 3px 15px;
 }
+
+#catalog{
+    width: 100%;
+    height: 50px;
+    background: #f1f1f1;
+    text-align: left;
+    text-indent: 1em;
+}
+
+#catalog span{
+    display: block;
+    float: left;
+    margin: 15px 0;
+}
+
+#note{
+    width: 500px;
+    height: 250px;
+    line-height: 20px;
+    text-indent: 2em;
+    font-size: 18px;
+    border: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    resize: none;
+}
+
+#forum{
+  resize: none;
+  font-size: 20px;
+  width: 94%;
+  height: 70px;
+  margin: 10px auto;
+  left: 0;
+  right: 0;
+  position: absolute;
+  padding: 10px;
+  text-indent: 2em;
+}

@@ -11,12 +11,12 @@ import json
 
 
 
-@fontserver.route('/')
-def index():
-    if is_login():
-        return render_template('server/index.html', username=True)
-    else:
-        return render_template('server/index.html')
+# @fontserver.route('/')
+# def index():
+#     if is_login():
+#         return render_template('server/index.html', username=True)
+#     else:
+#         return render_template('server/index.html')
 
 # @fontserver.route('/')
 # def index():
