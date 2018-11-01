@@ -23,13 +23,16 @@
 }
 
 #vr-base{
-    background-color: #baf;
+    background-color: #555;
+    color: #fff;
     height: 80px;
 }
 
 #vr-nav{
-    background-color: pink;
+    background-color: #ccc;
+    color: #fff;
     padding-left: 20px;
+    font-size: 24px;
     padding-right: 20px;
     height: 65px;
 }
@@ -58,7 +61,7 @@
     display: block;
     text-align: center;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     text-decoration: none;
     line-height: 100%;
@@ -84,6 +87,8 @@
     border-radius: 13px;
 }
 .forumi{
+    box-shadow: 1px 2px 8px 1px #d0d0d0;
+    border-bottom: 1px solid #ccc;
     background-color: #fff;
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -157,7 +162,7 @@
     height: calc(100% - 80px - 65px - 140px - 25px);
     padding-top: 25px;
     overflow-y: auto;
-    background: #777;
+    background: #fff;
     position: absolute;
     width: 100%;
 }

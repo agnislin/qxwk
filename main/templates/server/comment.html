@@ -16,145 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
 {% endblock %}
 {% block content %}
-
-<div style="top: 60px; width: 100%;height: calc(100% - 60px);position: absolute;">
-
-
-  <div id="v-left" style="">
-      <!-- <h1 style="font-size: 180px; color: #fff; text-align: center;">视频区</h1> -->
-      <!DOCTYPE html>
-      <html>
-          <head>
-              <meta charset="UTF-8">
-              <style type="text/css">
-                  body{
-                      text-align: center;
-                  }
-                  #content-wrap{
-                      margin-top: 50px;
-                      display: inline-block;
-                  }
-
-                  #content{
-                      display: flex;
-                  }
-
-                  /* 播放器 */
-                  #video{
-                      display: inline-block;
-                      margin: 0;
-                      border: 12px solid #eee;
-                      box-sizing: border-box;
-                  }
-
-                  .video-list-wrap{
-                      background-color: #eee;
-                      border-right: 1px solid #fff;
-                  }
-
-                  /* 视频列表 */
-                  .video-list{
-                      display: inline-block;
-                      box-sizing: border-box;
-                      margin: 0;
-                      width: 150px;
-                      list-style: none;
-                      padding: 0;
-                      overflow: auto;
-                      font-size: 12px;
-
-                  }
-
-                  /* 列表项 */
-                  .video-item{
-                      cursor: pointer;
-                      width: 150px;
-                      box-sizing: border-box;
-                      text-align: left;
-                      padding: 5px 0 5px 10px;
-                  }
-
-                  .video-item:not(:last-child){
-                      border-bottom: 1px solid #fff;
-                  }
-
-                  .video-item:hover, .active{
-                      background-color: #ddd;
-                      color: #333;
-                  }
-
-                  /* 视频列表标题 */
-                  .video-title{
-                      background-color: gainsboro;
-                      font-size: 12px;
-                      height: 30px;
-                      line-height: 30px;
-                      text-align: center;
-                  }
-              </style>
-          </head>
-
-          <body>
-              <div id="content-wrap">
-                  <div id="content">
-                      <div class="video-list-wrap">
-                          <p class="video-title">视频列表</p>
-                          <ul class="video-list"></ul>
-                      </div>
-                  </div>
-              </div>
-          </body>
-          <!-- <script type="text/javascript" src="./jquery.js"></script>
-          <script type="text/javascript">
-              $(function(){
-                  var $content = $('#content');
-
-                  // 初始化播放器
-                  var init = function(src){
-                      var $video = $('<video id="video" controls>');
-                      $video.attr('preload', 'auto');
-                      $video.attr('width', 720).attr('height', 405);
-                      $video.attr('autoplay', 'autoplay');
-                      $video.append($('<source>').attr('src', src).attr('type', 'video/mp4'));
-                      $content.append($video);
-                  };
-
-                  /* 获取视频列表 */
-                  var $video_list = $('.video-list');
-
-                  $video_list.css('height', 340);
-
-                  $.ajax({
-                      url: "video.list",
-                      type: "GET",
-                      async: true,
-                      success: function(resp){
-
-                          $.each(resp.split('\n'), function(idx, item){
-                              if (item === '') return;
-                              var $p = $('<li>').addClass('video-item');
-                              $p.text(item);
-                              $p.data('path', item);
-                              $video_list.append($p);
-                          });
-                      }
-                  });
-
-                  init();
-
-                  /* 切换视频 */
-                  $video_list.on('click', '.video-item', function(){
-                      $("#video").remove();
-                      var $this = $(this);
-                      $this.parent().find('.active').removeClass('active');
-                      $this.addClass('active');
-                      init($this.data('path'));
-                  });
-
-              })
-          </script> -->
-      </html>
-  </div>
+<body>
 
   <div id="show">
       <span style="">&lt;</span>
@@ -162,7 +24,7 @@
 
   <div id="vr-mask"></div>
 
-
+  <div id="v-left">"></div>
 
 
   <div id="v-box">
@@ -172,10 +34,10 @@
           </div>
           <div id="vr-base" data-vid="{{course.id}}">
               <div style="width: 60%; float: left; height: 100%;">
-                <h3 style="text-align: center; height: 40px; line-height: 40px;">{{course.name}}</h3>
-                <h3 style="text-align: center; height: 40px; line-height: 40px;">{{course.teacher}}</h3>
+                <h3 style="text-align: center; height: 40px; line-height: 40px; font-size: 22px;">{{course.name}}</h3>
+                <h3 style="text-align: center; height: 40px; line-height: 40px; font-size: 22px;">{{course.teacher}}</h3>
               </div>
-              <img style="height: 100%; max-width: 40%; float: right;" src="{{course.cover}}"></img>
+              <img style="height: 100%; max-width: 40%; float: right; margin-right: 20px;" src="{{course.cover}}"></img>
           </div>
 
           <div id="vr-nav-mask"></div>

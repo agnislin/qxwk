@@ -2,17 +2,9 @@
 from __future__ import unicode_literals
 from flask import Flask, jsonify, render_template, request
 from . import fontserver
-<<<<<<< HEAD
-
-import main.server.forum.comment
-import models
-from entry import *
-
-=======
 from main.server.forum.comment import *
 from main.server.video.search import *
 from main.server.user_center.account import *
->>>>>>> homepage
 
 
 @fontserver.route('/video')
@@ -40,12 +32,12 @@ def forum():
     return render_template('server/forum.html', forum_list=[(user, comm_obj)])
 
 
-<<<<<<< HEAD
 @fontserver.route('/KCJieShao')
 def KCJieShao():
     data = models.find(Course,Course.id == 1)[0]
+    data1= models.find(Video,Video.course_id ==1)
     print(data)
-    return render_template('server/KCJieShao.html', course=data) 
+    return render_template('server/KCJieShao.html', course=data,videos=data1)
 
 
 
@@ -54,14 +46,12 @@ def KCJieShao():
 def menu_views(menu):
     if menu =='ML':
         print(menu)
-    
+
     return "dsfdfs"
 
 
-=======
 @fontserver.route('/')
 def home():
     data = models.find(Course,limit=8)
     data2 = models.find(HomeVideo,limit=6)
     return render_template('server/index.html', course_list=data, username=get_login_name(), rollcover=data2)
->>>>>>> homepage

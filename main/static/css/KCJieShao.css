@@ -14,7 +14,7 @@ body {
     box-shadow: darkgray 0px 4px 20px 0px ;
     height: 60px;
     background-color: #FFF;
-    /* border: 1px solid black; */  
+    /* border: 1px solid black; */
 }
 .container-left {
     margin-left: 150px;
@@ -39,7 +39,7 @@ form {
     width: 150px;
     height: 25px;
     border-radius: 3px;
-    border: 1px solid #ccc; 
+    border: 1px solid #ccc;
     padding-left: 10px;
 
 }
@@ -84,9 +84,9 @@ form {
 
 /*课程路径*/
 .kclj{
-    
+
     height: 40px;
-    background:#EEEEEE; 
+    background:#EEEEEE;
     padding: 20px 0 0 0;
 }
 
@@ -107,13 +107,13 @@ form {
     display: inline-block;
     height: 20px;
     line-height: 20px;
-    
+
 
 }
 
 .kclj1{
     height: 20px;
-    
+
 }
 .navcrumb-item a{
     color: #666666;
@@ -134,8 +134,6 @@ form {
 
 .kcqbnr{
     width:1205px;
-    height:4328px;
-    background: green;
     margin: 0 auto;
 }
 
@@ -143,7 +141,7 @@ form {
 .kc-tp-hd{
     width:1205px;
     height: 290px;
-    
+
 }
 .kc-tp img{
     margin: 20px 20px;
@@ -155,7 +153,7 @@ form {
 .kc-hd{
     width: 695px;
     height: 290px;
-    
+
     float: left;
 }
 .mf{
@@ -199,7 +197,7 @@ form {
 
 }
 .ljcj a {
-    
+
     width: 88px;
     height: auto;
     top: 10px;
@@ -225,11 +223,3 @@ form {
     width: 50px;
     height: 10px;
 }
-
-
-     
-
-
-
-
-

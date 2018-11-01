@@ -7,15 +7,9 @@ document.addEventListener("DOMContentLoaded", () =>{
 );
 
 
-
-
-
-
 function getCourseId(){
     return document.querySelector("#vr-base").dataset.vid
 };
-
-
 
 // 评论框内内容时，禁止提交按钮
 function submitCheck(){
@@ -23,13 +17,13 @@ function submitCheck(){
     const tarea = arguments[1]
     document.querySelector(butt).disabled = true;
     document.querySelector(tarea).onkeyup = () => {
-            if (document.querySelector(tarea).value.length > 0){
-                document.querySelector(butt).disabled = false;
-            }else{
-                document.querySelector(butt).disabled = true;
-            }
-        };
+        if (document.querySelector(tarea).value.length > 0){
+            document.querySelector(butt).disabled = false;
+        }else{
+            document.querySelector(butt).disabled = true;
+        }
     };
+};
 
 // 提交评论
 document.querySelector('#forum-form').onsubmit = () =>{
@@ -95,6 +89,7 @@ function addComment(contents){
 //       reslut = request.responseText;
 //   };
 // };
+
 document.querySelectorAll("[id$=-a]").forEach( panal =>{
     panal.onclick = () => {
         document.querySelectorAll("[id$=-panal]").forEach( p =>{

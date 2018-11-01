@@ -5,20 +5,19 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    
+
     <title> My Webpage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/KCJieShao.css') }}" >
     <!-- <script src="main.js"></script> -->
 </head>
 
 <body>
-    
+
     <!-- 顶部导航 -->
     <div class="site-header">
         <div class="container-left">
-            <a class="a head" href="{{ url_for('server.index') }}">千禧微课</a>
+            <a class="a head" href="#">千禧微课</a>
             <a class="a" href="">免费课程</a>
             <a class="a" href="">付费课程</a>
         </div>
@@ -27,10 +26,10 @@
                 <input class="search" type="text" name="search" id="" placeholder="搜索课程">
                 <button class="search-btn" type="submit"></button>
             </form>
-            
+
             <a class="a" href="{{ url_for('server.register') }}">注册</a>
             <a class="a" href="{{ url_for('server.login') }}">登录</a>
-  
+
         </div>
     </div>
     <!-- /顶部导航 -->
@@ -39,7 +38,7 @@
         <div id="maintain_info_box" class="g-flow">
         </div>
       </div>
-       <div id="adcertisement_box" class="advertisement_box f-pf" style="display: none;">   
+       <div id="adcertisement_box" class="advertisement_box f-pf" style="display: none;">
 	</div>
     <!-- 课程路径块，本块里面一共有两个块 -->
     <div class="kclj">
@@ -48,7 +47,7 @@
             <div class="kcljfd1 kcljfd2">
                 <ul class="kcljfd1">
                     <li class="navcrumb-item">
-                        <a href="#" target="-blank">首页 &gt;</a>    
+                        <a href="#" target="-blank">首页 &gt;</a>
                     </li>
                     <li class="navcrumb-item"><a href="#" target="-blank">&nbsp;&nbsp;it&互联网&nbsp;&nbsp;&gt;</a></li>
                     <li class="navcrumb-item"><a href="#" target="-blank">&nbsp;&nbsp;后端开发&nbsp;&nbsp;&gt;</a></li>
@@ -59,7 +58,7 @@
         </div>
         <!-- 第二个块 -->
         <div class="kclj1">
-            
+
         </div>
     </div>
 
@@ -74,7 +73,7 @@
                 <img src="{{course.cover}}">
             </div>
             <div class="kc-hd">
-                
+
 
                 <div>
                     <div class="bt"><h2>课程：{{course.name}}</h2><br>
@@ -86,38 +85,67 @@
                     </div>
                 </div>
 
-               
+
                 <div class="ljcj">
-                    <span><a href="#">立即参加</a></span>
+                    <span><a href="/video">立即观看</a></span>
                 </div>
             </div>
-                    
+
         </div >
         <!-- 第二大块 -->
         <div>
             <ul class="kc-wxlb" type='none'>
                     <li class="kclb">
-                       <span><a href="/KCJieShao/JS" target="">介绍</a> </span> 
-                       <span><a href="/KCJieShao/ML" target="">目录</a></span>
-                       <span><a href="/KCJieShao/BJ" target="">笔记</a></span>
-                       <span><a href="/KCJieShao/TLQ" target="">讨论区</a></span>   
+                       <span><a id="js-a" target="">介绍</a> </span>
+                       <span><a id="catalog-a" target="">目录</a></span>
+                       <span><a id="note-a" target="">笔记</a></span>
+                       <span><a id="forum-a" target="">讨论区</a></span>
                     </li>
             </ul>
         </div>
-        
+
         <!-- 课程的目录，目录，笔记，讨论区等详细内容的块 -->
         <div style="width:100%;height:600px;background:yellow;">
-            <div style="width:60%;height:100%;background:red;float:left;"><p style="margin: 10px; text-indent: 2em;">{{course.description}}</p></div>
+            <div id="js-panal"  style="width:60%;height:100%;background:red;float:left;">
+              <p style="margin: 10px; text-indent: 2em;">{{course.description}}</p>
+            </div>
+            <div id="catalog-panal" style="width:60%;display: none;height:600px;background:#333;float:left;">
+              <ul type='none' >
+                {% for v in videos %}
+                <li  style="height:55px;">
+                  <div id="">
+                      <span style="width:15%;float:left"><a href="">{{v.title}}</a></span>
+                      <span style="width:50%;float:left;">{{v.description}}</sqan>
+                      <sqan style="width:10%;float:left;">{{v.duration}}</sqan>
+
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <div id="note-panal" style="width:60%;display: none;height:600px;background:#888;float:left;">
+              <div></div>
+            </div>
+
+            <div id="forum-panal" style="width:60%;display: none;height:600px;background:#f1f1f1;float:left;">
+              <div></div>
+            </div>
             <div style="width:40%;height:100%;background:pink;float:left;"></div>
         </div>
-            
-        
-        
-        
-            
-        
+
+
+
+
+
+
+
+
+
     </div>
 
-    <!-- 底边 -->
+<!-- 底边 -->
+<script type='text/javascript' src="../../static/js/KCJieShao.js"></script>
 </body>
+
 </html>
