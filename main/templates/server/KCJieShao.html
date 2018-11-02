@@ -144,7 +144,24 @@
             </div>
 
             <div id="forum-panal">
-              <div></div>
+                <div id="vr-content">
+                    <div class="first-wrapper">
+                        <ol class="forum-list">
+                            {% for f,v in forum_list %}
+                            <li>
+                                <div class="forumi">
+                                      <div style="height: 40px; width: 100%; background: #d1ead3; text-align: left;">
+                                        <img class="img" src="{{f.profile}}"></img>
+                                        <a styple="width: 80px;">{{f.name}}</a>
+                                        <span style="font-size: 14px; padding-left: 20px;">{{v.date}}</span>
+                                      </div>
+                                      <p style="text-indent: 2em; margin: 5px; text-align: left;">{{v.comment}}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
             </div>
             <div style="width:260px;height:100%;background:pink;float:left;margin-left:20px"></div>
         </div>

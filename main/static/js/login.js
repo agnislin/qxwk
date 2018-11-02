@@ -18,7 +18,7 @@ function check(){
         wrotip.innerHTML = '请输入正确的手机号或邮箱'; wrotip.className = 'wrophtip';
     }
 }
-
+var redirect = document.querySelector('.register-body').dataset.redirect
 var xmlhttp;
 if (window.XMLHttpRequest){
     xmlhttp=new XMLHttpRequest();
@@ -34,7 +34,7 @@ xmlhttp.onload = function(){
 
     var result = xmlhttp.responseText
 
-    if (result == 'redirect') { window.location.href = "http://127.0.0.1:1180/";}
+    if (result == 'redirect') { window.location.href = redirect;}
     else { wrotip.className = 'wrophtip';
     wrotip.innerHTML = xmlhttp.responseText;};
 

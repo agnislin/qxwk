@@ -15,9 +15,10 @@
   </div>
 
   <div id="vr-mask"></div>
-  <div id="v-left" style="">
+
+  <div id="v-left">
       <!-- <h1 style="font-size: 180px; color: #fff; text-align: center;">视频区</h1> -->
-    <div class="m" width="90%" height="90%">
+    <div class="m">
         <style>
             .m>.video-js{
                 background-color: transparent;
@@ -25,8 +26,8 @@
             }
         </style>
 
-        <video id="my-video" class="video-js" controls preload="" data-setup="{}" src="{{videos[0].url}}" style="width: 80%; margin-left: 10%;">
-            <source id="v-url" src="{{videos[0].url}}" type="video/mp4">
+        <video id="my-video" class="video-js" controls preload="" data-setup="{}" style="width: 80%; margin-left: 10%;">
+            <source id="v-url" src="{{video.url}}" type="video/mp4" data-set="{{video.id}}">
 
             <!-- <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that
                 <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p> -->
@@ -44,14 +45,15 @@
         </script>
         <style>
             .vjs-big-play-button{
-                top: 50% !important;
-                left: 50%!important;
+                top: 46% !important;
+                left: 46%!important;
             }
         </style>
     <!-- </div> -->
   </div>
 
-  <div id="v-box">
+
+<div id="v-box">
       <div id="v-right">
           <div id="hide">
               <span style="">&gt;</span>
@@ -72,7 +74,7 @@
                   <li>
                       <a id="note-a">笔记</a></li>
                   <li>
-                      <a id="coll-a">收藏</a></li>
+                      <a id="coll-a"></a></li>
 
                   <li style="position: absolute; right:50px;">
                       <a id="catalog-a">目录</a></li>
@@ -97,9 +99,10 @@
           </div>
 
           <div id="note-panal" style="height: 100%;">
-              <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #69c;">
+              <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #f1f1f1;">
                   <textarea id="note"></textarea>
-                  <button id="send-note" style="width: 90%; border: none; height: 30px;">发送</button>
+                  <button id="send-note" style="width: 94%; border: none; height: 30px;">发送</button>
+                  <p id="nrse" style="text-align: center; font-size: 20px;line-height: 100px; height: 100px;"></p>
               </div>
           </div>
 
@@ -113,11 +116,13 @@
               <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #999;  padding-top: 0;">
                   <ul>
                     {% for i in videos %}
-                    <li style="height: 55px;"><div id="catalog">
-                        <span style="width: 30%;"><a href="">{{i.title}}</a></span>
-                        <span style="width: 60%;">{{i.description}}</span>
-                        <span style="width: 10%;">{{i.duration}}</span>
-                    </div></li>
+                        <li style="list-style: none; margin-top: 10px;  width: 94%;height: 55px;"><div id="catalog">
+                          <a href="/video?course_id={{course.id}}&video_id={{i.id}}">
+                            <span style="width: 30%;">{{i.title}}</span>
+                            <span style="width: 60%;">{{i.description}}</span>
+                            <span style="width: 10%;">{{i.duration}}</span>
+                            </a>
+                        </div></li>
                     {% endfor %}
                   </ul>
               </div>

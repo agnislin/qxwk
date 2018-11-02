@@ -263,3 +263,30 @@ form {
   float:left;
   background: #fff
 }
+
+#vr-content{
+    height: calc(100% - 80px - 65px - 140px - 25px);
+    padding-top: 25px;
+    overflow-y: auto;
+    background: #fff;
+    height: 100%;
+    width: 100%;
+}
+
+
+.forum-list{
+    list-style: none;
+    padding: 0px 40px;
+}
+.forum-list li{
+    position: relative;
+    margin: 0 -10px 5px;
+    border-radius: 13px;
+}
+.forumi{
+    box-shadow: 1px 2px 8px 1px #d0d0d0;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}

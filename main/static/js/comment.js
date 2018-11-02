@@ -11,6 +11,9 @@ function getCourseId(){
     return document.querySelector("#vr-base").dataset.vid
 };
 
+function getVideoId(){
+    return document.querySelector("#v-url").dataset.vid
+};
 // 评论框内内容时，禁止提交按钮
 function submitCheck(){
     const butt = arguments[0]
@@ -102,6 +105,27 @@ document.querySelectorAll("[id$=-a]").forEach( panal =>{
     }
 });
 
+
+document.querySelector("#send-note").onclick = () => {
+    note = document.querySelector("#note").value;
+    vid = getVideoId()
+    const xml = new XMLHttpRequest();
+    xml.open("POST", "/addNote")
+    xml.onload = ()=>{
+        res = xml.responseText;
+        document.querySelector("#nrse").innerHTML = res;
+
+        setTimeout(()=>{document.querySelector("#nrse").innerHTML = "";}, 1000);
+    };
+
+    const data = new FormData();
+    data.append("note", note);
+    data.append("video_id", vid);
+    xml.send(data);
+
+    document.querySelector("#note").value = "";
+    document.querySelector('#send-note').disabled = true;
+};
 // 隐藏右侧面板
 document.querySelector('#hide').onclick = () =>{
     document.querySelector('#v-left').className = "";

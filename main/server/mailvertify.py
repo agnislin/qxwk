@@ -19,7 +19,7 @@ def randomcode():
 
 
 def makemail(mail, randomcode):
-    url = '47.106.197.83/verify/%s+%s' % (mail, randomcode)
+    url = '47.106.197.83/vertify/%s+%s' % (mail, randomcode)
     return '感谢您注册千禧微课帐户！请点击下方链接完成验证： %s 如果无法访问，请复制该链接到浏览器中打开'%url
 
 
