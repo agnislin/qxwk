@@ -1,5 +1,6 @@
 $(function(){
     $("#editCou").blur(function(){
+        
 
     });
 

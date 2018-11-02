@@ -117,7 +117,10 @@ def change(alternative,field,entry, condition=None):
 def contain( class_type, condition=None):
     '''判断'''
     try:
-        a = find(entry,condition)
+        if condition is None:
+            a = find(entry)
+        else:
+            a = find(entry,condition)
         if a:
             return True
     except:

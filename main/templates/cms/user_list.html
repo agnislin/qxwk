@@ -44,17 +44,38 @@
                                     <td>{{user.name}}</td>
                                     <td>{{user.sex}}</td>
                                     <td>{{user.birthday}}</td>
-                                    <td>{{user.occupation}}</td>
-                                    <td>{{user.interest}}</td>
-                                    <td>{{user.introduction}}</td>
+                                    <td>
+                                        {% if user.occupation == None %}
+                                            {{"自由职业"}}
+                                        {% else %}
+                                            {{user.occupation}}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if user.interest == None%}
+                                            {{"保密"}}
+                                        {% else %}
+                                            {{user.interest}}
+                                        {% endif %}
+                                            
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                    {% if user.interest == None%}
+                                            {{"保密"}}
+                                        {% else %}
+                                            {{user.introduction}}
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         <img data-src="holder.js/50x50" class="img-responsive center-block" alt="">
                                     </td>
                                     
                                     
                                     <td>
-                                        <button class="viewUser" data-uvid="{{user.id}}">查看</button>
-                                        &nbsp;
+                                        <!-- <button class="viewUser" data-uvid="{{user.id}}">查看</button>
+                                        &nbsp; -->
                             
                                         <button class="removeUser" data-udid="{{user.id}}" >删除</button>
                                     </td>

@@ -54,18 +54,17 @@ def index():
 #登录
 @cms.route('/login',methods = ['GET','POST'])
 def login():
+
     if request.method == "GET":
         return render_template('cms/login.html')
     else:   
         name = request.form.get('user')
         password = request.form.get('pwd')
-        admin = e.AdminInfo(name = name,password = password)
-        print(admin)
-        res = models.contain(admin)
-        print(res)
-        if res:
+        admin = e.AdminInfo.query.filter(e.AdminInfo.name == name).first()
+        if admin and admin.password == password:
             session['aid'] = name
-            return redirect(url_for('cms.index'))
+            # return redirect(url_for('cms.index'))
+            return render_template('cms/index.html',admin_profile = admin.profile,admin_name = admin.name)
         else:
             return render_template('cms/login.html',error="用户名或密码有误！")
 
@@ -76,16 +75,16 @@ def logout():
 
 
 
-@cms.route('/user')
-def show_username(username):
-    user_id = request.args.get('delete')
-    if user_id is not None:
-        return username
+# @cms.route('/user')
+# def show_username(username):
+#     user_id = request.args.get('delete')
+#     if user_id is not None:
+#         return username
 
-    user = request.args.get('username')
-    course = request.args.get('courseId')
-    if not (user and course):
-        return user + course
+#     user = request.args.get('username')
+#     course = request.args.get('courseId')
+#     if not (user and course):
+#         return user + course
 
 
 @cms.route('/reurl',methods=['GET','POST'])
@@ -112,7 +111,7 @@ def course():
     return render_template("cms/course_list.html",rel=rel)
 
 
-
+        
 
 
 #添加课程
@@ -124,23 +123,77 @@ def course_add():
         name = request.form['name']
         description = request.form['description']
         sale = request.form['sale']
-        type = request.form['type']       
+        leix = request.form['type']       
         end_time = request.form['end_time']
-        # cover = request.form['cover']
+        f = request.files['cover']
+        f1 = request.files['video']
+        print(f)
+        print(f1)
     except:
         return 'ererer'
     else:
         course = e.Course(teacher = teacher,name =name,description = description,
-            sale = sale,type = type,end_time = end_time)
+            sale = sale,type = leix,end_time = end_time)
+        print(f1)
+        try:
+            f.save('main/static/jpg/'+f.filename)
+        except Exception as m:
+            print(m)
 
 
+        try:
+            f1.save('static'+f1.filename)
+        except Exception as o:
+            print(o)
+     
         res = models.save(course)
+        
         if res == True:
             return "添加课程成功！"
         elif res == False:
             return "添加课程失败！"
 
         # return jsonify({"data": 123})
+
+
+#编辑课程
+@cms.route('/course_edit',methods=["GET","POST"])
+def course_edit():
+    if request.method == "GET":
+        id = request.args.get('id','')
+        course = models.Course.query.filter(models.Course.id == course_id).first()
+        return render_template('/course_list.html',course = course)
+    elif request.method == "POST":
+        try:
+            id = request.form['id']
+            teacher = request.form['teacher']
+            name = request.form['name']
+            description = request.form['description']
+            sale = request.form['sale']
+            leix = request.form['type']       
+            end_time = request.form['end_time']
+            f = request.files['cover']
+            f1 = request.files['video']
+        except:
+            return "error"
+        else:
+            course = e.Course(teacher = teacher,name =name,description = description,
+            sale = sale,type = leix,end_time = end_time)
+        try:
+            f.save('main/static/jpg/'+f.filename)
+        except Exception as m:
+            print(m)
+        try:
+            f1.save('static'+f1.filename)
+        except Exception as o:
+            print(o)
+        res = models.save(course)
+        
+        if res == True:
+            return "修改课程成功！"
+        elif res == False:
+            return "修改课程失败！"
+
 
 
 #删除课程

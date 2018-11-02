@@ -9,15 +9,15 @@ function submit_course(){
   c_sale = document.querySelector('#input_price').value;
   c_type = document.querySelector('#input_type').value;  
   c_end_time =  document.querySelector('#input_date').value;
- 　c_cover =  document.querySelector('#input_logo').value;
-
+ 　c_cover =  document.querySelector('#input_logo').files[0];
+  c_video = document.querySelector('#input_url').files[0];
   request.onload = () =>{
     const data = request.responseText;
     alert(data)
 
   };
 
-    // alert(c_name);
+  // alert(c_name);
   const data = new FormData();
   data.append("teacher", c_teacher);
   // alert(c_name);
@@ -26,7 +26,8 @@ function submit_course(){
   data.append("sale", c_sale);
   data.append("type",c_type);
   data.append("end_time",c_end_time);
-  // data.append("cover", c_cover)
+  data.append("cover", c_cover);
+  data.append("video",c_video);
   request.send(data);
   return false;
 };
@@ -34,17 +35,20 @@ function submit_course(){
 
 
 
-//编辑和删除课程
+//删除课程
 function load_ced(){
   
-  document.querySelectorAll('.editCou').forEach(
-    button =>{
-      button.onclick = () =>{
-        const cid = button.dataset.ceid;
+  // document.querySelectorAll('.editCou').forEach(
+  //   button =>{
+  //     button.onclick = () =>{
+  //       const cid = button.dataset.ceid;
+  //       const request = new XMLHttpRequest();
+  //       request.open("POST","/admin/course_edit");
 
-      }
-    }
-  )
+
+  //     }
+  //   }
+  // )
   document.querySelectorAll('.removeCou').forEach(
     button =>{
       button.onclick = () =>{

@@ -23,7 +23,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <header class="main-header">
-        <a onclick="reurl('index')" class="logo">
+        <a href="#" class="logo">
             <span class="logo-mini"><img src="{{url_for('static',filename='png/logo.png')}}"
                                          style="height:40px;width:40px;">千禧微课系统</span>
             <span class="logo-lg"><img src="{{url_for('static',filename='png/logo.png')}}"
@@ -37,15 +37,17 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{url_for('static',filename=user.picture)}}"class="user-image" alt="User Image">
-                            <span class="hidden-xs">{{user.name}}</span>
+                            <!-- <img src="{{url_for('static',filename='{{admin_profile}}')}}" -->
+                            <img class="user-image" alt="User Image" src="{{admin_profile}}">
+                            
+                            <span class="hidden-xs">{{admin_name}}在线</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="user-header">
-                                <img src="{{url_for('static',filename=user.picture)}}"class="img-circle" alt="User Image">
+                                <!-- <img src="{{url_for('static',filename='{{admin_profile}}')}}" -->
+                                <img src="{{admin_profile}}"
+                                class="img-circle" alt="管理员Image">
                                 <p>
-                                    {{username}}
-                                    <small>2017-06-01</small>
                                 </p>
                             </li>
                             <li class="user-footer">
@@ -66,12 +68,12 @@
         <section class="sidebar">
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{url_for('static',filename=user.picture)}}" class="img-circle"
+                    <img src="{{admin_profile}}" class="img-circle"
                          alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>{{username}}</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> {{user}}在线</a>
+                    <p>{{admin_name}}</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> {{admin_name}}在线</a>
                 </div>
             </div>
             <form action="#" method="get" class="sidebar-form">

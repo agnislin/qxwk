@@ -48,7 +48,7 @@ class UserInfo(db.Model):  # 继承生成的orm基类
     birthday = db.Column(db.Date)  # 生日
     occupation = db.Column(db.String(15))  # 职业
     # 喜欢那一门课程
-    interest = db.Column(db.Integer)
+    interest = db.Column(db.String(255))
     introduction = db.Column(db.String(300))  # 个人介绍
     profile = db.Column(db.String(150))  # 头像地址
     address = db.Column(db.Integer)

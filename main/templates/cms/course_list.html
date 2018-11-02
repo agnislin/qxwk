@@ -36,8 +36,7 @@
                                     <th>价格</th>
                                     <th>类型</th>
                                     <th>日期</th>
-                                    <th>封面</th>
-                                    <th></th>
+                                    
                                     <th>操作</th>
 
                                 </tr>
@@ -63,12 +62,19 @@
 
                                 {%endif%}
                                     </td>
-                                    <td>{{cou.end_time}}</td>
-                                    <td><{{cou.cover}}/td>
+                                    <td>
+                                        {% if cou.end_time == -1%}
+                                            {{"永久"}}
+                                        {% else %}
+                                            {{cou.end_time}}
+                                        {% endif %}
+                                    </td>
+                                    
                                     
                                     <td>
-                                        <button class="editCou" data-ceid="{{cou.id}}">编辑</button>
-                                        &nbsp;
+                                        <!-- <button class="editCou" data-ceid="{{cou.id}}">编辑</button> -->
+
+                                        
                                         <button class="removeCou" data-cdid="{{cou.id}}">删除</button>
                                     </td>
 

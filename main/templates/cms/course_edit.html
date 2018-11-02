@@ -1,0 +1,112 @@
+<!--内容-->
+
+<section class="content-header">
+    <h1>千禧微课管理系统</h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> 微课管理</a></li>
+        <li class="active">修改课程</li>
+    </ol>
+</section>
+<section class="content" id="showcontent">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">修改课程</h3>
+                <!-- </div><script src="{{url_for('static',filename='js/course_add.js')}}"></script> -->
+                <form id="add_course_form" enctype="multipart/form-data"    ><!-- enctype="multipart/form-data" -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="input_title">课程名称</label>
+                            <input type="text" class="form-control" id="input_title" value="{{course.name}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="input_url">文件</label>
+                            <input type="file" id="input_url" value="{{course.file}}">
+                            <div style="margin-top:5px;">
+                                <div id="classcontainer"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input_info">课程介绍</label>
+                            <textarea class="form-control"  rows="10" id="input_info" value="{{course.description}}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="input_logo" >封面</label>
+                            <input type="file" id="input_logo" value="{{course.cover}}">
+                            <img data-src="holder.js/262x166" style="margin-top:5px;" class="img-responsive"
+                                 alt="">
+                        </div>
+                        <div class="form-group">
+                            <label for="input_price">课程价格</label>
+                            <input type="text" class="form-control" id="input_price"  value="{{course.sale}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="input_type">课程分类</label>
+                            <input type="text" class="form-control" id="input_type"  value="{{course.type}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="input_lecture">课程讲师</label>
+                            <input type="text" class="form-control" id="input_lecture"  value="{{course.teacher}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="input_date">课程周期</label>
+                            <input type="text" class="form-control" id="input_date"  value="{{course.end_time}}">
+                        </div>
+
+                    </div>
+                    <div class="box-footer">
+                        <input type="button" class="btn btn-primary" onclick="edit_course()" value="提交"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //图片上传
+        var xhr;
+        //上传文件方法
+        function UpladFile() {
+            var fileObj = document.getElementById("file").files[0]; // js 获取文件对象
+            var url =  "http://localhost:8080" + "/api/attachment/upload"; // 接收上传文件的后台地址
+
+            var form = new FormData(); // FormData 对象
+            form.append("file", fileObj); // 文件对象
+
+            xhr = new XMLHttpRequest();  // XMLHttpRequest 对象
+            xhr.open("post", url, true); //post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
+            xhr.onload = uploadComplete; //请求完成
+            xhr.onerror =  uploadFailed; //请求失败
+
+            xhr.upload.onprogress = progressFunction;//【上传进度调用方法实现】
+            xhr.upload.onloadstart = function(){//上传开始执行方法
+                ot = new Date().getTime();   //设置上传开始时间
+                oloaded = 0;//设置上传开始时，以上传的文件大小为0
+            };
+
+            xhr.send(form); //开始上传，发送form数据
+        }
+
+        //上传成功响应
+        function uploadComplete(evt) {
+            //服务断接收完文件返回的结果
+
+            var data = JSON.parse(evt.target.responseText);
+            if(data.success) {
+                alert("上传成功！");
+            }else{
+                alert("上传失败！");
+            }
+
+        }
+        //上传失败
+        function uploadFailed(evt) {
+            alert("上传失败！");
+        }
+        //取消上传
+        function cancleUploadFile(){
+            xhr.abort();
+        }
+
+    <!-- <script src="{{url_for('static',filename='js/course_add.js')}}"></script> -->
+</section>
