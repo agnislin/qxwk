@@ -7,6 +7,15 @@
     bottom: 0;
     width: 0;
     transition: width 1s;
+}body {
+	background-color: #191919
+}
+.m {
+	width: 960px;
+	height: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
 }
 .v-box-anim{
     width: 550px !important;

@@ -11,8 +11,12 @@ def get_comment_by_video_id(video_id, limit=1):
     coms = models.find(Comment, Comment.video_id == video_id, limit)
 
     for comment in coms:
-        account = models.find(UserInfo, UserInfo.account_id == comment.account_id)[0]
-        data.append((account, comment))
+        try:
+            account = models.find(UserInfo, UserInfo.account_id == comment.account_id)[0]
+            data.append((account, comment))
+        except Exception as e:
+            print("get_comment_by_video_id: list index out of range")
+            
     print("get_comment_by_video_id", data)
     return data
 

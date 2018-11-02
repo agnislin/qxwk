@@ -6,7 +6,10 @@ a, abbr, acronym, address, applet, body, article, aside, audio, b, big, blockquo
 
 }
 body {
-    background-color: #F4F4F4;
+    background-color: #fafafa;
+}
+a{
+  cursor: pointer;
 }
 /* 顶部导航 */
 .site-header {
@@ -139,9 +142,10 @@ form {
 
 /*设置第一大块，包括图片和课程活动介绍这两个小块*/
 .kc-tp-hd{
+    box-shadow:0px 0px 0.1px #1b1818;
     width:1205px;
     height: 290px;
-
+    background-color: #fff;
 }
 .kc-tp img{
     margin: 20px 20px;
@@ -222,4 +226,40 @@ form {
     margin: 30px;
     width: 50px;
     height: 10px;
+}
+.jmbt a{
+  width: 20px;
+  height: 30px;
+  margin-left:30px;
+  font-size: 20px;
+}
+.jmbt a:hover{
+  color: #a7c526;
+
+}
+.jmbt a:active{
+  background:#444;
+  color:#fff;
+}
+
+.catalog-li{
+  height: 50px;
+  width: 920px;
+  font-size: 18px;
+  line-height: 50px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.catalog-li:hover{
+  background: #efe;
+}
+
+#catalog-panal, #js-panal, #note-panal, #forum-panal{
+  width:920px;
+  display: none;
+  height:600px;
+  box-shadow:0px 0px 0.1px #1b1818;
+  float:left;
+  background: #fff
 }

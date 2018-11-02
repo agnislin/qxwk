@@ -42,31 +42,13 @@
 					<span class="banner_btn_arrow"><i></i></span>
 				</a>
 				<ul>
-					<li id="imgCard0">
-						<a href=""><span style="opacity:0.4;"></span></a>
-						<img src="{{rollcover[0].picture}}" alt="">
-						<p>{{rollcover[0].slogan}}</p>
+          {% for x in rollcover%}
+					<li id="imgCard{{loop.index-1}}">
+						<a href="/KCJieShao/{{x.course_id}}"><span style="opacity:0.4;"></span></a>
+						<img src="{{x.picture}}" alt="">
+						<p>{{x.slogan}}</p>
 					</li>
-					<li id="imgCard1">
-						<a href=""><span style="opacity:0.4;"></span></a>
-						<img src="{{rollcover[1].picture}}" alt="">
-						<p>{{rollcover[1].slogan}}</p>
-					</li>
-					<li id="imgCard2">
-						<a href=""><span style="opacity:0.4;" ></span></a>
-						<img src="{{rollcover[2].picture}}" alt="">
-						<p>{{rollcover[2].slogan}}</p>
-					</li>
-					<li id="imgCard3">
-						<a href=""><span style="opacity:0.4;"></span></a>
-						<img src="{{rollcover[3].picture}}" alt="">
-						<p>{{rollcover[3].slogan}}</p>
-					</li>
-					<li id="imgCard4">
-						<a href=""><span style="opacity:0;"></span></a>
-						<img src="{{rollcover[4].picture}}" alt="">
-						<p style="bottom:0">{{rollcover[4].slogan}}</p>
-					</li>
+				  {% endfor %}
 				</ul>
 				<!--火狐倒影图层-->
 				<p id="rflt"></p>
@@ -81,18 +63,45 @@
 	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/w.css') }}">
-
+<a name='anchorl2'></a>
 <div class="g-container open-pay" style="display: block;height: 650px;">
     <div class=" f-f0 f-cb u-mtitle">
         <div class="f-fr u-index-more">
         </div>
-        <h1 class="f-c3 f-fl">精品课程</h1>
+        <h1 class="f-c3 f-fl">付费课程</h1>
     </div>
     <div class="f-cb home-pay-list-container">
         <div id="j-openPayList1" class="home-pay-list" style="display: block;">
                 {% for course in course_list %}
-                    <a href="#" class="f-db f-fl home-pay-list-item">
-                        <div class="home-pay-cover" style=""> <img class="lazy" src="{{course.cover}}">
+                    <a href="/KCJieShao/{{course.id}}" class="f-db f-fl home-pay-list-item">
+                        <div class="home-pay-cover" style=""><img class="lazy" src="{{course.cover}}">
+                            <div class="home-pay-status">{{course.type}}</div>
+                            <div class="home-pay-coupon">{{course.end_time}}</div>
+                        </div>
+                        <div class="home-pay-info">
+                            <div class="home-pay-title">{{course.teacher}}</div>
+                            <div class="home-pay-subtitle">{{course.description}}</div>
+                        </div>
+                        <div class="home-pay-price"> ￥{{course.sale}}
+                            <del class="home-pay-price-ori"> 原价 ￥{{course.price}} </del>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div id="j-openPayList2" class="home-pay-list"></div>
+    </div>
+</div>
+<div class="g-container open-pay" style="display: block;height: 650px;">
+    <div class=" f-f0 f-cb u-mtitle">
+        <div class="f-fr u-index-more">
+        </div>
+        <h1 class="f-c3 f-fl">免费课程</h1>
+    </div>
+    <div class="f-cb home-pay-list-container">
+        <div id="j-openPayList1" class="home-pay-list" style="display: block;">
+                {% for course in free_course_list %}
+                    <a href="/KCJieShao/{{course.id}}" class="f-db f-fl home-pay-list-item">
+                        <div class="home-pay-cover" style=""><img class="lazy" src="{{course.cover}}">
                             <div class="home-pay-status">{{course.type}}</div>
                             <div class="home-pay-coupon">{{course.end_time}}</div>
                         </div>

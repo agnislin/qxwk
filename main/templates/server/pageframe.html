@@ -17,9 +17,9 @@
     <!-- 顶部导航 -->
     <div class="site-header">
         <div class="container-left">
-            <a class="a head" href="#">千禧微课</a>
-            <a class="a" href="">免费课程</a>
-            <a class="a" href="">付费课程</a>
+            <a class="a head" href="/">千禧微课</a>
+            <a class="a" href="#anchorl1">免费课程</a>
+            <a class="a" href="#anchorl2">付费课程</a>
         </div>
         <div class="container-right">
             <form class="search-form" action="">
@@ -28,8 +28,8 @@
             </form>
             {% if username %}
             <!-- 如果已登录 -->
-            <a class="a yonghu" href="">{{ username }}个人中心</a>
-            <a class="a yonghu" href="">退出</a>
+            <a class="a yonghu" href="{{url_for('server.myOrder')}}">{{ username }} 个人中心</a>
+            <a class="a yonghu" href="{{url_for('server.logout')}}">退出</a>
             <!-- /如果已登录 -->
             {% else %}
             <a class="a" href="{{ url_for('server.register') }}">注册</a>
@@ -64,6 +64,7 @@
         <p class='text-foot'>京ICP证XXX号 | 京公网安备XXX
             广播电视节目制作经营许可证（京）字第XXX号
     </div>
+      <a name='anchorl1'></a>
     <!-- /底边 -->
     <!-- /底边 -->
 </body>
