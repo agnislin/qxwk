@@ -5,20 +5,19 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    
+
     <title> My Webpage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/KCJieShao.css') }}" > 
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/KCJieShao.css') }}" >
     <!-- <script src="main.js"></script> -->
 </head>
 
 <body>
-    
+
     <!-- 顶部导航 -->
     <div class="site-header">
         <div class="container-left">
-            <a class="a head" href="{{ url_for('server.index') }}">千禧微课</a>
+            <a class="a head" href="/">千禧微课</a>
             <a class="a" href="">免费课程</a>
             <a class="a" href="">付费课程</a>
         </div>
@@ -27,10 +26,10 @@
                 <input class="search" type="text" name="search" id="" placeholder="搜索课程">
                 <button class="search-btn" type="submit"></button>
             </form>
-            
+
             <a class="a" href="{{ url_for('server.register') }}">注册</a>
             <a class="a" href="{{ url_for('server.login') }}">登录</a>
-  
+
         </div>
     </div>
     <!-- /顶部导航 -->
@@ -39,7 +38,7 @@
         <div id="maintain_info_box" class="g-flow">
         </div>
       </div>
-       <div id="adcertisement_box" class="advertisement_box f-pf" style="display: none;">   
+       <div id="adcertisement_box" class="advertisement_box f-pf" style="display: none;">
 	</div>
     <!-- 课程路径块，本块里面一共有两个块 -->
     <div class="kclj">
@@ -48,7 +47,7 @@
             <div class="kcljfd1 kcljfd2">
                 <ul class="kcljfd1">
                     <li class="navcrumb-item">
-                        <a href="#" target="-blank">首页 &gt;</a>    
+                        <a href="#" target="-blank">首页 &gt;</a>
                     </li>
                     <li class="navcrumb-item"><a href="#" target="-blank">&nbsp;&nbsp;it&互联网&nbsp;&nbsp;&gt;</a></li>
                     <li class="navcrumb-item"><a href="#" target="-blank">&nbsp;&nbsp;后端开发&nbsp;&nbsp;&gt;</a></li>
@@ -59,7 +58,7 @@
         </div>
         <!-- 第二个块 -->
         <div class="kclj1">
-            
+
         </div>
     </div>
 
@@ -71,10 +70,10 @@
         <!-- 第一大块 -->
         <div class="kc-tp-hd">
             <div class="kc-tp">
-                <img src="{{course.cover}}">
+                <img src="{{course.cover}}" style="width:440px;height:248px">
             </div>
             <div class="kc-hd">
-                
+
 
                 <div>
                     <div class="bt"><h2>课程：{{course.name}}</h2><br>
@@ -86,38 +85,99 @@
                     </div>
                 </div>
 
-               
+
                 <div class="ljcj">
-                    <span><a href="#">立即参加</a></span>
+                    <span><a href="/video?course_id={{course.id}}&video_id=1">立即观看</a></span>
                 </div>
             </div>
-                    
+
         </div >
         <!-- 第二大块 -->
-        <div>
+        <div style="box-shadow:0px 0px 0.1px #1b1818;">
             <ul class="kc-wxlb" type='none'>
-                    <li class="kclb">
-                       <span><a href="/KCJieShao/JS" target="">介绍</a> </span> 
-                       <span><a href="/KCJieShao/ML" target="">目录</a></span>
-                       <span><a href="/KCJieShao/BJ" target="">笔记</a></span>
-                       <span><a href="/KCJieShao/TLQ" target="">讨论区</a></span>   
+                    <li class="kclb" style="padding-top:6px;">
+                       <span class='jmbt'><a id="js-a" target="">介绍</a> </span>
+                       <span class='jmbt'><a id="catalog-a" target="">目录</a></span>
+                       <span class='jmbt'><a id="note-a" target="">笔记</a></span>
+                       <span class='jmbt'><a id="forum-a" target="">讨论区</a></span>
                     </li>
             </ul>
         </div>
-        
+
         <!-- 课程的目录，目录，笔记，讨论区等详细内容的块 -->
-        <div style="width:100%;height:600px;background:yellow;">
-            <div style="width:60%;height:100%;background:red;float:left;"><p style="margin: 10px; text-indent: 2em;">{{course.description}}</p></div>
-            <div style="width:40%;height:100%;background:pink;float:left;"></div>
+        <div style="width:1208px;height:600px;background:'';">
+            <div style="width:920px;height:50px;float:left;box-shadow:0px 0px 0.1px #1b1818;">
+              <div style="width:auto;height:auto;float:right;background:orange;margin-top:13px;margin-right:20px;">
+              连载
+              </div>
+            </div>
+            <div style="width:260px;height:50px;float:right;box-shadow:0px 0px 0.1px #1b1818;margin-right:8px;">
+
+            </div>
+            <div id="js-panal" style="width:920px;display: block;height:600px;float:left;box-shadow:0px 0px 0.1px #1b1818;">
+              <p style="margin: 30px 80px; text-indent: 2em; font-size: 20px; ">{{course.description}}</p>
+            </div>
+            <div id="catalog-panal">
+              <ul type='none' >
+                {% for v in videos %}
+                  <li class="catalog-li">
+                      <div id="">
+                          <span style="width:15%;float:left;text-align:center;">
+                            <a href="" style="text-decoration:none">{{v.title}}</a>
+                          </span>
+
+                          <p style="width:50%; float:left;">
+                              {{v.description}}
+                          </p>
+
+                          <sqan style="width:35%;float:right;">
+                              <a href="/video?course_id={{course.id}}&video_id={{v.id}}" style="text-decoration:none;">时长：{{v.duration}}分钟</a>
+                          </sqan>
+
+                      </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div id="note-panal" >
+              <div></div>
+            </div>
+
+            <div id="forum-panal">
+                <div id="vr-content">
+                    <div class="first-wrapper">
+                        <ol class="forum-list">
+                            {% for f,v in forum_list %}
+                            <li>
+                                <div class="forumi">
+                                      <div style="height: 40px; width: 100%; background: #d1ead3; text-align: left;">
+                                        <img class="img" src="{{f.profile}}"></img>
+                                        <a styple="width: 80px;">{{f.name}}</a>
+                                        <span style="font-size: 14px; padding-left: 20px;">{{v.date}}</span>
+                                      </div>
+                                      <p style="text-indent: 2em; margin: 5px; text-align: left;">{{v.comment}}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div style="width:260px;height:100%;background:pink;float:left;margin-left:20px"></div>
         </div>
-            
-        
-        
-        
-            
-        
+
+
+
+
+
+
+
+
+
     </div>
 
-    <!-- 底边 -->
+<!-- 底边 -->
+<script type='text/javascript' src="../../static/js/KCJieShao.js"></script>
 </body>
+
 </html>

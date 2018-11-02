@@ -6,7 +6,10 @@ a, abbr, acronym, address, applet, body, article, aside, audio, b, big, blockquo
 
 }
 body {
-    background-color: #F4F4F4;
+    background-color: #fafafa;
+}
+a{
+  cursor: pointer;
 }
 /* 顶部导航 */
 .site-header {
@@ -14,7 +17,7 @@ body {
     box-shadow: darkgray 0px 4px 20px 0px ;
     height: 60px;
     background-color: #FFF;
-    /* border: 1px solid black; */  
+    /* border: 1px solid black; */
 }
 .container-left {
     margin-left: 150px;
@@ -39,7 +42,7 @@ form {
     width: 150px;
     height: 25px;
     border-radius: 3px;
-    border: 1px solid #ccc; 
+    border: 1px solid #ccc;
     padding-left: 10px;
 
 }
@@ -84,9 +87,9 @@ form {
 
 /*课程路径*/
 .kclj{
-    
+
     height: 40px;
-    background:#EEEEEE; 
+    background:#EEEEEE;
     padding: 20px 0 0 0;
 }
 
@@ -107,13 +110,13 @@ form {
     display: inline-block;
     height: 20px;
     line-height: 20px;
-    
+
 
 }
 
 .kclj1{
     height: 20px;
-    
+
 }
 .navcrumb-item a{
     color: #666666;
@@ -134,16 +137,15 @@ form {
 
 .kcqbnr{
     width:1205px;
-    height:4328px;
-    background: green;
     margin: 0 auto;
 }
 
 /*设置第一大块，包括图片和课程活动介绍这两个小块*/
 .kc-tp-hd{
+    box-shadow:0px 0px 0.1px #1b1818;
     width:1205px;
     height: 290px;
-    
+    background-color: #fff;
 }
 .kc-tp img{
     margin: 20px 20px;
@@ -155,7 +157,7 @@ form {
 .kc-hd{
     width: 695px;
     height: 290px;
-    
+
     float: left;
 }
 .mf{
@@ -199,7 +201,7 @@ form {
 
 }
 .ljcj a {
-    
+
     width: 88px;
     height: auto;
     top: 10px;
@@ -225,11 +227,66 @@ form {
     width: 50px;
     height: 10px;
 }
+.jmbt a{
+  width: 20px;
+  height: 30px;
+  margin-left:30px;
+  font-size: 20px;
+}
+.jmbt a:hover{
+  color: #a7c526;
+
+}
+.jmbt a:active{
+  background:#444;
+  color:#fff;
+}
+
+.catalog-li{
+  height: 50px;
+  width: 920px;
+  font-size: 18px;
+  line-height: 50px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.catalog-li:hover{
+  background: #efe;
+}
+
+#catalog-panal, #js-panal, #note-panal, #forum-panal{
+  width:920px;
+  display: none;
+  height:600px;
+  box-shadow:0px 0px 0.1px #1b1818;
+  float:left;
+  background: #fff
+}
+
+#vr-content{
+    height: calc(100% - 80px - 65px - 140px - 25px);
+    padding-top: 25px;
+    overflow-y: auto;
+    background: #fff;
+    height: 100%;
+    width: 100%;
+}
 
 
-     
-
-
-
-
-
+.forum-list{
+    list-style: none;
+    padding: 0px 40px;
+}
+.forum-list li{
+    position: relative;
+    margin: 0 -10px 5px;
+    border-radius: 13px;
+}
+.forumi{
+    box-shadow: 1px 2px 8px 1px #d0d0d0;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}

@@ -4,19 +4,27 @@ from . import mailvertify as m
 from flask import render_template, request, session, redirect, url_for
 from . import fontserver
 from main.server.user_center.account import *
+from .sms_send import *
 from entry import Account
 from entry import db
 import random
 import json
-
-
+from main.server.user_center.account import *
 
 @fontserver.route('/')
 def index():
-    if is_login():
-        return render_template('server/index.html', username=True)
-    else:
-        return render_template('server/index.html')
+    data = models.find(Course,Course.price > 0,limit=8)
+    datafree = models.find(Course,Course.price ==0,limit=8)
+    data2 = models.find(HomeVideo,limit=6)
+    return render_template('server/index.html', course_list=data, free_course_list=datafree, username=get_login_name(), rollcover=data2)
+
+
+# @fontserver.route('/')
+# def index():
+#     if is_login():
+#         return render_template('server/index.html', username=get_login_name())
+#     else:
+#         return render_template('server/index.html')
 
 # @fontserver.route('/')
 # def index():
@@ -55,6 +63,7 @@ def login():
 @fontserver.route('/logout')
 def logout():
     session.clear()
+    # del accounts[get_account_id()]
     return render_template('server/login.html')
 
 register_book = {}
@@ -71,10 +80,10 @@ def register():
             phnum1 = Account.query.filter(Account.phone == phnum).first()
             if phnum1:
                 return "该账号已经存在！直接登录吧！"
-            s = ''.join( random.sample("0123456789", 6))
-            __business_id = demo_sms_send.uuid.uuid1()
+            s = ''.join( random.sample("123456789", 6))
+            __business_id = uuid.uuid1()
             params = "{\"code\":%s}"%s
-            result = demo_sms_send.send_sms(__business_id, int(phnum),
+            result = send_sms(__business_id, int(phnum),
                            "千禧微课", "SMS_148830034", params)
             result = json.loads(result.decode())
             if result["Code"] == "OK":
@@ -99,7 +108,7 @@ def register():
                 return '请先获取验证码！'
             else:
                 uid = Account.query.filter(Account.phone == phone).first()
-                session['UID'] = uid.id
+                session['account_id'] = uid.id
                 return 'redirect'
             # ------手机
 
@@ -121,9 +130,7 @@ def register():
 
 
 
-@fontserver.route('/get')
-def get():
-    print(register_book)
+
 
 @fontserver.route('/vertify/<peramen>', methods= ['get'])
 def vertify(peramen):
@@ -133,6 +140,8 @@ def vertify(peramen):
         acc1 = Account(email=email, password=password)
         db.session.add(acc1)
         db.session.commit()
-        return '验证成功，<a href = "http://127.0.0.1:5000/login">点击登录</a>'
+        lurl = url_for(login)
+        response = '验证成功，<a href = "http://'+lurl+'">点击登录</a>'
+        return response
     else:
         return '邮件已失效！'

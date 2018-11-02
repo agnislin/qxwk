@@ -84,10 +84,10 @@ def find(entry, condition=None, limit=-1, order_col=None):
     try:
         if type(entry) in [list, tuple, set]:
             res = db.session.query(*entry)
-            print("多表 [", ",".join([t.__name__ for t in entry]), "]")
+            print("多表 [", ",".join([t.__name__ for t in entry]), "]", end=" ")
         else:
             res = db.session.query(entry)
-            print("单表")
+            print("单表", end=" ")
 
         if condition is None:
             print("无条件查找", condition)
@@ -98,13 +98,18 @@ def find(entry, condition=None, limit=-1, order_col=None):
 
         if limit == -1:
             if order_col is None:
+                print("所有")
                 return res.all()
             else:
+                print("限制")
                 return res.order_by(eval(order_col)).all()
         else:
             if order_col is None:
+
+                print("所有")
                 return res.limit(limit).all()
             else:
+                print("限制")
                 return res.order_by(eval(order_col)).limit(limit).all()
     except Exception as es:
         print("="*80,es)

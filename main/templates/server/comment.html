@@ -1,28 +1,14 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/comment.css')}}">
 
-
-</head>
-<body style="height: 100%; overflow: hidden;"> -->
 {% extends 'server/pageframe.html' %}
 {% block title %}login pages{% endblock %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/comment.css')}}">
+  	<link href="{{ url_for('static', filename='css/video-js.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
 {% endblock %}
 {% block content %}
-
-<div style="top: 60px; width: 100%;height: calc(100% - 60px);position: absolute;">
-
-
-  <div id="v-left" style="">
-      <h1 style="font-size: 180px; color: #fff; text-align: center;">视频区</h1>
-  </div>
+<body>
 
   <div id="show">
       <span style="">&lt;</span>
@@ -30,20 +16,54 @@
 
   <div id="vr-mask"></div>
 
+  <div id="v-left">
+      <!-- <h1 style="font-size: 180px; color: #fff; text-align: center;">视频区</h1> -->
+    <div class="m">
+        <style>
+            .m>.video-js{
+                background-color: transparent;
+                position: static;
+            }
+        </style>
+
+        <video id="my-video" class="video-js" controls preload="" data-setup="{}" style="width: 80%; margin-left: 10%;">
+            <source id="v-url" src="{{video.url}}" type="video/mp4" data-set="{{video.id}}">
+
+            <!-- <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p> -->
+        </video>
+        <script src="{{ url_for('static', filename='js/video.min.js')}}"></script>
+        <script src="http://vjs.zencdn.net/5.19/lang/zh-CN.js"></script>
+        <script type="text/javascript">
+
+            var myPlayer = videojs('my-video');
+            videojs("my-video").ready(function () {
+                var myPlayer = this;
+                myPlayer.play();
+            });
+
+        </script>
+        <style>
+            .vjs-big-play-button{
+                top: 46% !important;
+                left: 46%!important;
+            }
+        </style>
+    <!-- </div> -->
+  </div>
 
 
-
-  <div id="v-box">
+<div id="v-box">
       <div id="v-right">
           <div id="hide">
               <span style="">&gt;</span>
           </div>
           <div id="vr-base" data-vid="{{course.id}}">
               <div style="width: 60%; float: left; height: 100%;">
-                <h3 style="text-align: center; height: 40px; line-height: 40px;">{{course.name}}</h3>
-                <h3 style="text-align: center; height: 40px; line-height: 40px;">{{course.teacher}}</h3>
+                <h3 style="text-align: center; height: 40px; line-height: 40px; font-size: 22px;">{{course.name}}</h3>
+                <h3 style="text-align: center; height: 40px; line-height: 40px; font-size: 22px;">{{course.teacher}}</h3>
               </div>
-              <img style="height: 100%; max-width: 40%; float: right;" src="{{course.cover}}"></img>
+              <img style="height: 100%; max-width: 40%; float: right; margin-right: 20px;" src="{{course.cover}}"></img>
           </div>
 
           <div id="vr-nav-mask"></div>
@@ -54,13 +74,13 @@
                   <li>
                       <a id="note-a">笔记</a></li>
                   <li>
-                      <a id="coll-a">收藏</a></li>
+                      <a id="coll-a"></a></li>
 
                   <li style="position: absolute; right:50px;">
-                      <a id="">目录</a></li>
+                      <a id="catalog-a">目录</a></li>
               </ol>
           </div>
-          <div id="forum-box" style="display: none;">
+          <div id="forum-panal" style="display: none;">
               <div id="vr-content">
                   <div class="first-wrapper">
                       <ol class="forum-list">
@@ -71,22 +91,40 @@
               <div id="vr-foot">
                   <form id="forum-form" action="/forum", method="post">
                       <div class="vrf-wrapper" style="border:1px;">
-                          <textarea id="text" name="content" style="font-size: 20px; width: 94%; height: 90px; margin: 10px auto; left: 0; right: 0; position: absolute;"></textarea>
+                          <textarea id="forum" name="content"></textarea>
                           <button id="send-forum" style="position: absolute; bottom: 0; right: 0px; left: 0; width: 100%; border: none; height: 30px;">发送</button>
                       </div>
                   </form>
               </div>
           </div>
 
-          <div id="note-box" style="height: 100%;">
-              <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #69c;">
-                  <h1>笔记</h1>
+          <div id="note-panal" style="height: 100%;">
+              <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #f1f1f1;">
+                  <textarea id="note"></textarea>
+                  <button id="send-note" style="width: 94%; border: none; height: 30px;">发送</button>
+                  <p id="nrse" style="text-align: center; font-size: 20px;line-height: 100px; height: 100px;"></p>
               </div>
           </div>
 
-          <div id="coll-box" style="height: 100%;">
+          <div id="coll-panal" style="height: 100%;">
               <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #f9c;">
                   <h1>收藏</h1>
+              </div>
+          </div>
+
+          <div id="catalog-panal" style="height: 100%;">
+              <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #999;  padding-top: 0;">
+                  <ul>
+                    {% for i in videos %}
+                        <li style="list-style: none; margin-top: 10px;  width: 94%;height: 55px;"><div id="catalog">
+                          <a href="/video?course_id={{course.id}}&video_id={{i.id}}">
+                            <span style="width: 30%;">{{i.title}}</span>
+                            <span style="width: 60%;">{{i.description}}</span>
+                            <span style="width: 10%;">{{i.duration}}</span>
+                            </a>
+                        </div></li>
+                    {% endfor %}
+                  </ul>
               </div>
           </div>
       </div>

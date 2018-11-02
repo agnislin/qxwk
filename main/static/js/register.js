@@ -75,7 +75,7 @@ document.getElementById("js_submit_reg_mail").onclick = function () {
             if (eminput[1].value == eminput[2].value){
                 regem();
             } else { wrotip.innerHTML = '密码不一致';wrotip.className = 'wrophtip';}
-        } else { wrotip.innerHTML = '密码应包含数字、字母、下划线的6 - 18位';wrotip.className = 'wrophtip';}        
+        } else { wrotip.innerHTML = '密码应包含数字、字母、下划线的6 - 18位';wrotip.className = 'wrophtip';}
     } else {wrotip.innerHTML = '邮箱格式错误';wrotip.className = 'wrophtip';}
 }
 
@@ -96,6 +96,7 @@ function requ_dyc() {
         xmlhttp.abort();
     }
 }
+var redirect = document.querySelector('.register-body').dataset.redirect
 
 function regph() {
     var wrotip = document.getElementById('wrophtip');
@@ -104,8 +105,8 @@ function regph() {
     xmlhttp.send(new FormData(formElement));
     xmlhttp.onload = function () {
         var result = xmlhttp.responseText
-        
-        if (result == 'redirect') { window.location.href = "http://127.0.0.1:5000/"; }
+
+        if (result == 'redirect') { window.location.href = redirect; }
         else { wrotip.className = 'wrophtip';
          wrotip.innerHTML = xmlhttp.responseText; };
 
@@ -120,8 +121,8 @@ function regem() {
     xmlhttp.send(new FormData(formElement));
     xmlhttp.onload = function () {
         var result = xmlhttp.responseText
-        
-        if (result == 'redirect') { window.location.href = "http://127.0.0.1:5000/"; }
+
+        if (result == 'redirect') { window.location.href = redirect; }
         else { wrotip.className = 'wrophtip';
         wrotip.innerHTML = xmlhttp.responseText; };
 

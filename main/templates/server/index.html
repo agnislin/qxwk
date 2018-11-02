@@ -5,107 +5,130 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
 {% endblock %}
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/w.css') }}">
+<!-- <!DOCTYPE html>
+<html>
 
-<div class="g-container open-pay" style="display: block;height: calc(100vh - 220px);">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <title> My Webpage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/pageframe.css') }}" /> -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="main.js"></script>
+</head>
+
+<body>
+
+    <!-- 内容 -->
+    <div>
+
+	<div class="main_banner">
+		<div class="main_banner_wrap">
+				<div class=" f-f0 f-cb u-mtitle">
+		   <div class="f-fr u-index-more">
+		   </div>
+		   <h1 class="f-c3 f-fl">热门课程</h1>
+	   </div>
+			<canvas id="myCanvas" width="150" height="150"></canvas>
+			<div class="main_banner_box" id="m_box">
+				<a href="javascript:void(0)" class="banner_btn js_pre">
+					<span class="banner_btn_arrow"><i></i></span>
+				</a>
+				<a href="javascript:void(0)" class="banner_btn btn_next js_next">
+					<span class="banner_btn_arrow"><i></i></span>
+				</a>
+				<ul>
+          {% for x in rollcover%}
+					<li id="imgCard{{loop.index-1}}">
+						<a href="/KCJieShao/{{x.course_id}}"><span style="opacity:0.4;"></span></a>
+						<img src="{{x.picture}}" alt="">
+						<p>{{x.slogan}}</p>
+					</li>
+				  {% endfor %}
+				</ul>
+				<!--火狐倒影图层-->
+				<p id="rflt"></p>
+			</div>
+			<div class="btn_list">
+				<span class="curr"></span><span></span><span></span><span></span><span></span>
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/w.css') }}">
+<a name='anchorl2'></a>
+<div class="g-container open-pay" style="display: block;height: 650px;">
     <div class=" f-f0 f-cb u-mtitle">
         <div class="f-fr u-index-more">
         </div>
-        <h2 class="f-c3 f-fl">精品课程</h2>
+        <h1 class="f-c3 f-fl">付费课程</h1>
     </div>
     <div class="f-cb home-pay-list-container">
-        <div id="j-openPayList1" class="home-pay-list" style="display: block;"><a href="//vip.open.163.com/courses/1516"
-                class="f-db f-fl home-pay-list-item">
-                <div class="home-pay-cover" style=""> <img class="lazy" src="https://open-image.nosdn.127.net/528aa547ad7e4752bc265289086820a4.jpg?imageView&amp;thumbnail=540y300&amp;enlarge=1&amp;quality=85"
-                        alt="任志强商学课：激发财商潜能·黄金版">
-                    <div class="home-pay-status">更新中</div>
-                    <div class="home-pay-coupon">限量特惠</div>
-                </div>
-                <div class="home-pay-info">
-                    <div class="home-pay-title">任志强商学课：激发财商潜能·黄金版</div>
-                    <div class="home-pay-subtitle">剖析可复制的商业思路，抓住职场投资机遇</div>
-                </div>
-                <div class="home-pay-price"> ￥79.00 <del class="home-pay-price-ori"> 原价 ￥99.00 </del> </div>
-            </a><a href="//vip.open.163.com/courses/925" class="f-db f-fl home-pay-list-item">
-                <div class="home-pay-cover" style=""> <img class="lazy" src="https://open-image.nosdn.127.net/4a48a2e9edf34a64a6dd8cd95be2a422.jpg?imageView&amp;thumbnail=540y300&amp;enlarge=1&amp;quality=85"
-                        alt="维密超模顶级私教亲授，13天练出好身材">
-                    <div class="home-pay-status">已完结</div>
-                    <div class="home-pay-coupon">限量特惠</div>
-                </div>
-                <div class="home-pay-info">
-                    <div class="home-pay-title">维密超模顶级私教亲授，13天练出好身材</div>
-                    <div class="home-pay-subtitle">每天半小时，瘦身/塑形/好气色</div>
-                </div>
-                <div class="home-pay-price"> ￥99.00 <del class="home-pay-price-ori"> 原价 ￥129.00 </del> </div>
-            </a><a href="//vip.open.163.com/courses/1331" class="f-db f-fl home-pay-list-item">
-                <div class="home-pay-cover" style=""> <img class="lazy" src="https://open-image.nosdn.127.net/acfbb1cef8d54b2d91fccc5d9a63ae27.jpg?imageView&amp;thumbnail=540y300&amp;enlarge=1&amp;quality=85"
-                        alt="阿里全球销售冠军，亲授百万年薪销售秘籍 ">
-                    <div class="home-pay-status">已完结</div>
-                    <div class="home-pay-coupon">限量特惠</div>
-                </div>
-                <div class="home-pay-info">
-                    <div class="home-pay-title">阿里全球销售冠军，亲授百万年薪销售秘籍 </div>
-                    <div class="home-pay-subtitle">带你搞定关键人，带你业绩5倍增长</div>
-                </div>
-                <div class="home-pay-price"> ￥79.00 <del class="home-pay-price-ori"> 原价 ￥99.00 </del> </div>
-            </a><a href="//vip.open.163.com/courses/1309" class="f-db f-fl home-pay-list-item">
-                <div class="home-pay-cover" style=""> <img class="lazy" src="https://open-image.nosdn.127.net/0770c7f2ce4e42afbde50135b86ba29e.jpg?imageView&amp;thumbnail=540y300&amp;enlarge=1&amp;quality=85"
-                        alt="25位知名教授学者，讲解62本经典好书">
-                    <div class="home-pay-status">已完结</div>
-                    <div class="home-pay-coupon">限量特惠</div>
-                </div>
-                <div class="home-pay-info">
-                    <div class="home-pay-title">25位知名教授学者，讲解62本经典好书</div>
-                    <div class="home-pay-subtitle">带你无限逼近这个复杂世界的真相</div>
-                </div>
-                <div class="home-pay-price"> ￥90.00 <del class="home-pay-price-ori"> 原价 ￥120.00 </del> </div>
-            </a><a href="//vip.open.163.com/courses/939" class="f-db f-fl home-pay-list-item">
-                <div class="home-pay-cover" style=""> <img class="lazy" src="https://open-image.nosdn.127.net/882e700dd91d4c34b48a034cc2aff961.jpg?imageView&amp;thumbnail=540y300&amp;enlarge=1&amp;quality=85"
-                        alt="人人用得上的思维导图课，有效提升学习力">
-                    <div class="home-pay-status">已完结</div>
-                    <div class="home-pay-coupon">限量特惠</div>
-                </div>
-                <div class="home-pay-info">
-                    <div class="home-pay-title">人人用得上的思维导图课，有效提升学习力</div>
-                    <div class="home-pay-subtitle">有效提升你的思考力与学习力</div>
-                </div>
-                <div class="home-pay-price"> ￥79.00 <del class="home-pay-price-ori"> 原价 ￥99.00 </del> </div>
-            </a><a href="//vip.open.163.com/courses/852" class="f-db f-fl home-pay-list-item">
-                <div class="home-pay-cover" style=""> <img class="lazy" src="https://open-image.nosdn.127.net/9d8a41739635444b869ee225426ad9ae.jpg?imageView&amp;thumbnail=540y300&amp;enlarge=1&amp;quality=85"
-                        alt="一学就会的PPT动画课">
-                    <div class="home-pay-status">已完结</div>
-                    <div class="home-pay-coupon">限量特惠</div>
-                </div>
-                <div class="home-pay-info">
-                    <div class="home-pay-title">一学就会的PPT动画课</div>
-                    <div class="home-pay-subtitle">大神教你最实用的高逼格进阶技能</div>
-                </div>
-                <div class="home-pay-price"> ￥79.00 <del class="home-pay-price-ori"> 原价 ￥99.00 </del> </div>
-            </a><a href="//vip.open.163.com/courses/1865" class="f-db f-fl home-pay-list-item">
-                <div class="home-pay-cover" style=""> <img class="lazy" src="https://open-image.nosdn.127.net/1f7d67d22163400d89b71f7ab35ddd62.jpg?imageView&amp;thumbnail=540y300&amp;enlarge=1&amp;quality=85"
-                        alt="5步破解人生困局，让资源和人脉主动找你">
-                    <div class="home-pay-status">更新中</div>
-                    <div class="home-pay-coupon">限量特惠</div>
-                </div>
-                <div class="home-pay-info">
-                    <div class="home-pay-title">5步破解人生困局，让资源和人脉主动找你</div>
-                    <div class="home-pay-subtitle">武志红力荐：教你挖掘自身的资源与价值</div>
-                </div>
-                <div class="home-pay-price"> ￥79.00 <del class="home-pay-price-ori"> 原价 ￥99.00 </del> </div>
-            </a><a href="//vip.open.163.com/courses/1436" class="f-db f-fl home-pay-list-item">
-                <div class="home-pay-cover" style=""> <img class="lazy" src="https://open-image.nosdn.127.net/f3ef3df63cec48ffb812988edccf2b89.jpg?imageView&amp;thumbnail=540y300&amp;enlarge=1&amp;quality=85"
-                        alt="零失误穿搭法，10倍提升你的美">
-                    <div class="home-pay-status">更新中</div>
-                    <div class="home-pay-coupon">限量特惠</div>
-                </div>
-                <div class="home-pay-info">
-                    <div class="home-pay-title">零失误穿搭法，10倍提升你的美</div>
-                    <div class="home-pay-subtitle">认识自我、选对单品、游刃场合</div>
-                </div>
-                <div class="home-pay-price"> ￥79.00 <del class="home-pay-price-ori"> 原价 ￥99.00 </del> </div>
-            </a></div>
-        <div id="j-openPayList2" class="home-pay-list"></div>
-
+        <div id="j-openPayList1" class="home-pay-list" style="display: block;">
+                {% for course in course_list %}
+                    <a href="/KCJieShao/{{course.id}}" class="f-db f-fl home-pay-list-item">
+                        <div class="home-pay-cover" style=""><img class="lazy" src="{{course.cover}}">
+                            <div class="home-pay-status">{{course.type}}</div>
+                            <div class="home-pay-coupon">{{course.end_time}}</div>
+                        </div>
+                        <div class="home-pay-info">
+                            <div class="home-pay-title">{{course.teacher}}</div>
+                            <div class="home-pay-subtitle">{{course.description}}</div>
+                        </div>
+                        <div class="home-pay-price"> ￥{{course.sale}}
+                            <del class="home-pay-price-ori"> 原价 ￥{{course.price}} </del>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div id="j-openPayList2" class="home-pay-list"></div>
     </div>
 </div>
+<div class="g-container open-pay" style="display: block;height: 650px;">
+    <div class=" f-f0 f-cb u-mtitle">
+        <div class="f-fr u-index-more">
+        </div>
+        <h1 class="f-c3 f-fl">免费课程</h1>
+    </div>
+    <div class="f-cb home-pay-list-container">
+        <div id="j-openPayList1" class="home-pay-list" style="display: block;">
+                {% for course in free_course_list %}
+                    <a href="/KCJieShao/{{course.id}}" class="f-db f-fl home-pay-list-item">
+                        <div class="home-pay-cover" style=""><img class="lazy" src="{{course.cover}}">
+                            <div class="home-pay-status">{{course.type}}</div>
+                            <div class="home-pay-coupon">{{course.end_time}}</div>
+                        </div>
+                        <div class="home-pay-info">
+                            <div class="home-pay-title">{{course.teacher}}</div>
+                            <div class="home-pay-subtitle">{{course.description}}</div>
+                        </div>
+                        <div class="home-pay-price"> ￥{{course.sale}}
+                            <del class="home-pay-price-ori"> 原价 ￥{{course.price}} </del>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div id="j-openPayList2" class="home-pay-list"></div>
+    </div>
+</div>
+
+    <div class=" f-f0 f-cb u-mtitle">
+        <div class="f-fr u-index-more">
+        </div>
+    </div>
+
 {% endblock %}
+<!--
+	</div>
+    /内容
+    底边
+
+</body>
+</html> -->

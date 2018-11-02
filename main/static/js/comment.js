@@ -1,82 +1,131 @@
-// 设置拉取的位置，第一次为1
-let counter = 1;
-// 每次拉取的讨论条数
-const quantity = 8;
 
-
-// 评论发送
-document.querySelector('#send-forum').disabled = true;
-document.querySelector('#text').onkeyup = () => {
-    if (document.querySelector('#text').value.length > 0){
-        document.querySelector('#send-forum').disabled = false;
-    }else{
-        document.querySelector('#send-forum').disabled = true;
+document.addEventListener("DOMContentLoaded", () =>{
+        loadComment();
+        submitCheck("#send-forum", "#forum");
+        submitCheck("#send-note", "#note");
     }
+);
+
+
+function getCourseId(){
+    return document.querySelector("#vr-base").dataset.vid
 };
+
+function getVideoId(){
+    return document.querySelector("#v-url").dataset.vid
+};
+// 评论框内内容时，禁止提交按钮
+function submitCheck(){
+    const butt = arguments[0]
+    const tarea = arguments[1]
+    document.querySelector(butt).disabled = true;
+    document.querySelector(tarea).onkeyup = () => {
+        if (document.querySelector(tarea).value.length > 0){
+            document.querySelector(butt).disabled = false;
+        }else{
+            document.querySelector(butt).disabled = true;
+        }
+    };
+};
+
+// 提交评论
 document.querySelector('#forum-form').onsubmit = () =>{
     const request = new XMLHttpRequest();
     request.open("POST", "/forum");
 
     request.onload = () => {
         const data = request.responseText;
-        history_comment(data);
+        addComment(data);
     };
     const data = new FormData();
-    vid = document.querySelector("#vr-base").dataset.vid
-    comment = document.querySelector("#text").value
+    vid = getCourseId()
+    comment = document.querySelector("#forum").value
     data.append("content", comment)
     data.append("video_id", vid)
     request.send(data);
-    document.querySelector("#text").value = "";
+
+    document.querySelector("#forum").value = "";
     document.querySelector('#send-forum').disabled = true;
     return false;
 };
-// function add_comment(contents){
-//     const comm = comm_template({'contents': contents});
-//     document.querySelector('.forum-list').innerHTML = comm + document.querySelector('.forum-list').innerHTML;
-// }
 
 // 评论列表滚动事件
 document.getElementById('vr-content').onscroll = () => {
     if (document.querySelector("#vr-content").offsetHeight + document.querySelector("#vr-content").scrollTop >= document.querySelector("#vr-content").scrollHeight){
-        load();
+        loadComment();
     };
 }
-// 当 DOM 加载完成后，进行第一次拉取
-document.addEventListener('DOMContentLoaded', load);
-function load(){
-    // 设置拉取记录所在区间
-    const start = counter;
-    const end = start + quantity - 1;
-    counter = end + 1;
 
+// 加载评论
+function loadComment(){
     // 获取记录
     const request = new XMLHttpRequest();
     request.open("POST", "/nextComments");
-
     request.onload = () => {
         const data = request.responseText;
-        history_comment(data);
+        addComment(data);
     };
     // 将拉取记录的起始和结束位置 作为请求的参数发送给服务器
     const data = new FormData();
-    data.append('start', start);
-    data.append('end', end);
+    // data.append('start', start);
+    // data.append('end', end);
 
     // 发送请求
     request.send(data);
 };
 
-// 通过Handlebars模板添加讨论记录到DOM
-// const comm_template = Handlebars.compile(document.querySelector('#comment').innerHTML);
-function history_comment(contents){
-    // 创建新的讨论
-    // const comm = comm_template({'contents': contents});
-    document.querySelector('.forum-list').innerHTML += contents;
+//  刷新讨论
+function addComment(contents){
+    document.querySelector('.forum-list').innerHTML = contents + document.querySelector('.forum-list').innerHTML;
 };
 
 
+// document.querySelector("#cour-list").onclick = () =>{
+//   const request = new XMLHttpRequest();
+//   request.open("Get", "/nextComments");
+//   const data = new FormData();
+//
+//   data.append("course_id", getCourseId());
+//   request.send(data);
+//
+//   request.onload = () => {
+//       reslut = request.responseText;
+//   };
+// };
 
+document.querySelectorAll("[id$=-a]").forEach( panal =>{
+    panal.onclick = () => {
+        document.querySelectorAll("[id$=-panal]").forEach( p =>{
+            p.style.display = "none";
+        });
+
+        const panal_name = panal.id.split("-")[0];
+        pid = "#"+panal_name+"-panal";
+        document.querySelector(pid).style.display = "block";
+    }
+});
+
+
+document.querySelector("#send-note").onclick = () => {
+    note = document.querySelector("#note").value;
+    vid = getVideoId()
+    const xml = new XMLHttpRequest();
+    xml.open("POST", "/addNote")
+    xml.onload = ()=>{
+        res = xml.responseText;
+        document.querySelector("#nrse").innerHTML = res;
+
+        setTimeout(()=>{document.querySelector("#nrse").innerHTML = "";}, 1000);
+    };
+
+    const data = new FormData();
+    data.append("note", note);
+    data.append("video_id", vid);
+    xml.send(data);
+
+    document.querySelector("#note").value = "";
+    document.querySelector('#send-note').disabled = true;
+};
 // 隐藏右侧面板
 document.querySelector('#hide').onclick = () =>{
     document.querySelector('#v-left').className = "";
@@ -89,22 +138,4 @@ document.querySelector('#show').onclick = () =>{
     document.querySelector('#v-box').className = "v-box-anim";
     document.querySelector('#hide').style.display = "block";
     document.querySelector('#show').style.display = "none";
-};
-
-
-document.querySelector("#forum-a").onclick = () => {
-    document.querySelector("#forum-box").style.display = "block";
-    document.querySelector("#note-box").style.display = "none";
-    document.querySelector("#coll-box").style.display = "none";
-};
-
-document.querySelector("#note-a").onclick = () => {
-    document.querySelector("#note-box").style.display = "block";
-    document.querySelector("#forum-box").style.display = "none";
-    document.querySelector("#coll-box").style.display = "none";
-};
-document.querySelector("#coll-a").onclick = () => {
-    document.querySelector("#coll-box").style.display = "block";
-    document.querySelector("#forum-box").style.display = "none";
-    document.querySelector("#note-box").style.display = "none";
 };
