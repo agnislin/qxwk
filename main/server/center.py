@@ -5,30 +5,25 @@ from main.server.user_center.account import *
 
 @fontserver.route('/myOrder')
 def myOrder():
-    uid = get_account()
-    if uid:
-        username = uid.username if uid.username else (
-        uid.email if uid.email else uid.phone)
-        return render_template('server/myOrder.html', username=username, course=None)
+    if is_login:
+        courses_1 = models.find(Account, Account.id == 1)[0].courses
+        
+        return render_template('server/myOrder.html', username=get_login_name(), course=courses_1)
     else:
         return redirect('login')
 
 @fontserver.route('/myCourse')
 def myCourse():
-    uid = get_account()
-    if uid:
-        username = uid.username if uid.username else (
-            uid.email if uid.email else uid.phone)
-        return render_template('server/myCourse.html', username=username, course=None)
+    if is_login:
+        courses_1 = models.find(Account, Account.id == 1)[0].courses
+        return render_template('server/myCourse.html', username=get_login_name(), course=courses_1)
     else:
         return redirect('login')
 
 @fontserver.route('/myRecord')
 def myRecord():
-    uid = get_account()
-    if uid:
-        username = uid.username if uid.username else (
-            uid.email if uid.email else uid.phone)
-        return render_template('server/myRecord.html', username=username, course=None)
+    if is_login:
+        courses_1 = models.find(Account, Account.id == 1)[0].courses
+        return render_template('server/myRecord.html', username=get_login_name(), course=courses_1)
     else:
         return redirect('login')

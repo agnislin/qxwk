@@ -15,7 +15,7 @@ a, abbr, acronym, address, applet, body, article, aside, audio, b, big, blockquo
     box-shadow: darkgray 0px 4px 20px 0px ;
     height: 60px;
     background-color: #FFF;
-    /* border: 1px solid black; */  
+    /* border: 1px solid black; */
 }
 .container-left {
     margin-left: 200px;
@@ -40,7 +40,7 @@ a, abbr, acronym, address, applet, body, article, aside, audio, b, big, blockquo
     width: 150px;
     height: 25px;
     border-radius: 3px;
-    border: 1px solid #ccc; 
+    border: 1px solid #ccc;
     padding-left: 10px;
 }
 .search-btn {
@@ -253,6 +253,7 @@ a, button {
     position: absolute;
     top:0;
     left:0;
+    font-size: 20px;
 }
 
 .title {
@@ -264,7 +265,6 @@ li:hover {
     color:#29754d;
     background-color: #C1C1C1;
 }
-
-.wrap:hover {
-    background-color: #C1C1C1;
+.video:hover {
+  border: 2px solid green;
 }
