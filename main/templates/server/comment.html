@@ -17,39 +17,10 @@
   <div id="vr-mask"></div>
 
   <div id="v-left">
-      <!-- <h1 style="font-size: 180px; color: #fff; text-align: center;">视频区</h1> -->
     <div class="m">
-        <style>
-            .m>.video-js{
-                background-color: transparent;
-                position: static;
-            }
-        </style>
-
         <video id="my-video" class="video-js" controls preload="" data-setup="{}" style="width: 80%; margin-left: 10%;">
-            <source id="v-url" src="{{video.url}}" type="video/mp4" data-set="{{video.id}}">
-
-            <!-- <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p> -->
+            <source id="v-url" src="{{ url_for('static', filename=video.url)}}" type="video/flv" data-set="{{video.id}}">
         </video>
-        <script src="{{ url_for('static', filename='js/video.min.js')}}"></script>
-        <script src="http://vjs.zencdn.net/5.19/lang/zh-CN.js"></script>
-        <script type="text/javascript">
-
-            var myPlayer = videojs('my-video');
-            videojs("my-video").ready(function () {
-                var myPlayer = this;
-                myPlayer.play();
-            });
-
-        </script>
-        <style>
-            .vjs-big-play-button{
-                top: 46% !important;
-                left: 46%!important;
-            }
-        </style>
-    <!-- </div> -->
   </div>
 
 
@@ -113,7 +84,7 @@
           </div>
 
           <div id="catalog-panal" style="height: 100%;">
-              <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #999;  padding-top: 0;">
+              <div id="vr-content" style="height: calc(100% - 80px - 65px); background: #f1f1f1;  padding-top: 0;">
                   <ul>
                     {% for i in videos %}
                         <li style="list-style: none; margin-top: 10px;  width: 94%;height: 55px;"><div id="catalog">
@@ -134,18 +105,21 @@
 
 
 <script type="text/javascript" src="../../static/js/comment.js"></script>
-{% endblock %}
+<script src="{{ url_for('static', filename='js/video.min.js')}}"></script>
+<script src="http://vjs.zencdn.net/5.19/lang/zh-CN.js"></script>
+<script type="text/javascript">
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-<script id="comment" type="text/x-handlebars-template">
-    <li>
-        <div class="forumi">
-            <!-- <h1 style="text-align: center;">
-                    {{contents}}
-            </h1> -->
-                <!-- {% raw -%} -->
-          <!--
-        {%- endraw %} -->
-        <!-- </div> -->
-    <!-- </li> -->
-<!-- </script> -->
+    var myPlayer = videojs('my-video');
+    videojs("my-video").ready(function () {
+        var myPlayer = this;
+        myPlayer.play();
+    });
+
+</script>
+<style>
+    .vjs-big-play-button{
+        top: 46% !important;
+        left: 46%!important;
+    }
+</style>
+{% endblock %}
